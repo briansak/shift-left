@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "holdout/firewall/holdout-asa-tricky-scoped-tcp.rules",
+  "expected_rule_ids": [],
+  "description": "Clean bait: scoped permits and constrained service object — should not fire ASA-001/002."
+}

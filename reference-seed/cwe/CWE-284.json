@@ -1,0 +1,5 @@
+{
+  "id": "CWE-284",
+  "name": "Improper Access Control",
+  "description": "The product does not restrict or incorrectly restricts access to a resource from an unauthorized actor."
+}

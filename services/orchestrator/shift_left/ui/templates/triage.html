@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Antares advisory triage{% endblock %}
+{% block content %}
+<h2>Antares advisory triage</h2>
+<p class="helper">Candidate files for review — ranked localization only. Never gates a merge. Published File F1 for {{ model_variant }}: {{ published_f1 }}.</p>
+<p class="helper">Expected latency per CWE query: {{ latency_low }}–{{ latency_high }} seconds.</p>
+
+{% if not antares_installed %}
+<section class="panel" role="status">
+  <h3>Antares not installed</h3>
+  <p class="helper">Advisory triage only — does not gate merges. Accept Hugging Face terms and run:</p>
+  <p><code>./shift-left install-antares</code></p>
+  <p class="helper">Then start the server: <code>./shift-left model start antares-server</code></p>
+</section>
+{% elif not can_run_triage %}
+<p class="error">You need the triage capability and antares_triage.enabled to launch runs.</p>
+{% else %}
+<section class="panel candidate-panel">
+  <h3>Launch triage run</h3>
+  {% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
+  <form method="post" action="/ui/triage">
+    <label for="repo">Repo (org/name)</label>
+    <input id="repo" name="repo" required style="width:100%">
+    <label for="ref">Ref</label>
+    <input id="ref" name="ref" value="main" required>
+    <label for="task_cwe">CWE (primary path)</label>
+    <input id="task_cwe" name="task_cwe" placeholder="CWE-89">
+    <label for="task_cwe_description">CWE description (optional)</label>
+    <input id="task_cwe_description" name="task_cwe_description">
+    <label for="advisory_cve">Or advisory CVE (local cache)</label>
+    <input id="advisory_cve" name="advisory_cve" placeholder="CVE-2024-0000">
+    <button type="submit" style="margin-top:1rem">Run triage</button>
+  </form>
+</section>
+{% endif %}
+
+{% if localization %}
+<section class="panel candidate-panel" aria-label="Candidate files for review">
+  <h3>Candidate files for review — {{ localization.cwe_queried }}</h3>
+  <p class="helper">{{ localization.summary_text|triage_text }}</p>
+  <p class="helper">Outcome: {{ localization.outcome }} · Turns: {{ localization.turn_count }} · Variant: {{ localization.model_variant }}</p>
+  <table>
+    <thead><tr><th>Rank</th><th>Path</th><th>Confidence</th></tr></thead>
+    <tbody>
+    {% for item in localization.ranked_files %}
+    <tr><td>{{ item.rank }}</td><td><code>{{ item.path }}</code></td><td>{{ item.confidence or '—' }}</td></tr>
+    {% else %}
+    <tr><td colspan="3">No ranked paths returned (outcome may be no candidate files).</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <h4>Exploration trace</h4>
+  <pre style="white-space:pre-wrap;font-size:0.9rem">{{ localization.exploration_trace|triage_text }}</pre>
+</section>
+
+<section class="panel finding-panel" style="margin-top:1rem" aria-hidden="true">
+  <p class="sr-only">Visual contrast: findings use solid accent border; triage candidates use dashed warn border above.</p>
+</section>
+{% endif %}
+{% endblock %}

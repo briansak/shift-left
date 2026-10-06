@@ -1,0 +1,128 @@
+/* CWE reference catalog — tokens only */
+
+.cwe-reference-page .cwe-reference-advisory p {
+  margin: 0 0 var(--space-1);
+  color: var(--text-secondary);
+  font-size: var(--text-body);
+}
+
+.cwe-reference-page .cwe-reference-advisory p:last-child {
+  margin-bottom: 0;
+}
+
+.cwe-reference-filters {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.cwe-reference-search input {
+  width: 100%;
+}
+
+.cwe-reference-filter-grid {
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.cwe-reference-filter-grid label,
+.cwe-reference-search {
+  display: grid;
+  gap: var(--space-1);
+  font-size: var(--text-label);
+  color: var(--text-secondary);
+}
+
+.cwe-reference-filter-grid select,
+.cwe-reference-search input {
+  min-height: var(--nav-row-height);
+  padding: 0 var(--space-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-control);
+  background: var(--bg-surface-2);
+  color: var(--text-primary);
+  font: inherit;
+}
+
+.cwe-reference-filter-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-body);
+}
+
+.cwe-reference-filter-actions {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.cwe-reference-empty {
+  margin: var(--space-1) 0 0;
+  color: var(--warn);
+}
+
+.cwe-reference-table .status-pill {
+  font-size: var(--text-label);
+}
+
+.cwe-reference-detail-row td {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.cwe-reference-detail {
+  margin: 0 0 var(--space-1);
+}
+
+.cwe-reference-detail summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-size: var(--text-label);
+}
+
+.cwe-reference-detail-body {
+  margin-top: var(--space-1);
+  padding: var(--space-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-control);
+  background: var(--bg-surface-2);
+  color: var(--text-secondary);
+  font-size: var(--text-body);
+}
+
+.cwe-reference-detail-body p {
+  margin: 0 0 var(--space-1);
+}
+
+.cwe-reference-detail-body p:last-child {
+  margin-bottom: 0;
+}
+
+.cwe-reference-handler-list {
+  margin: var(--space-1) 0 0;
+  padding-left: var(--space-3);
+}
+
+.cwe-reference-actions {
+  white-space: nowrap;
+}
+
+.cwe-reference-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-secondary);
+  font-size: var(--text-body);
+}
+
+.cwe-reference-out-of-catalog-card {
+  margin-top: var(--space-3);
+}
+
+.cwe-reference-rule-ids {
+  font-size: var(--text-label);
+  color: var(--text-secondary);
+  white-space: normal;
+  word-break: break-word;
+}

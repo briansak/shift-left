@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: legacy-api
+  annotations:
+    # historical: internal LB only, no public exposure
+    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+spec:
+  type: LoadBalancer
+  selector:
+    app: legacy-api
+  ports:
+    - port: 443
+      targetPort: 8443

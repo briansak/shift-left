@@ -1,0 +1,5 @@
+! HOLDOUT — ACL line split across paste + permissive object in same change set
+object service BAD_CATCHALL
+ service tcp
+!
+access-list CORP extended permit ip any any

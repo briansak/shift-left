@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "holdout/holdout-asa-narrow-group-28.rules",
+  "expected_rule_ids": [],
+  "description": "Network object-group resolves to a /28 subnet; ACE is not any/any."
+}

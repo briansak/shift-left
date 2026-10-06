@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "terraform/vpn/device-vpn-weak.tf",
+  "expected_rule_ids": [
+    "FTD-004"
+  ],
+  "description": "Bulk FMC IKEv2 policies with 3DES and SHA-1."
+}

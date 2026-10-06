@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "terraform/fmc-only-scoped-clean.tf",
+  "expected_rule_ids": [],
+  "description": "fmc_* only on cisco_ftd — no FTD-009 uncovered provider."
+}

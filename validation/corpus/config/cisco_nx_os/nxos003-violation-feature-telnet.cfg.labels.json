@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_nx_os",
+  "virtual_path": "switches/nxos003-violation-feature-telnet.cfg",
+  "expected_rule_ids": [
+    "NXOS-003"
+  ],
+  "description": "Cleartext telnet feature enabled."
+}

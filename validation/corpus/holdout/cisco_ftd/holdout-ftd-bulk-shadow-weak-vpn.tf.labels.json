@@ -1,0 +1,10 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "holdout/ftd/holdout-ftd-bulk-shadow-weak-vpn.tf",
+  "expected_rule_ids": [
+    "FTD-004",
+    "FTD-005",
+    "FTD-006"
+  ],
+  "description": "Co-occurring weak IKEv2, shadowed mgmt ALLOW (FTD-005), and catch-all BLOCK shadow (FTD-006)."
+}

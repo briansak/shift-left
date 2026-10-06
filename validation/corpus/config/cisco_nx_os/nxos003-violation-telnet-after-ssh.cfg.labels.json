@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_nx_os",
+  "virtual_path": "switches/nxos003-violation-telnet-after-ssh.cfg",
+  "expected_rule_ids": [
+    "NXOS-003"
+  ],
+  "description": "Telnet feature enabled after SSH baseline."
+}

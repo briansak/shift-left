@@ -1,0 +1,335 @@
+{% extends "base.html" %}
+{% block title %}System{% endblock %}
+{% block content %}
+<div class="repo-page">
+<header class="page-header-row">
+  <div>
+    <h1 class="page-title">System</h1>
+    <p class="text-muted">Health, prerequisites, and operator controls.</p>
+  </div>
+</header>
+{% set prereq = status.prerequisites or status.health.prerequisites %}
+{% if status.health.overall_state == 'failed' %}
+<section class="panel state-failed" role="alert">
+  <h3>Setup incomplete</h3>
+  <p>First-run bootstrap has not finished or a critical prerequisite failed.</p>
+  <p class="helper">From the repo root run: <code>./shift-left up</code> — idempotent and resumable. Diagnose with <code>./shift-left doctor</code>.</p>
+</section>
+{% endif %}
+
+<section class="panel {% if status.health.overall_state == 'healthy' %}state-healthy{% elif status.health.overall_state == 'degraded' %}state-degraded{% else %}state-failed{% endif %}" role="status">
+  <h3>Status — {{ status.health.overall_state|upper }}</h3>
+  <p>{{ status.health.summary }}</p>
+  {% if status.health.affected_capabilities %}
+  <p class="helper">Affected: {{ status.health.affected_capabilities|join(', ') }}</p>
+  {% endif %}
+  <form method="get" action="/ui/health" style="margin-top:0.5rem">
+    <input type="hidden" name="refresh" value="true">
+    <button type="submit">Refresh health checks</button>
+    {% if prereq.cache %}<span class="helper">Report: {{ prereq.report_generated_at }} · cache TTL {{ prereq.cache.ttl_seconds }}s</span>{% endif %}
+  </form>
+  {% if status.health.config_drift.drift_detected %}
+  <p class="helper"><strong>Config drift:</strong> {{ status.health.config_drift.note }}</p>
+  {% endif %}
+  {% if can_admin and status.health.overall_state in ['failed', 'degraded'] %}
+  <form method="post" action="/ui/health/services/start-all" style="margin-top:0.75rem">
+    <button type="submit">Start all prerequisites (dependency order)</button>
+  </form>
+  <p class="helper">Chain: postgres → forgejo → forgejo-runner{% if status.models.foundation_sec.enabled %} → foundation-sec-server{% endif %}. Each step verified before the next.</p>
+  {% endif %}
+  {% if request.query_params.get('notice') == 'start-all' %}
+  {% set failed_svc = request.query_params.get('failed') %}
+  <p class="helper"><strong>Start-all outcome:</strong> {{ request.query_params.get('outcome') }}{% if failed_svc %} — stopped at {{ failed_svc }}{% if status.dependency_graph and status.dependency_graph.prerequisite_checks.get(failed_svc) %} (<a href="#prerequisite-{{ status.dependency_graph.prerequisite_checks[failed_svc] }}">prerequisite detail</a>){% endif %}{% endif %}</p>
+  {% endif %}
+  {% if request.query_params.get('notice') == 'service-action' %}
+  {% set action_service = request.query_params.get('service') %}
+  {% set action_outcome = request.query_params.get('outcome') %}
+  <p class="helper"><strong>Service action:</strong> {{ action_service }} — {{ action_outcome }}
+  {% if action_outcome in ['verification_timeout', 'command_failed'] and status.dependency_graph and status.dependency_graph.prerequisite_checks.get(action_service) %}
+  — <a href="#prerequisite-{{ status.dependency_graph.prerequisite_checks[action_service] }}">View prerequisite detail</a>
+  {% endif %}
+  </p>
+  {% endif %}
+  {% if request.query_params.get('notice') == 'host-native-control' %}
+  <p class="helper"><strong>Host-native service:</strong> {{ request.query_params.get('service') }} cannot be started from the containerized orchestrator. Run on the Mac host: <code>./shift-left model {{ request.query_params.get('action', 'start') }} {{ request.query_params.get('service') }}</code></p>
+  {% endif %}
+</section>
+
+<section class="panel">
+  <h3>Runtime topology</h3>
+  {% set topo = status.topology_report or prereq.topology_report or {} %}
+  <p>Label: <strong>{{ status.topology }}</strong> · Control: {{ topo.service_control_mode or '—' }} · Model hosting: {{ topo.model_hosting or '—' }}</p>
+  <p class="helper">Compose CLI: {% if status.compose_cli.available %}<code>{{ status.compose_cli.form }}</code>{% else %}unavailable — {{ status.compose_cli.error }}{% endif %}</p>
+  <ul class="helper">
+    <li>orchestrator_in_container: {{ topo.orchestrator_in_container }}</li>
+    <li>compose_dns_resolves (postgres): {{ topo.compose_dns_resolves }}</li>
+    <li>docker_socket_available: {{ topo.docker_socket_available }}</li>
+    <li>platform: {{ topo.platform }}</li>
+  </ul>
+  {% if topo.prior_mismatch %}
+  <p><strong>Prior detection mismatch:</strong></p>
+  <ul>{% for note in topo.prior_mismatch %}<li class="helper">{{ note }}</li>{% endfor %}</ul>
+  {% endif %}
+  <p class="helper">Docker socket mount grants effective host control — service actions remain a fixed named set only.</p>
+</section>
+
+{% macro prerequisite_table(checks) %}
+<table>
+  <thead>
+    <tr>
+      <th>Check</th>
+      <th>Status</th>
+      <th>Error</th>
+      <th>Capability</th>
+      <th>Remediation</th>
+      <th>Checked</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in checks %}
+    <tr id="prerequisite-{{ item.id }}">
+      <td>{{ item.name }} <span class="helper">({{ item.topology }})</span></td>
+      <td>{% if item.ok %}ok{% else %}{{ item.status }}{% endif %}</td>
+      <td>{{ item.error or '—' }}{% if item.depends_on %} <span class="helper">depends on {{ item.depends_on }}</span>{% endif %}</td>
+      <td>{{ item.affected_capability or '—' }}</td>
+      <td>
+        {{ item.remediation or '—' }}
+        {% if can_admin and item.remediation_service and item.remediation_action %}
+        {% set ns = namespace(show_form=false, host_cmd=false) %}
+        {% for svc in status.services %}
+          {% if svc.service == item.remediation_service %}
+            {% if svc.start_feasibility == 'start' %}
+              {% set ns.show_form = true %}
+            {% elif svc.start_feasibility == 'detect_only' %}
+              {% set ns.host_cmd = true %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+        {% if ns.show_form %}
+        <form method="post" action="/ui/health/service/{{ item.remediation_service }}/{{ item.remediation_action }}" style="display:inline">
+          <button type="submit">{{ item.remediation_action }} {{ item.remediation_service }}</button>
+        </form>
+        {% elif ns.host_cmd %}
+        <p class="helper">Run on the host: <code>./shift-left model {{ item.remediation_action }} {{ item.remediation_service }}</code></p>
+        {% endif %}
+        {% endif %}
+      </td>
+      <td>{{ item.last_checked or '—' }} <span class="helper">{{ item.duration_ms }}ms</span></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endmacro %}
+
+<section class="panel">
+  <h3>Critical — pipeline prerequisites</h3>
+  <p class="helper">Any failure here yields FAILED overall state.</p>
+  {{ prerequisite_table(prereq.groups.critical) }}
+</section>
+
+{% if prereq.groups_failing.degraded_config %}
+<section class="panel">
+  <h3>Degraded — config path</h3>
+  <p class="helper">Config review unavailable; code path and gate may still operate.</p>
+  {{ prerequisite_table(prereq.groups_failing.degraded_config) }}
+</section>
+{% endif %}
+
+{% if prereq.groups_failing.degraded_code %}
+<section class="panel">
+  <h3>Degraded — code path</h3>
+  {{ prerequisite_table(prereq.groups_failing.degraded_code) }}
+</section>
+{% endif %}
+
+{% if prereq.groups_failing.advisory %}
+<section class="panel">
+  <h3>Advisory — does not change overall state</h3>
+  {{ prerequisite_table(prereq.groups_failing.advisory) }}
+</section>
+{% endif %}
+
+{% if prereq.groups.deployment and prereq.groups.deployment|length > 0 %}
+<section class="panel">
+  <h3>Deployment (FMC plan-only)</h3>
+  {{ prerequisite_table(prereq.groups.deployment) }}
+</section>
+{% endif %}
+
+<section class="panel">
+  <h3>Services</h3>
+  <p class="helper">Topology: {{ status.topology }} · Compose CLI: {{ status.compose_cli.form if status.compose_cli.available else 'unavailable' }}</p>
+  {% if status.dependency_graph %}
+  <p class="helper">Dependency graph: {% for svc, deps in status.dependency_graph.edges.items() %}{{ svc }}{% if deps %} → {{ deps|join(', ') }}{% endif %}{% if not loop.last %}; {% endif %}{% endfor %}</p>
+  {% endif %}
+  <table>
+    <thead>
+      <tr>
+        <th>Service</th>
+        <th>Running</th>
+        <th>Control</th>
+        <th>Feasibility</th>
+        <th>Depends on</th>
+        <th>PID</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for svc in status.services %}
+      <tr>
+        <td>{{ svc.display_name }} (<code>{{ svc.service }}</code>)</td>
+        <td>{% if svc.running %}yes{% else %}no{% endif %}</td>
+        <td>{{ svc.control_mode }}</td>
+        <td>{{ svc.start_feasibility }}<br><span class="helper">{{ svc.feasibility_note }}</span></td>
+        <td>{{ svc.dependencies|join(', ') if svc.dependencies else '—' }}</td>
+        <td>{{ svc.pid or '—' }}</td>
+        <td>
+          {% if can_admin and svc.start_feasibility == 'start' %}
+          {% for action in svc.actions_available %}
+          <form method="post" action="/ui/health/service/{{ svc.service }}/{{ action }}" style="display:inline">
+            <button type="submit">{{ action }}</button>
+          </form>
+          {% endfor %}
+          {% elif can_admin and svc.dependencies %}
+          <form method="post" action="/ui/health/service/{{ svc.service }}/start?start_chain=true" style="display:inline">
+            <button type="submit">start chain</button>
+          </form>
+          {% else %}—{% endif %}
+        </td>
+      </tr>
+      {% if svc.error %}<tr><td colspan="7" class="helper">Error: {{ svc.error }}</td></tr>{% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="panel">
+  <h3>Model configuration (Tier 3)</h3>
+  {% set inv = status.models.inventory %}
+  <p class="helper">
+    Active profile: {{ inv.configured_profile }} · n_ctx {{ inv.configured_n_ctx }} ·
+    Q8_0 staged: {{ inv.q8_0_staged }} · Q4_K_M staged: {{ inv.q4_k_m_staged }}
+  </p>
+  <p class="helper">Recommended: {{ inv.recommended_profile }}. {{ inv.measured_note }}</p>
+  {% if not status.settings.tier3_form.foundation_sec.use_low_memory %}
+  <p class="error" role="alert">
+    Q8_0 (higher fidelity) uses ~8.5 GB+ peak on a 24 GB host vs ~4.9 GB for Q4_K_M at n_ctx=4096.
+    Uncheck only if you have staged Q8_0 weights and accept the measured memory cost above.
+  </p>
+  {% endif %}
+  {% if inv.staging_gap %}<p class="error">{{ inv.staging_gap }}</p>{% endif %}
+  {% if not status.models.antares.installed %}
+  <p class="helper"><strong>Antares (optional):</strong> not installed — advisory triage only, not part of the PR gate.
+    Enable with <code>./shift-left install-antares</code> (Hugging Face terms + HF_TOKEN required).</p>
+  {% endif %}
+  {% if not inv.q4_k_m_staged %}
+  <p class="helper"><strong>Stage Q4_K_M:</strong> <code>{{ status.settings.tier3_form.foundation_sec.q4_staging_command }}</code></p>
+  {% endif %}
+  {% if can_admin %}
+  <form method="post" action="/ui/health/settings/tier3">
+    <label><input type="checkbox" name="use_low_memory" value="true" {% if status.settings.tier3_form.foundation_sec.use_low_memory %}checked{% endif %} {% if not inv.q4_k_m_staged %}disabled{% endif %}> Use low-memory quant (Q4_K_M)</label>
+    {% if not inv.q4_k_m_staged %}<p class="helper">Q4_K_M profile blocked until weights are staged and verified.</p>{% endif %}
+    <label>Foundation-Sec service URL</label>
+    <input type="text" name="foundation_sec_service_url" value="{{ status.settings.tier3_form.foundation_sec.service_url }}">
+    <label>Foundation-Sec Q8_0 weights path</label>
+    <input type="text" name="foundation_sec_local_path" value="{{ status.settings.tier3_form.foundation_sec.local_path }}">
+    <label>Foundation-Sec Q4_K_M weights path</label>
+    <input type="text" name="foundation_sec_local_path_q4" value="{{ status.settings.tier3_form.foundation_sec.local_path_low_memory }}">
+    <label>Foundation-Sec n_ctx</label>
+    <input type="number" name="max_context_tokens" min="1024" max="32768" value="{{ status.settings.tier3_form.foundation_sec.max_context_tokens }}">
+    <label>Foundation-Sec load strategy</label>
+    <select name="foundation_sec_load_strategy">
+      {% for opt in ['on_demand','resident_for_run'] %}
+      <option value="{{ opt }}" {% if status.settings.tier3_form.foundation_sec.load_strategy==opt %}selected{% endif %}>{{ opt }}</option>
+      {% endfor %}
+    </select>
+    <label>Antares service URL</label>
+    <input type="text" name="antares_service_url" value="{{ status.settings.tier3_form.antares.service_url }}">
+    <label>Antares weights directory</label>
+    <input type="text" name="antares_local_path" value="{{ status.settings.tier3_form.antares.local_path }}">
+    <label>Antares load strategy</label>
+    <select name="antares_load_strategy">
+      {% for opt in ['on_demand','resident_for_run'] %}
+      <option value="{{ opt }}" {% if status.settings.tier3_form.antares.load_strategy==opt %}selected{% endif %}>{{ opt }}</option>
+      {% endfor %}
+    </select>
+    <label>Antares recycle_after_runs</label>
+    <input type="number" name="recycle_after_runs" min="1" max="1000" value="{{ status.settings.tier3_form.antares.recycle_after_runs }}">
+    <label>Reference cache directory</label>
+    <input type="text" name="reference_cache_dir" value="{{ status.settings.tier3_form.paths.reference_cache_dir }}">
+    <label>Findings store (SQLite path)</label>
+    <input type="text" name="findings_sqlite_path" value="{{ status.settings.tier3_form.paths.findings_sqlite_path }}">
+    <p class="helper">Path/URL changes are validated on submit. Service URL must match the port-scoped allowlist. Store path changes require orchestrator restart.</p>
+    <label><input type="checkbox" name="enrichment_enabled" value="true" {% if status.settings.tier3_form.enrichment.enabled %}checked{% endif %}> Enrichment enabled</label>
+    <label><input type="checkbox" name="enrich_findings" value="true" {% if status.settings.tier3_form.enrichment.enrich_findings %}checked{% endif %}> Enrich findings</label>
+    <label><input type="checkbox" name="generate_review_summary" value="true" {% if status.settings.tier3_form.enrichment.generate_review_summary %}checked{% endif %}> Generate review summary</label>
+    <p class="helper">Changing quant or n_ctx requires restarting Foundation-Sec (use Services above).</p>
+    <button type="submit">Save model settings</button>
+  </form>
+  {% endif %}
+</section>
+
+<section class="panel">
+  <h3>Security controls</h3>
+  <h4>Tier 1 — read-only (config file + restart)</h4>
+  <p><code>sovereignty.deny_egress</code>: {{ status.sovereignty.deny_egress }}</p>
+  <p><code>sovereignty.runtime_allowed_endpoints</code>: {{ status.sovereignty.runtime_allowed_endpoints }}</p>
+  <p class="helper">{{ status.sovereignty.immutable_note }}</p>
+
+  <h4>Tier 2 — typed confirmation required</h4>
+  <p><code>rbac.allow_self_approval</code>: {{ status.rbac.allow_self_approval }}</p>
+  <p class="helper">{{ status.rbac.note }}</p>
+  {% if can_admin %}
+  <form method="post" action="/ui/health/settings/rbac">
+    <label><input type="checkbox" name="enabled" value="true" {% if status.rbac.allow_self_approval %}checked{% endif %}> Allow self-approval (development only)</label>
+    <label>Type confirmation phrase</label>
+    <input type="text" name="confirmation_phrase" required placeholder="{{ status.settings.rbac_phrases.enable }} or {{ status.settings.rbac_phrases.disable }}">
+    <button type="submit">Apply RBAC change</button>
+  </form>
+  {% endif %}
+</section>
+
+<section class="panel">
+  <h3>Reference data</h3>
+  {% set rc = status.health.reference_cache %}
+  <p>Present: {{ rc.present }} · Stale: {{ rc.stale }} · Synced: {{ rc.synced_at or 'never' }}</p>
+  <p>Newest ingested lastModified: {{ rc.newest_last_modified or 'unavailable' }}
+    {% if rc.newest_last_modified_source %}({{ rc.newest_last_modified_source }}){% endif %}
+  </p>
+  {% if rc.newest_last_modified_note %}<p class="helper">{{ rc.newest_last_modified_note }}</p>{% endif %}
+  {% if can_admin %}
+  <form method="post" action="/ui/health/reference/sync">
+    <button type="submit" name="fetch_nvd" value="false">Sync from local seed (no egress)</button>
+  </form>
+  <form method="post" action="/ui/health/reference/sync" class="override-box">
+    <p class="helper">Operator-initiated egress — contacts NVD/MITRE when enabled.</p>
+    <label>NVD confirmation phrase</label>
+    <input type="text" name="confirmation_phrase" placeholder="SYNC WITH NVD EGRESS">
+    <input type="hidden" name="fetch_nvd" value="true">
+    <button type="submit">Sync with NVD fetch (egress)</button>
+  </form>
+  {% endif %}
+</section>
+
+<section class="panel">
+  <h3>Network paths</h3>
+  <table>
+    <thead><tr><th>Path</th><th>Description</th><th>Public internet</th></tr></thead>
+    <tbody>
+      {% for row in status.sovereignty.egress_paths %}
+      <tr>
+        <td><code>{{ row.path }}</code></td>
+        <td>{{ row.description }}{% if row.operator_initiated %} (operator-initiated){% endif %}</td>
+        <td>{% if row.internet_egress %}yes{% else %}no{% endif %}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% set ep = status.sovereignty.egress_probe %}
+  <p class="helper">Egress probe:
+    {% if ep.state == 'skipped_connected_dev' %}intentionally skipped on connected dev host{% elif ep.state == 'disabled' %}disabled{% elif ep.state == 'blocked' %}blocked (expected){% elif ep.state == 'unexpected_allow' %}unexpected allow{% else %}not run{% endif %}
+    — {{ ep.message }}
+  </p>
+</section>
+</div>
+{% endblock %}

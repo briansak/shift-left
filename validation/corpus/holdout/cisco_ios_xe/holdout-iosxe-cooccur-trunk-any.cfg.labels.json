@@ -1,0 +1,9 @@
+{
+  "target_type": "cisco_ios_xe",
+  "virtual_path": "switches/holdout-iosxe-cooccur-trunk-any.cfg",
+  "expected_rule_ids": [
+    "IOS-006",
+    "IOS-007"
+  ],
+  "description": "Co-occurring permissive ACL and weak trunk posture."
+}

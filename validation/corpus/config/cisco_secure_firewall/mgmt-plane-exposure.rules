@@ -1,0 +1,20 @@
+! Generated handler corpus — edge firewall context
+hostname edge-fw-01
+domain-name corp.example
+!
+interface GigabitEthernet0/0
+ nameif outside
+ security-level 0
+ ip address dhcp setroute
+!
+interface GigabitEthernet0/1
+ nameif inside
+ security-level 100
+ ip address 10.10.0.1 255.255.255.0
+!
+
+ssh 0.0.0.0 0.0.0.0 outside
+http 0.0.0.0 0.0.0.0 outside
+https 10.0.0.0 255.0.0.0 management
+!
+access-list OUTSIDE_IN extended deny ip any any log

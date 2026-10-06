@@ -1,0 +1,17 @@
+{
+  "description": "Unseen validation corpus — NOT used by unit test fixtures. Operator-only real-inference validation.",
+  "entries": [
+    {"id": "bad-terraform-open-sg", "path": "bad/terraform-open-sg.tf", "category": "bad", "expect_flagged": true},
+    {"id": "bad-k8s-hostnetwork", "path": "bad/k8s-hostnetwork.yaml", "category": "bad", "expect_flagged": true},
+    {"id": "bad-ansible-wildcard-sudo", "path": "bad/ansible-wildcard-sudo.yml", "category": "bad", "expect_flagged": true},
+    {"id": "bad-firewall-any-any", "path": "bad/firewall-any-any.rules", "category": "bad", "expect_flagged": true},
+    {"id": "bad-nginx-no-tls", "path": "bad/nginx-no-tls.conf", "category": "bad", "expect_flagged": true},
+    {"id": "clean-terraform-scoped", "path": "clean/terraform-scoped-sg.tf", "category": "clean", "expect_flagged": false},
+    {"id": "clean-k8s-netpol", "path": "clean/k8s-restricted-netpol.yaml", "category": "clean", "expect_flagged": false},
+    {"id": "clean-ansible-scoped", "path": "clean/ansible-scoped-sudo.yml", "category": "clean", "expect_flagged": false},
+    {"id": "clean-firewall-scoped", "path": "clean/firewall-scoped.rules", "category": "clean", "expect_flagged": false},
+    {"id": "messy-legacy-firewall", "path": "messy/legacy-verbose-firewall.rules", "category": "messy", "expect_flagged": false},
+    {"id": "messy-terraform-commented", "path": "messy/terraform-broad-but-commented.tf", "category": "messy", "expect_flagged": false},
+    {"id": "messy-k8s-legacy", "path": "messy/k8s-legacy-annotation.yaml", "category": "messy", "expect_flagged": false}
+  ]
+}

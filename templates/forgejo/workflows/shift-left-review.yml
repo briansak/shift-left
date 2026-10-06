@@ -1,0 +1,34 @@
+name: Shift-Left Security Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - "terraform/**"
+      - ".forgejo/workflows/shift-left-review.yml"
+
+jobs:
+  sovereign-review:
+    runs-on: self-hosted
+    steps:
+      - name: Trigger local review orchestrator
+        env:
+          ORCHESTRATOR_URL: http://orchestrator:8080
+          SHIFT_LEFT_TOKEN: ${{ secrets.SHIFT_LEFT_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${SHIFT_LEFT_TOKEN:-}" ]]; then
+            echo "Configure Forgejo secret SHIFT_LEFT_TOKEN (slt_… with review capability)." >&2
+            exit 1
+          fi
+          curl -fsS -X POST "${ORCHESTRATOR_URL}/api/v1/review" \
+            -H "Authorization: Bearer ${SHIFT_LEFT_TOKEN}" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"owner\": \"${{ github.repository_owner }}\",
+              \"repo\": \"${{ github.event.repository.name }}\",
+              \"pr_number\": ${{ github.event.pull_request.number }},
+              \"commit_sha\": \"${{ github.event.pull_request.head.sha }}\"
+            }"
+
+          echo "Review triggered. Findings will appear as a PR comment."

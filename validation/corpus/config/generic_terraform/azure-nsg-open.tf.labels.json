@@ -1,0 +1,8 @@
+{
+  "target_type": "generic_terraform",
+  "virtual_path": "terraform/azure-nsg-open.tf",
+  "expected_rule_ids": [
+    "TF-001"
+  ],
+  "description": "Azure NSG allows Internet inbound."
+}

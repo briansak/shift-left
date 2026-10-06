@@ -1,0 +1,22 @@
+# Physical interface layout for dCloud ftdv-10.0.0-140-preconfig.
+# Rename to dcloud-interfaces.tf after confirming resource names for your FMC provider version.
+#
+# Adapter mapping (from dCloud UI):
+#   0 → Default Network → 198.18.134.100 DHCP (management)
+#   1 → Private         → 198.18.10.1 static (inside)
+#   2–3 → Private       → unassigned
+#
+# Provider 0.3.x may not expose all interface CRUD — configure in FMC UI if apply fails.
+
+# data "fmc_device" "ftdv" {
+#   name = var.ftd_device_name
+# }
+#
+# resource "fmc_device_physical_interface" "inside" {
+#   device_id = data.fmc_device.ftdv.id
+#   name      = "GigabitEthernet0/1" # TODO: match FMC interface name for adapter 1
+#   enabled   = true
+#   mode      = "ROUTED"
+#   ipv4_static_address = var.private_interface_ip
+#   ipv4_static_netmask = "255.255.255.0"
+# }

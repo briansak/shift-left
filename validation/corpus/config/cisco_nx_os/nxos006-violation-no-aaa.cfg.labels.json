@@ -1,0 +1,9 @@
+{
+  "target_type": "cisco_nx_os",
+  "virtual_path": "switches/nxos006-violation-no-aaa.cfg",
+  "expected_rule_ids": [
+    "NXOS-006"
+  ],
+  "description": "VTY lines without AAA login authentication.",
+  "justification": "feature ssh is enabled in this fixture, so NXOS-004 (SSH absent/disabled with VTY configured) does not apply. NXOS-006 covers missing aaa authentication login. The genuine NXOS-004 + NXOS-006 co-occurrence is holdout-nxos-cooccur-ssh-aaa.cfg."
+}

@@ -1,0 +1,9 @@
+{
+  "target_type": "cisco_ios_xe",
+  "virtual_path": "switches/holdout-iosxe-cooccur-telnet-snmp.cfg",
+  "expected_rule_ids": [
+    "IOS-002",
+    "IOS-003"
+  ],
+  "description": "Co-occurring telnet VTY and default SNMP community."
+}

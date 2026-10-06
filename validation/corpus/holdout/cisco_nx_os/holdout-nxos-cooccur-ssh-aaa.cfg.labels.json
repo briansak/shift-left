@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_nx_os",
+  "virtual_path": "switches/holdout-nxos-cooccur-ssh-aaa.cfg",
+  "expected_rule_ids": ["NXOS-004", "NXOS-006"],
+  "description": "Holdout co-occur: SSH feature disabled and AAA login authentication absent."
+}

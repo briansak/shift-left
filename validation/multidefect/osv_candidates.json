@@ -1,0 +1,270 @@
+{
+  "entry_count": 21,
+  "design_matrix": {
+    "aio-libs/aiohttp": {
+      "Base": 4,
+      "Class": 0
+    },
+    "django/django": {
+      "Base": 1,
+      "Class": 2
+    },
+    "lxml/lxml": {
+      "Base": 2,
+      "Class": 0
+    },
+    "pallets/werkzeug": {
+      "Base": 1,
+      "Class": 0
+    },
+    "paramiko/paramiko": {
+      "Base": 0,
+      "Class": 1
+    },
+    "psf/requests": {
+      "Base": 0,
+      "Class": 1
+    },
+    "python-imaging/Pillow": {
+      "Base": 1,
+      "Class": 0
+    },
+    "python-pillow/Pillow": {
+      "Base": 0,
+      "Class": 1
+    },
+    "scrapy/scrapy": {
+      "Base": 1,
+      "Class": 1
+    },
+    "twisted/twisted": {
+      "Base": 1,
+      "Class": 1
+    },
+    "urllib3/urllib3": {
+      "Base": 0,
+      "Class": 2
+    },
+    "zopefoundation/restrictedpython": {
+      "Base": 0,
+      "Class": 1
+    }
+  },
+  "repos_with_both_abstractions": [
+    "django/django",
+    "scrapy/scrapy",
+    "twisted/twisted"
+  ],
+  "entries": [
+    {
+      "entry_id": "CVE-2015-8213-django",
+      "cve": "CVE-2015-8213",
+      "repo": "django/django",
+      "cwe": "CWE-200",
+      "cwe_abstraction": "Class",
+      "abstraction_bucket": "Class",
+      "osv_fix_commit": "316bc3fc9437c5960c24baceb93c73f1939711e4",
+      "summary": ""
+    },
+    {
+      "entry_id": "CVE-2016-2513-django",
+      "cve": "CVE-2016-2513",
+      "repo": "django/django",
+      "cwe": "CWE-200",
+      "cwe_abstraction": "Class",
+      "abstraction_bucket": "Class",
+      "osv_fix_commit": "67b46ba7016da2d259c1ecc7d666d11f5e1cfaab",
+      "summary": ""
+    },
+    {
+      "entry_id": "CVE-2020-7471-django",
+      "cve": "CVE-2020-7471",
+      "repo": "django/django",
+      "cwe": "CWE-89",
+      "cwe_abstraction": "Base",
+      "abstraction_bucket": "Base",
+      "osv_fix_commit": "eb31d845323618d688ad429479c6dda973056136",
+      "summary": ""
+    },
+    {
+      "entry_id": "CVE-2014-3589-pillow",
+      "cve": "CVE-2014-3589",
+      "repo": "python-pillow/Pillow",
+      "cwe": "CWE-20",
+      "cwe_abstraction": "Class",
+      "abstraction_bucket": "Class",
+      "osv_fix_commit": "205e056f8f9b06ed7b925cf8aa0874bc4aaf8a7d",
+      "summary": ""
+    },
+    {
+      "entry_id": "CVE-2014-1932-pillow",
+      "cve": "CVE-2014-1932",
+      "repo": "python-imaging/Pillow",
+      "cwe": "CWE-59",
+      "cwe_abstraction": "Base",
+      "abstraction_bucket": "Base",
+      "osv_fix_commit": "4e9f367dfd3f04c8f5d23f7f759ec12782e10ee7",
+      "summary": ""
+    },
+    {
+      "entry_id": "CVE-2018-19787-lxml",
+      "cve": "CVE-2018-19787",
+      "repo": "lxml/lxml",
+      "cwe": "CWE-79",
+      "cwe_abstraction": "Base",
+      "abstraction_bucket": "Base",
+      "osv_fix_commit": "6be1d081b49c97cfd7b3fbd934a193b668629109",
+      "summary": ""
+    },
+    {
+      "entry_id": "CVE-2021-28957-lxml",
+      "cve": "CVE-2021-28957",
+      "repo": "lxml/lxml",
+      "cwe": "CWE-79",
+      "cwe_abstraction": "Base",
+      "abstraction_bucket": "Base",
+      "osv_fix_commit": "a5f9cb52079dc57477c460dbe6ba0f775e14a999",
+      "summary": ""
+    },
+    {
+      "entry_id": "CVE-2021-21330-aiohttp",
+      "cve": "CVE-2021-21330",
+      "repo": "aio-libs/aiohttp",
+      "cwe": "CWE-601",
+      "cwe_abstraction": "Base",
+      "abstraction_bucket": "Base",
+      "osv_fix_commit": "2545222a3853e31ace15d87ae0e2effb7da0c96b",
+      "summary": ""
+    },
+    {
+      "entry_id": "CVE-2023-47627-aiohttp",
+      "cve": "CVE-2023-47627",
+      "repo": "aio-libs/aiohttp",
+      "cwe": "CWE-444",
+      "cwe_abstraction": "Base",
+      "abstraction_bucket": "Base",
+      "osv_fix_commit": "d5c12ba890557a575c313bb3017910d7616fce3d",
+      "summary": ""
+    },
+    {
+      "entry_id": "CVE-2023-47641-aiohttp",
+      "cve": "CVE-2023-47641",
+      "repo": "aio-libs/aiohttp",
+      "cwe": "CWE-444",
+      "cwe_abstraction": "Base",
+      "abstraction_bucket": "Base",
+      "osv_fix_commit": "f016f0680e4ace6742b03a70cb0382ce86abe371",
+      "summary": ""
+    },
+    {
+      "entry_id": "CVE-2024-23829-aiohttp",
+      "cve": "CVE-2024-23829",
+      "repo": "aio-libs/aiohttp",
+      "cwe": "CWE-444",
+      "cwe_abstraction": "Base",
+      "abstraction_bucket": "Base",
+      "osv_fix_commit": "33ccdfb0a12690af5bb49bda2319ec0907fa7827",
+      "summary": ""
+    },
+    {
+      "entry_id": "CVE-2023-32681-requests",
+      "cve": "CVE-2023-32681",
+      "repo": "psf/requests",
+      "cwe": "CWE-200",
+      "cwe_abstraction": "Class",
+      "abstraction_bucket": "Class",
+      "osv_fix_commit": "74ea7cf7a6a27a4eeb2ae24e162bcc942a6706d5",
+      "summary": ""
+    },
+    {
+      "entry_id": "CVE-2020-26137-urllib3",
+      "cve": "CVE-2020-26137",
+      "repo": "urllib3/urllib3",
+      "cwe": "CWE-74",
+      "cwe_abstraction": "Class",
+      "abstraction_bucket": "Class",
+      "osv_fix_commit": "1dd69c5c5982fae7c87a620d487c2ebf7a6b436b",
+      "summary": ""
+    },
+    {
+      "entry_id": "CVE-2023-45803-urllib3",
+      "cve": "CVE-2023-45803",
+      "repo": "urllib3/urllib3",
+      "cwe": "CWE-200",
+      "cwe_abstraction": "Class",
+      "abstraction_bucket": "Class",
+      "osv_fix_commit": "4e98d57809dacab1cbe625fddeec1a290c478ea9",
+      "summary": ""
+    },
+    {
+      "entry_id": "CVE-2023-25577-werkzeug",
+      "cve": "CVE-2023-25577",
+      "repo": "pallets/werkzeug",
+      "cwe": "CWE-770",
+      "cwe_abstraction": "Base",
+      "abstraction_bucket": "Base",
+      "osv_fix_commit": "517cac5a804e8c4dc4ed038bb20dacd038e7a9f1",
+      "summary": ""
+    },
+    {
+      "entry_id": "CVE-2019-12387-twisted",
+      "cve": "CVE-2019-12387",
+      "repo": "twisted/twisted",
+      "cwe": "CWE-74",
+      "cwe_abstraction": "Class",
+      "abstraction_bucket": "Class",
+      "osv_fix_commit": "6c61fc4503ae39ab8ecee52d10f10ee2c371d7e2",
+      "summary": ""
+    },
+    {
+      "entry_id": "CVE-2024-41810-twisted",
+      "cve": "CVE-2024-41810",
+      "repo": "twisted/twisted",
+      "cwe": "CWE-79",
+      "cwe_abstraction": "Base",
+      "abstraction_bucket": "Base",
+      "osv_fix_commit": "046a164f89a0f08d3239ecebd750360f8914df33",
+      "summary": ""
+    },
+    {
+      "entry_id": "CVE-2021-41125-scrapy",
+      "cve": "CVE-2021-41125",
+      "repo": "scrapy/scrapy",
+      "cwe": "CWE-200",
+      "cwe_abstraction": "Class",
+      "abstraction_bucket": "Class",
+      "osv_fix_commit": "b01d69a1bf48060daec8f751368622352d8b85a6",
+      "summary": ""
+    },
+    {
+      "entry_id": "CVE-2024-1892-scrapy",
+      "cve": "CVE-2024-1892",
+      "repo": "scrapy/scrapy",
+      "cwe": "CWE-1333",
+      "cwe_abstraction": "Base",
+      "abstraction_bucket": "Base",
+      "osv_fix_commit": "479619b340f197a8f24c5db45bc068fb8755f2c5",
+      "summary": ""
+    },
+    {
+      "entry_id": "CVE-2018-7750-paramiko",
+      "cve": "CVE-2018-7750",
+      "repo": "paramiko/paramiko",
+      "cwe": "CWE-287",
+      "cwe_abstraction": "Class",
+      "abstraction_bucket": "Class",
+      "osv_fix_commit": "fa29bd8446c8eab237f5187d28787727b4610516",
+      "summary": ""
+    },
+    {
+      "entry_id": "CVE-2024-47532-restrictedpython",
+      "cve": "CVE-2024-47532",
+      "repo": "zopefoundation/restrictedpython",
+      "cwe": "CWE-200",
+      "cwe_abstraction": "Class",
+      "abstraction_bucket": "Class",
+      "osv_fix_commit": "d701cc36cccac36b21fa200f1f2d1945a9a215e6",
+      "summary": ""
+    }
+  ]
+}

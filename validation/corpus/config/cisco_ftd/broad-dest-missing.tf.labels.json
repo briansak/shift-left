@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "terraform/policies/broad-dest-missing.tf",
+  "expected_rule_ids": [
+    "FTD-001"
+  ],
+  "description": "ALLOW with explicit any destination network literal."
+}

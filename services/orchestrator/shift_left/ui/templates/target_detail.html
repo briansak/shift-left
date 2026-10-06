@@ -1,0 +1,553 @@
+{% extends "base.html" %}
+{% from "macros/cwe.html" import cwe_ref %}
+{% block title %}{{ detail.target.display_name }}{% endblock %}
+{% block content %}
+<div class="targets-page target-detail-page">
+  <nav class="target-breadcrumb" aria-label="Breadcrumb">
+    <a class="target-breadcrumb-link" href="/ui/changes">Change Review</a>
+    <span class="target-breadcrumb-sep" aria-hidden="true">/</span>
+    <a class="target-breadcrumb-link" href="/ui/targets">Targets</a>
+    <span class="target-breadcrumb-sep" aria-hidden="true">/</span>
+    <span class="target-breadcrumb-current">{{ detail.target.display_name }}</span>
+  </nav>
+
+  <header class="targets-page-header target-detail-header">
+    <div>
+      <h1 class="targets-page-title">{{ detail.target.display_name }}</h1>
+      <p class="targets-page-subtitle">{{ detail.target.target_type }}</p>
+    </div>
+    <div class="target-detail-actions">
+      {% if detail.forgejo_repo_url %}
+      <a class="btn btn-secondary" href="{{ detail.forgejo_repo_url }}" rel="noopener noreferrer" target="_blank">Open in Forgejo</a>
+      {% endif %}
+      {% if detail.primary_action and detail.primary_action_href %}
+      <a class="btn btn-primary" href="{{ detail.primary_action_href }}">{{ detail.primary_action }}</a>
+      {% endif %}
+    </div>
+  </header>
+
+  {% if notice == 'target-created' %}
+  <div class="card target-notice-card" role="status">
+    <div class="card-body target-notice-body">
+      <span class="status-prefix">OK</span>
+      Target saved and is now tracking declared configuration.
+    </div>
+  </div>
+  {% endif %}
+
+  {% if detail.trust_alerts %}
+  <section class="card targets-alert-card" role="alert">
+    <div class="card-body">
+      {% for alert in detail.trust_alerts %}
+      <div class="targets-alert-line targets-alert-line--{{ alert.level }}">
+        <span aria-hidden="true">{% if alert.level == 'critical' %}●{% else %}◐{% endif %}</span>
+        <span>{{ alert.message }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <div class="targets-summary-grid" aria-label="Target summary">
+    <details class="card metric-card metric-card--interactive">
+      <summary class="metric-card-summary">
+        <p class="metric-card-label">Rules active</p>
+        <p class="metric-card-value">{{ summary.rules_active }}</p>
+        <p class="metric-card-meta">{{ summary.rules_disabled }} disabled</p>
+      </summary>
+      {% if summary.rule_gaps %}
+      <div class="metric-card-expand" id="rule-gaps">
+        <p class="metric-card-expand-title">Disabled rules</p>
+        <ul class="rule-gap-list">
+          {% for gap in summary.rule_gaps %}
+          <li class="rule-gap-item">
+            <span class="rule-gap-id">{{ gap.rule_id }}</span>
+            <span class="rule-gap-cwe">{{ cwe_ref(gap.cwe) }}</span>
+            <p class="rule-gap-reason">{{ gap.reason }}</p>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </details>
+
+    <article class="card metric-card">
+      <p class="metric-card-label">Findings</p>
+      <p class="metric-card-value">{{ summary.findings_total }}</p>
+      <p class="metric-card-meta">{{ summary.findings_block }} block · {{ summary.findings_flag }} flag · {{ summary.findings_advisory }} advisory{% if summary.findings_advisory %} ({{ summary.advisory_parser_resolved }} parser-resolved · {{ summary.advisory_unanchored }} unanchored){% endif %}</p>
+    </article>
+
+    <article class="card metric-card">
+      <p class="metric-card-label">{{ summary.parse_coverage_label }}</p>
+      <p class="metric-card-value{% if summary.parse_coverage_failed %} metric-card-value--failure{% endif %}">{% if summary.parse_coverage_failed %}Parse failure{% elif summary.parse_coverage_percent %}{{ summary.parse_coverage_percent }}{% else %}—{% endif %}</p>
+      <p class="metric-card-meta">{% if summary.parse_coverage_meta %}{{ summary.parse_coverage_meta }}{% else %}No evaluable configuration at declared HEAD{% endif %}</p>
+    </article>
+  </div>
+
+  <nav class="target-tab-strip" aria-label="Target sections">
+    <a class="target-tab {% if detail.active_tab == 'config' %}target-tab--active{% endif %}" href="/ui/targets/{{ detail.target.id }}?tab=config">Configuration</a>
+    <a class="target-tab {% if detail.active_tab == 'history' %}target-tab--active{% endif %}" href="/ui/targets/{{ detail.target.id }}?tab=history">History</a>
+    <a class="target-tab {% if detail.active_tab == 'changes' %}target-tab--active{% endif %}" href="/ui/targets/{{ detail.target.id }}?tab=changes">Changes</a>
+    <a class="target-tab {% if detail.active_tab == 'findings' %}target-tab--active{% endif %}" href="/ui/targets/{{ detail.target.id }}?tab=findings">Findings</a>
+    <a class="target-tab {% if detail.active_tab == 'deploy' %}target-tab--active{% endif %}" href="/ui/targets/{{ detail.target.id }}?tab=deploy">Deploy</a>
+  </nav>
+
+  <div class="target-tab-panel">
+    {% if detail.active_tab == 'findings' %}
+    {% if findings_panel.unclaimed_banner %}
+    <aside class="card target-unclaimed-banner" role="note">
+      <div class="card-body target-unclaimed-banner-body">
+        <p class="target-unclaimed-banner-title">Unclaimed paths ({{ cwe_ref('CWE-657') }})</p>
+        <ul class="target-unclaimed-path-list">
+          {% for path in findings_panel.unclaimed_banner.paths %}
+          <li class="mono">{{ path }}</li>
+          {% endfor %}
+        </ul>
+        <p class="target-unclaimed-remedy">{{ findings_panel.unclaimed_banner.remedy_text }}</p>
+      </div>
+    </aside>
+    {% endif %}
+
+    {% if findings_panel.has_table_findings %}
+    {% if findings_panel.blocking %}
+    <section class="card target-findings-card">
+      <header class="target-findings-card-header">
+        <span class="target-findings-group-label">Blocking</span>
+        <span class="target-findings-group-count">{{ findings_panel.blocking|length }}</span>
+      </header>
+      <div class="targets-table-wrap">
+        <table class="targets-data-table target-findings-table">
+          <thead>
+            <tr>
+              <th scope="col">Rule</th>
+              <th scope="col">CWE</th>
+              <th scope="col">Severity</th>
+              <th scope="col">Location</th>
+              <th scope="col">Finding</th>
+              <th scope="col">Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in findings_panel.blocking %}
+            <tr class="target-finding-row" id="finding-{{ row.finding_id }}">
+              <td class="mono">{% if row.rule_id %}{{ row.rule_id }}{% else %}—{% endif %}</td>
+              <td class="mono">{{ cwe_ref(row.cwe, unrecognized=row.cwe_unrecognized) }}</td>
+              <td>
+                <span class="status-pill status-pill--danger"><span class="status-pill-dot" aria-hidden="true"></span>Block</span>
+                {% if row.waiver %}
+                <span class="status-pill status-pill--waived">WAIVED</span>
+                <span class="target-waiver-inline">{{ row.waiver.reason }} · {{ row.waiver.actor }} · {{ row.waiver.commit_sha[:7] }}</span>
+                {% endif %}
+              </td>
+              <td class="mono">{{ row.location }}</td>
+              <td>{{ row.title }}</td>
+              <td><span class="source-pill source-pill--deterministic"><span class="status-pill-dot" aria-hidden="true"></span>DETERMINISTIC</span></td>
+            </tr>
+            {% if row.remediation or row.resolved_detail or row.matched_snippet %}
+            <tr class="target-finding-expand">
+              <td colspan="6">
+                <details class="target-finding-details">
+                  <summary>Remediation and evidence</summary>
+                  {% if row.remediation %}<p><strong>Remediation</strong> — {{ row.remediation }}</p>{% endif %}
+                  {% if row.resolved_detail %}<p><strong>Resolved values</strong> — {{ row.resolved_detail }}</p>{% endif %}
+                  {% if row.matched_snippet %}<pre class="target-snippet">{{ row.matched_snippet }}</pre>{% endif %}
+                </details>
+              </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+    {% endif %}
+
+    {% if findings_panel.flagged %}
+    <section class="card target-findings-card">
+      <header class="target-findings-card-header">
+        <span class="target-findings-group-label">Flagged</span>
+        <span class="target-findings-group-count">{{ findings_panel.flagged|length }}</span>
+      </header>
+      <div class="targets-table-wrap">
+        <table class="targets-data-table target-findings-table">
+          <thead>
+            <tr>
+              <th scope="col">Rule</th>
+              <th scope="col">CWE</th>
+              <th scope="col">Severity</th>
+              <th scope="col">Location</th>
+              <th scope="col">Finding</th>
+              <th scope="col">Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in findings_panel.flagged %}
+            <tr class="target-finding-row" id="finding-{{ row.finding_id }}">
+              <td class="mono">{% if row.rule_id %}{{ row.rule_id }}{% else %}—{% endif %}</td>
+              <td class="mono">{{ cwe_ref(row.cwe, unrecognized=row.cwe_unrecognized) }}</td>
+              <td>
+                <span class="status-pill status-pill--warn"><span class="status-pill-dot" aria-hidden="true"></span>Flag</span>
+                {% if row.waiver %}
+                <span class="status-pill status-pill--waived">WAIVED</span>
+                <span class="target-waiver-inline">{{ row.waiver.reason }} · {{ row.waiver.actor }} · {{ row.waiver.commit_sha[:7] }}</span>
+                {% endif %}
+              </td>
+              <td class="mono">{{ row.location }}</td>
+              <td>{{ row.title }}</td>
+              <td><span class="source-pill source-pill--deterministic"><span class="status-pill-dot" aria-hidden="true"></span>DETERMINISTIC</span></td>
+            </tr>
+            {% if row.remediation or row.resolved_detail or row.matched_snippet %}
+            <tr class="target-finding-expand">
+              <td colspan="6">
+                <details class="target-finding-details">
+                  <summary>Remediation and evidence</summary>
+                  {% if row.remediation %}<p><strong>Remediation</strong> — {{ row.remediation }}</p>{% endif %}
+                  {% if row.resolved_detail %}<p><strong>Resolved values</strong> — {{ row.resolved_detail }}</p>{% endif %}
+                  {% if row.matched_snippet %}<pre class="target-snippet">{{ row.matched_snippet }}</pre>{% endif %}
+                </details>
+              </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+    {% endif %}
+
+    {% if findings_panel.advisory %}
+    <section class="card target-findings-card">
+      <header class="target-findings-card-header">
+        <span class="target-findings-group-label">Advisory</span>
+        <span class="target-findings-group-count">{{ findings_panel.advisory|length }}</span>
+      </header>
+      <div class="targets-table-wrap">
+        <table class="targets-data-table target-findings-table">
+          <thead>
+            <tr>
+              <th scope="col">Rule</th>
+              <th scope="col">CWE</th>
+              <th scope="col">Severity</th>
+              <th scope="col">Location</th>
+              <th scope="col">Finding</th>
+              <th scope="col">Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in findings_panel.advisory %}
+            <tr class="target-finding-row" id="finding-{{ row.finding_id }}">
+              <td class="mono">—</td>
+              <td class="mono">{{ cwe_ref(row.cwe, unrecognized=row.cwe_unrecognized) }}</td>
+              <td>
+                {% if row.waiver %}
+                <span class="status-pill status-pill--waived">WAIVED</span>
+                <span class="target-waiver-inline">{{ row.waiver.reason }} · {{ row.waiver.actor }} · {{ row.waiver.commit_sha[:7] }}</span>
+                {% else %}
+                <span class="target-severity-muted">—</span>
+                {% endif %}
+              </td>
+              <td class="mono{% if row.location_unverified %} target-location--unverified{% endif %}">{{ row.location }}</td>
+              <td>{{ row.title }}</td>
+              <td><span class="source-pill source-pill--advisory">ADVISORY</span></td>
+            </tr>
+            {% if row.resolved_detail or row.matched_snippet %}
+            <tr class="target-finding-expand">
+              <td colspan="6">
+                <details class="target-finding-details">
+                  <summary>Context</summary>
+                  {% if row.resolved_detail %}<p>{{ row.resolved_detail }}</p>{% endif %}
+                  {% if row.matched_snippet %}<pre class="target-snippet">{{ row.matched_snippet }}</pre>{% endif %}
+                </details>
+              </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+    {% endif %}
+    {% else %}
+    <section class="card target-empty-tab-card">
+      <div class="card-body">
+        <p class="targets-empty-title">No findings — {{ findings_panel.rules_evaluated }} rules evaluated</p>
+        <p class="target-empty-tab-copy">Validation at declared HEAD produced no handler or advisory findings in scope.</p>
+      </div>
+    </section>
+    {% endif %}
+
+    {% elif detail.active_tab == 'config' %}
+    {% if config_panel and config_panel.files %}
+    {% if config_panel.files|length > 1 %}
+    <nav class="target-config-file-nav" aria-label="Declared configuration files">
+      {% for file in config_panel.files %}
+      <a class="target-config-file-link{% if file.selected %} target-config-file-link--active{% endif %}" href="/ui/targets/{{ detail.target.id }}?tab=config&amp;file={{ file.path | urlencode }}">{{ file.path }}</a>
+      {% endfor %}
+    </nav>
+    {% endif %}
+    {% for file in config_panel.files %}
+    {% if file.selected %}
+    <section class="card target-config-card">
+      <header class="target-config-card-header">
+        <div class="target-config-card-meta">
+          <code class="mono">{{ file.path }}</code>
+          <span class="target-change-sep" aria-hidden="true">·</span>
+          <span>HEAD <code class="mono">{{ file.head_short }}</code></span>
+        </div>
+        <p class="target-config-coverage">{{ file.parse_coverage_label }}</p>
+      </header>
+      {% if file.unanchored_advisories %}
+      <div class="target-config-unanchored-advisories" role="note">
+        <p class="target-config-unanchored-label">Unanchored advisory findings (file level only)</p>
+        <ul class="target-config-unanchored-list">
+          {% for item in file.unanchored_advisories %}
+          <li><a href="{{ item.findings_href }}">{{ item.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+      <div class="card-body target-config-card-body">
+        {% if file.view_mode == 'hcl' %}
+        {% for block in file.resource_blocks %}
+        <section class="target-config-hcl-block">
+          <h3 class="target-config-hcl-header mono">resource "{{ block.resource_type }}" "{{ block.name }}"</h3>
+          <div class="target-config-lines">
+            {% for line in block.lines %}
+            <div class="target-config-line{% if line.unparsed %} target-config-line--unparsed{% endif %}{% if line.finding_rule_ids %} target-config-line--finding{% endif %}">
+              <span class="target-config-gutter{% if line.severity_class %} {{ line.severity_class }}{% endif %}">
+                {% if line.finding_rule_ids %}
+                {% for rule_id in line.finding_rule_ids %}
+                {% if line.findings_href %}<a class="target-config-rule-link mono" href="{{ line.findings_href }}">{{ rule_id }}</a>{% else %}<span class="target-config-rule-id mono">{{ rule_id }}</span>{% endif %}
+                {% endfor %}
+                {% elif line.unparsed %}<span class="target-config-unparsed-marker">?</span>{% else %}{{ line.num }}{% endif %}
+              </span>
+              <span class="target-config-text mono">{{ line.text }}</span>
+              {% if line.reference_notes %}
+              <div class="target-config-ref-notes">
+                {% for note in line.reference_notes %}
+                <span class="target-config-ref-note">{{ note }}</span>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </section>
+        {% endfor %}
+        {% else %}
+        <div class="target-config-lines">
+          {% for line in file.lines %}
+          <div class="target-config-line{% if line.unparsed %} target-config-line--unparsed{% endif %}{% if line.finding_rule_ids %} target-config-line--finding{% endif %}">
+            <span class="target-config-gutter{% if line.severity_class %} {{ line.severity_class }}{% endif %}">
+              {% if line.finding_rule_ids %}
+              {% for rule_id in line.finding_rule_ids %}
+              {% if line.findings_href %}<a class="target-config-rule-link mono" href="{{ line.findings_href }}">{{ rule_id }}</a>{% else %}<span class="target-config-rule-id mono">{{ rule_id }}</span>{% endif %}
+              {% endfor %}
+              {% elif line.unparsed %}<span class="target-config-unparsed-marker">?</span>{% else %}{{ line.num }}{% endif %}
+            </span>
+            <span class="target-config-text mono">{{ line.text }}</span>
+            {% if line.reference_notes %}
+            <div class="target-config-ref-notes">
+              {% for note in line.reference_notes %}
+              <span class="target-config-ref-note">{{ note }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </section>
+    {% endif %}
+    {% endfor %}
+    {% else %}
+    <section class="card target-empty-tab-card">
+      <div class="card-body">
+        <p class="targets-empty-title">No declared configuration for this target</p>
+        <p class="target-empty-tab-copy">{{ config_panel.declare_hint if config_panel else "Add config_paths under managed_targets in shift-left.yaml." }}</p>
+      </div>
+    </section>
+    {% endif %}
+
+    {% elif detail.active_tab == 'history' %}
+    {% if history_panel %}
+    <section class="card target-history-card">
+      <header class="target-history-header">
+        <div>
+          <p class="target-history-count">
+            {{ history_panel.total_event_count }} recorded event{% if history_panel.total_event_count != 1 %}s{% endif %}
+            {% if history_panel.audit_fetch_truncated %}
+            <span class="target-history-truncation">(audit log truncated — oldest events may be omitted)</span>
+            {% endif %}
+          </p>
+          {% if history_panel.filtered %}
+          <p class="target-history-filtered" role="status">Filtered view — showing {{ history_panel.displayed_event_count }} of {{ history_panel.total_event_count }}</p>
+          {% endif %}
+        </div>
+        <form method="get" class="target-history-filter-form">
+          <input type="hidden" name="tab" value="history">
+          <label class="target-history-filter-label" for="action_filter">Event type</label>
+          <select id="action_filter" name="action_filter" class="target-history-filter-select">
+            <option value="">All events</option>
+            {% for action, label in history_panel.filter_options %}
+            <option value="{{ action }}" {% if history_panel.active_action_filter == action %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+          <button type="submit" class="btn btn-ghost btn-sm">Apply</button>
+          {% if history_panel.filtered %}
+          <a class="btn btn-ghost btn-sm" href="/ui/targets/{{ detail.target.id }}?tab=history">Clear</a>
+          {% endif %}
+        </form>
+      </header>
+      {% if history_panel.rows %}
+      <ul class="target-history-list" aria-label="Governance timeline">
+        {% for row in history_panel.rows %}
+        <li class="target-history-row">
+          <details class="target-history-details">
+            <summary class="target-history-summary">
+              <span class="target-history-time">{{ row.timestamp_label }}</span>
+              <span class="status-pill {{ row.type_pill_class }} target-history-type-pill">
+                <span class="status-pill-dot" aria-hidden="true"></span>
+                {{ row.type_label }}
+              </span>
+              {% if row.dev_mode %}
+              <span class="status-pill status-pill--warn target-history-dev-pill">DEV MODE</span>
+              {% endif %}
+              <span class="target-history-actor">{{ row.actor }}</span>
+              <code class="mono target-history-sha">{{ row.short_sha }}</code>
+              <span class="target-history-oneline">{{ row.summary }}</span>
+              {% if row.changes_href %}
+              <a class="target-history-changes-link" href="{{ row.changes_href }}">View in Changes</a>
+              {% endif %}
+            </summary>
+            <div class="target-history-expanded">
+              {% if row.dev_mode %}
+              <p class="target-history-dev-note" role="note">Self-approval was used (rbac.allow_self_approval).</p>
+              {% endif %}
+              <dl class="target-history-payload">
+                {% for field in row.detail_fields %}
+                <div class="target-history-payload-row">
+                  <dt>{{ field.label }}</dt>
+                  <dd>{{ field.value }}</dd>
+                </div>
+                {% endfor %}
+              </dl>
+              <pre class="target-history-raw mono" aria-label="Full audit payload">{{ row.payload_json }}</pre>
+            </div>
+          </details>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <div class="card-body">
+        {% if history_panel.filtered and history_panel.total_event_count > 0 %}
+        <p class="targets-empty-title">No events match this filter</p>
+        <p class="target-empty-tab-copy"><a href="/ui/targets/{{ detail.target.id }}?tab=history">Clear filter</a> to show all {{ history_panel.total_event_count }} events.</p>
+        {% else %}
+        <p class="targets-empty-title">No recorded events for this target</p>
+        <p class="target-empty-tab-copy">Declared HEAD: <code class="mono">{{ history_panel.declared_head_short }}</code></p>
+        {% endif %}
+      </div>
+      {% endif %}
+    </section>
+    {% else %}
+    <section class="card target-empty-tab-card">
+      <div class="card-body">
+        <p class="targets-empty-title">No recorded events for this target</p>
+        <p class="target-empty-tab-copy">Declared HEAD: <code class="mono">{{ detail.declared_head_short }}</code></p>
+      </div>
+    </section>
+    {% endif %}
+
+    {% elif detail.active_tab == 'changes' %}
+    {% if changes_panel and changes_panel.changes %}
+    <div class="target-changes-list">
+      {% for change in changes_panel.changes %}
+      <section class="card target-change-card">
+        <header class="target-change-card-header">
+          <div class="target-change-card-meta">
+            <code class="mono">{{ change.short_sha }}</code>
+            <span class="target-change-sep" aria-hidden="true">·</span>
+            <span>{{ change.author }}</span>
+            <span class="target-change-sep" aria-hidden="true">·</span>
+            <span>{{ change.committed_at_label }}</span>
+            {% if change.pr_ref %}
+            <span class="target-change-sep" aria-hidden="true">·</span>
+            <span class="mono">{{ change.pr_ref }}</span>
+            {% endif %}
+          </div>
+          <span class="status-pill {% if change.gate_outcome == 'block' %}status-pill--danger{% elif change.gate_outcome == 'flag' %}status-pill--warn{% else %}status-pill--healthy{% endif %}">
+            <span class="status-pill-dot" aria-hidden="true"></span>
+            {{ change.gate_outcome|upper }}
+          </span>
+        </header>
+        <div class="card-body target-change-card-body">
+          <p class="target-change-eval-summary">{{ change.evaluation_summary }}</p>
+          {% for notice in change.invalidation_notices %}
+          <p class="target-change-invalidation" role="note">{{ notice }}</p>
+          {% endfor %}
+          {% if change.changed_files %}
+          <ul class="target-change-claims" aria-label="Path claims">
+            {% for file in change.changed_files %}
+            <li class="target-change-claim-row">
+              <span class="mono">{{ file.path }}</span>
+              <span class="target-change-claim-pill">{{ file.claim_label }}</span>
+              {% if file.remedy_text %}
+              <p class="target-unclaimed-remedy">{{ file.remedy_text }}</p>
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          <details class="target-change-diff">
+            <summary>Unified diff</summary>
+            {% if change.diff_files %}
+            {% for file in change.diff_files %}
+            <section class="target-change-diff-file">
+              <h3 class="target-change-diff-path mono">{{ file.path }}</h3>
+              <div class="target-change-diff-lines">
+                {% for line in file.lines %}
+                <div class="target-change-diff-line{% if line.finding_marker %} target-change-diff-line--finding{% endif %}{% if line.removed %} target-change-diff-line--removed{% endif %}">
+                  <span class="target-change-diff-gutter">
+                    {% if line.finding_marker and line.finding_rule_ids %}
+                    {% for rule_id in line.finding_rule_ids %}
+                    <span class="target-change-rule-id mono">{{ rule_id }}</span>
+                    {% endfor %}
+                    {% elif line.num %}{{ line.num }}{% else %}—{% endif %}
+                  </span>
+                  <span class="target-change-diff-prefix">{{ line.prefix }}</span>
+                  <span class="target-change-diff-text">{{ line.text }}</span>
+                </div>
+                {% endfor %}
+              </div>
+            </section>
+            {% endfor %}
+            {% else %}
+            <p class="target-empty-tab-copy">No diff available for this change.</p>
+            {% endif %}
+          </details>
+        </div>
+      </section>
+      {% endfor %}
+    </div>
+    {% else %}
+    <section class="card target-empty-tab-card">
+      <div class="card-body">
+        <p class="targets-empty-title">No config changes recorded for this target</p>
+        <p class="target-empty-tab-copy">Declared HEAD: <code class="mono">{{ changes_panel.declared_head_short if changes_panel else detail.declared_head_short }}</code></p>
+      </div>
+    </section>
+    {% endif %}
+
+    {% elif detail.active_tab == 'deploy' %}
+    <section class="card target-empty-tab-card">
+      <div class="card-body">
+        <p class="targets-empty-title">Deploy</p>
+        <p class="target-empty-tab-copy">Plan-only deployment binding to declared HEAD SHA will appear here.</p>
+      </div>
+    </section>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

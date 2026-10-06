@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "terraform/policies/literals-only-no-refs.tf",
+  "expected_rule_ids": [],
+  "description": "Scoped literals without network object references."
+}

@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_ios_xe",
+  "virtual_path": "switches/ios004-violation-aaa-enable.cfg",
+  "expected_rule_ids": [
+    "IOS-004"
+  ],
+  "description": "AAA new-model without login authentication and weak enable password."
+}

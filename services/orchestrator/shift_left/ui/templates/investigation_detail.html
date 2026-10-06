@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+{% from "macros/cwe.html" import cwe_ref %}
+{% block title %}Investigation {{ detail.investigation_id[:8] }}{% endblock %}
+{% block content %}
+<div
+  class="targets-page investigations-page investigation-detail-layout"
+  {% if detail.auto_refresh %}
+  data-investigation-live-poll="true"
+  data-investigation-live-url="/ui/investigations/{{ detail.investigation_id }}/live-state.json"
+  data-investigation-poll-interval="{{ detail.poll_interval_ms }}"
+  {% endif %}
+>
+  <nav class="target-breadcrumb" aria-label="Breadcrumb">
+    <a class="target-breadcrumb-link" href="/ui/investigations">Investigations</a>
+    <span class="target-breadcrumb-sep" aria-hidden="true">/</span>
+    <span class="target-breadcrumb-current">{{ detail.repo_ref_label }}</span>
+  </nav>
+
+  <header class="targets-page-header">
+    <div>
+      <h1 class="targets-page-title">{{ detail.repo_ref_label }}</h1>
+      <p class="targets-page-subtitle">
+        <span class="mono">{{ detail.short_sha }}</span>
+        · {{ cwe_ref(detail.task_cwe) }}
+        · {{ detail.model_variant }}
+        {% if detail.is_stale %}
+        · <span class="investigation-stale-badge">Checkout advanced</span>
+        {% endif %}
+      </p>
+    </div>
+    <div class="target-detail-actions investigation-detail-actions">
+      <span class="status-pill {{ detail.state_pill_class }}" data-live-detail-state-pill>
+        <span class="status-pill-dot" aria-hidden="true"></span>
+        <span data-live-detail-state-text>{{ detail.state.value }}</span>
+      </span>
+      {% if detail.can_cancel %}
+      <form method="post" action="/ui/investigations/{{ detail.investigation_id }}/cancel">
+        <button type="submit" class="btn btn-ghost btn-sm">Cancel</button>
+      </form>
+      {% endif %}
+      {% if detail.can_rerun %}
+      <form method="post" action="/ui/investigations/{{ detail.investigation_id }}/rerun">
+        <button type="submit" class="btn btn-ghost btn-sm">Re-run</button>
+      </form>
+      {% endif %}
+    </div>
+  </header>
+
+  <p class="helper investigation-waiting-reason" data-live-detail-waiting-reason {% if not detail.waiting_reason %}hidden{% endif %}>{{ detail.waiting_reason or '' }}</p>
+
+  <div class="targets-summary-grid" aria-label="Investigation metrics">
+    <article class="card metric-card">
+      <p class="metric-card-label">Duration{% if detail.is_running %} <span class="investigation-live-badge">live</span>{% endif %}</p>
+      <p class="metric-card-value" data-live-detail-duration>{{ detail.duration_label }}</p>
+    </article>
+    <article class="card metric-card">
+      <p class="metric-card-label">Terminal calls{% if detail.is_running %} <span class="investigation-live-badge">live</span>{% endif %}</p>
+      <p class="metric-card-value" data-live-detail-terminal-calls>{{ detail.terminal_calls_label }}</p>
+    </article>
+    <article class="card metric-card">
+      <p class="metric-card-label">Trace turns</p>
+      <p class="metric-card-value">{{ detail.trace_turn_count }}</p>
+      <p class="metric-card-meta"><a href="{{ detail.trace_href }}">Full trace</a></p>
+    </article>
+    <article class="card metric-card">
+      <p class="metric-card-label">Open dispositions</p>
+      <p class="metric-card-value">{{ detail.open_disposition_count }}</p>
+      <p class="metric-card-meta">Candidates awaiting review</p>
+    </article>
+  </div>
+
+  <section class="investigation-advisory-banner" aria-label="Advisory notice">
+    <strong>Advisory localization only</strong>
+    <p>These are <em>candidate files for human review</em> under a CWE hypothesis — not detected vulnerabilities, not line-anchored findings, and not severity-ranked.</p>
+    <p><code>submission_rank</code> is display order only — not probability, exploit likelihood, or policy severity. Results never gate a merge.</p>
+  </section>
+
+  {% if detail.reconciliation and not detail.reconciliation.counts_match %}
+  <div class="investigation-reconcile-warn" role="status">
+    <span class="status-pill status-pill--warn"><span class="status-pill-dot" aria-hidden="true"></span>Audit divergence</span>
+    <p>Trace attempts ({{ detail.reconciliation.trace_attempt_count }}) and sandbox audit attempts ({{ detail.reconciliation.sandbox_audit_attempt_count }}) diverge. {{ detail.reconciliation.divergence_note }}</p>
+  </div>
+  {% endif %}
+
+  {% if detail.show_no_files_message %}
+  <section class="investigation-no-files-card" aria-label="No candidate files">
+    <p>{{ detail.no_files_message }}</p>
+  </section>
+  {% elif detail.show_candidate_table %}
+  <section class="card targets-table-card">
+    <div class="targets-table-toolbar">
+      <h2 class="targets-table-toolbar-title">Candidate files</h2>
+    </div>
+    <div class="targets-table-wrap">
+      <table class="targets-data-table">
+        <thead>
+          <tr>
+            <th scope="col">Rank</th>
+            <th scope="col">File path</th>
+            <th scope="col">Disposition</th>
+            <th scope="col">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for candidate in detail.candidates %}
+          <tr>
+            <td>{{ candidate.submission_rank }}</td>
+            <td><code>{{ candidate.file_path }}</code></td>
+            <td>
+              {% if detail.can_edit_disposition %}
+              <form
+                method="post"
+                action="/ui/investigations/{{ detail.investigation_id }}/candidates/{{ candidate.submission_rank }}/disposition"
+                class="investigation-disposition-form"
+              >
+                <select name="disposition" aria-label="Disposition for rank {{ candidate.submission_rank }}">
+                  <option value="open" {% if candidate.disposition.value == 'open' %}selected{% endif %}>open</option>
+                  <option value="reviewed" {% if candidate.disposition.value == 'reviewed' %}selected{% endif %}>reviewed</option>
+                  <option value="not_actionable" {% if candidate.disposition.value == 'not_actionable' %}selected{% endif %}>not actionable</option>
+                </select>
+                <input
+                  type="text"
+                  name="note"
+                  value="{{ candidate.note_display }}"
+                  placeholder="Optional note"
+                  aria-label="Disposition note for rank {{ candidate.submission_rank }}"
+                  data-investigation-disposition-note
+                >
+                <button type="submit" class="btn btn-ghost btn-sm">Save</button>
+              </form>
+              {% if candidate.disposition_actor %}
+              <p class="helper investigation-disposition-meta">
+                {{ candidate.disposition_actor }} · {{ candidate.disposition_at_label }}
+              </p>
+              {% endif %}
+              {% else %}
+              <span class="disposition-pill disposition-pill--{{ candidate.disposition.value }}">{{ candidate.disposition.value.replace('_', ' ') }}</span>
+              {% if candidate.disposition_actor %}
+              <p class="helper investigation-disposition-meta">
+                {{ candidate.disposition_actor }} · {{ candidate.disposition_at_label }}
+              </p>
+              {% endif %}
+              {% endif %}
+            </td>
+            <td>
+              {% if candidate.has_note %}
+              {{ candidate.note_display }}
+              {% else %}
+              —
+              {% endif %}
+            </td>
+          </tr>
+          {% else %}
+          <tr><td colspan="4">No ranked paths recorded.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if detail.show_trace_drawer %}
+  <button
+    type="button"
+    class="btn btn-secondary investigation-trace-toggle"
+    data-investigation-trace-open
+    data-investigation-trace-fetch="{{ detail.trace_fetch_href }}"
+    aria-controls="investigation-trace-drawer"
+    aria-expanded="false"
+  >
+    Exploration trace{% if detail.trace_turn_count %} ({{ detail.trace_turn_count }} turns){% endif %}
+  </button>
+  <aside id="investigation-trace-drawer" class="investigation-trace-drawer" aria-label="Exploration trace" hidden>
+    <div class="investigation-trace-drawer-header">
+      <h2 class="targets-table-toolbar-title">Exploration trace</h2>
+      <button type="button" class="btn btn-ghost btn-sm" data-investigation-trace-close aria-label="Close trace drawer">Close</button>
+    </div>
+    <div class="investigation-trace-drawer-body" data-investigation-trace-body>
+      <p class="helper">Open to load trace turns.</p>
+    </div>
+  </aside>
+  {% endif %}
+</div>
+{% endblock %}

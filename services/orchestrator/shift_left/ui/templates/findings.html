@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}Findings dashboard{% endblock %}
+{% block content %}
+<div class="repo-page">
+<header class="page-header-row">
+  <div>
+    <h1 class="page-title">Findings dashboard</h1>
+    <p class="text-muted">Deterministic findings from handler rules. Unclassified policy severity means no deterministic signal — not low risk.</p>
+  </div>
+</header>
+
+{% if model_only_findings %}
+<section class="panel" style="margin-bottom:1.5rem">
+  <h3>Aggregate model-only findings (rule backlog)</h3>
+  <p class="helper">{{ model_only_findings|length }} finding(s) across reviews with model_asserted_cwe and no handler rule.</p>
+  <ul>
+    {% for f in model_only_findings[:25] %}
+    <li>{{ f.repo }} {{ f.pr_ref }} — {{ f.file_path }} (model {{ f.model_asserted_cwe or 'n/a' }})</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+<form method="get" class="panel">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem">
+    <div><label for="repo">Repo</label><input id="repo" name="repo" value="{{ filters.repo }}"></div>
+    <div><label for="pr_ref">PR ref</label><input id="pr_ref" name="pr_ref" value="{{ filters.pr_ref }}" placeholder="PR-42"></div>
+    <div><label for="target_kind">Target</label>
+      <select id="target_kind" name="target_kind">
+        <option value="">Any</option>
+        <option value="code" {% if filters.target_kind=='code' %}selected{% endif %}>code</option>
+        <option value="config" {% if filters.target_kind=='config' %}selected{% endif %}>config</option>
+      </select>
+    </div>
+    <div><label for="policy_severity">Policy severity</label>
+      <select id="policy_severity" name="policy_severity">
+        <option value="">Any</option>
+        {% for s in ['unclassified','info','low','medium','high','critical'] %}
+        <option value="{{ s }}" {% if filters.policy_severity==s %}selected{% endif %}>{{ s }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div><label for="status">Status</label>
+      <select id="status" name="status">
+        <option value="">Any</option>
+        {% for s in ['open','acknowledged','false_positive','accepted_risk','resolved'] %}
+        <option value="{{ s }}" {% if filters.status==s %}selected{% endif %}>{{ s }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div><label for="source">Source</label>
+      <select id="source" name="source">
+        <option value="">Any</option>
+        <option value="code-handler" {% if filters.source=='code-handler' %}selected{% endif %}>code-handler</option>
+        <option value="foundation-sec" {% if filters.source=='foundation-sec' %}selected{% endif %}>foundation-sec</option>
+      </select>
+    </div>
+  </div>
+  <button type="submit" style="margin-top:1rem">Apply filters</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Repo / PR</th>
+      <th>Finding</th>
+      <th>Policy severity</th>
+      <th>Policy decision</th>
+      <th>Enrichment</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}
+    {% set f = row.finding %}
+    <tr>
+      <td>
+        <a href="/ui/pr/{{ f.repo.split('/')[0] }}/{{ f.repo.split('/')[1] }}/{{ f.pr_ref.replace('PR-','') }}">{{ f.repo }} {{ f.pr_ref }}</a>
+      </td>
+      <td class="finding-panel">
+        <strong>{{ f.title }}</strong><br>
+        <span class="helper">{{ f.file_path }}{% if f.line_range %} L{{ f.line_range.start }}-{{ f.line_range.end }}{% endif %}</span>
+      </td>
+      <td><span class="badge {{ policy_severity_class(f.policy_severity) }}">{{ policy_severity_label(f.policy_severity) }}</span></td>
+      <td>
+        {% if row.policy %}
+        <strong>{{ policy_action_label(row.policy.decision) }}</strong><br>
+        <span class="helper">{{ row.policy.policy_name }} rule {{ row.policy.rule_index }} — {{ row.policy.explanation }}</span>
+        {% else %}<span class="helper">No policy match recorded</span>{% endif %}
+      </td>
+      <td>{% if row.enrichment_note %}<span class="badge severity-medium">{{ row.enrichment_note }}</span>{% else %}—{% endif %}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="5">No findings match these filters.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

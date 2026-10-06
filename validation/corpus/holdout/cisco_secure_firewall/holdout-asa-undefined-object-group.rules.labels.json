@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "holdout/holdout-asa-undefined-object-group.rules",
+  "expected_rule_ids": [
+    "ASA-007"
+  ],
+  "description": "ACE references a network object-group that is not defined in the file."
+}

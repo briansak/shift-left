@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_ios_xe",
+  "virtual_path": "switches/unparsed-acl-line.cfg",
+  "expected_rule_ids": ["IOS-001"],
+  "description": "ACL ACE the structural parser cannot tokenize emits IOS-001."
+}

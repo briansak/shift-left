@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+{% block title %}CWE reference{% endblock %}
+{% block content %}
+<div class="targets-page cwe-reference-page">
+  <header class="targets-page-header">
+    <div>
+      <h1 class="targets-page-title">CWE reference</h1>
+      <p class="targets-page-subtitle">Read-only localization catalog — {{ reference_view.entry_count }} Base/Variant entries from MITRE {{ reference_view.mitre_export }}.</p>
+    </div>
+  </header>
+
+  <section class="card cwe-reference-advisory">
+    <div class="card-body">
+      <p>{{ reference_view.catalog_note }}</p>
+      <p>{{ reference_view.handler_coverage_note }}</p>
+      <p>{{ reference_view.tractability_note }}</p>
+    </div>
+  </section>
+
+  <section class="card cwe-reference-filters-card">
+    <div class="card-body">
+      <form method="get" action="/ui/cwe" class="cwe-reference-filters">
+        <label class="cwe-reference-search">
+          Search
+          <input type="search" name="q" value="{{ reference_view.filters.q }}" placeholder="CWE id, name, or description">
+        </label>
+        <div class="cwe-reference-filter-grid">
+          <label>
+            Abstraction
+            <select name="abstraction">
+              <option value="">Any</option>
+              <option value="Base" {% if reference_view.filters.abstraction == 'Base' %}selected{% endif %}>Base</option>
+              <option value="Variant" {% if reference_view.filters.abstraction == 'Variant' %}selected{% endif %}>Variant</option>
+            </select>
+          </label>
+          <label>
+            Tractability
+            <select name="tractability">
+              <option value="">Any</option>
+              <option value="strong" {% if reference_view.filters.tractability == 'strong' %}selected{% endif %}>strong</option>
+              <option value="weak" {% if reference_view.filters.tractability == 'weak' %}selected{% endif %}>weak</option>
+              <option value="unrated" {% if reference_view.filters.tractability == 'unrated' %}selected{% endif %}>unrated</option>
+            </select>
+          </label>
+          <label>
+            Language
+            <select name="language">
+              <option value="">—</option>
+              <option value="Python" {% if reference_view.filters.language == 'Python' %}selected{% endif %}>Python</option>
+              <option value="JavaScript" {% if reference_view.filters.language == 'JavaScript' %}selected{% endif %}>JavaScript</option>
+              <option value="Go" {% if reference_view.filters.language == 'Go' %}selected{% endif %}>Go</option>
+              <option value="Java" {% if reference_view.filters.language == 'Java' %}selected{% endif %}>Java</option>
+              <option value="C" {% if reference_view.filters.language == 'C' %}selected{% endif %}>C</option>
+              <option value="C++" {% if reference_view.filters.language == 'C++' %}selected{% endif %}>C++</option>
+            </select>
+          </label>
+          <label>
+            Language filter mode
+            <select name="language_mode">
+              <option value="">No language filter</option>
+              {% for mode, label, count in reference_view.filters.language_mode_options %}
+              <option value="{{ mode }}" {% if reference_view.filters.language_mode == mode %}selected{% endif %}>{{ label }}{% if count is not none %} ({{ count }}){% endif %}</option>
+              {% endfor %}
+            </select>
+          </label>
+        </div>
+        <div class="cwe-reference-filter-toggles">
+          <label><input type="checkbox" name="top25" value="1" {% if reference_view.filters.top25_only %}checked{% endif %}> Top 25 only</label>
+          <label><input type="checkbox" name="handler" value="1" {% if reference_view.filters.handler_only %}checked{% endif %}> Handler-asserted only</label>
+        </div>
+        <div class="cwe-reference-filter-actions">
+          <button type="submit" class="btn btn-primary btn-sm">Apply filters</button>
+          <a class="btn btn-ghost btn-sm" href="/ui/cwe">Clear</a>
+        </div>
+      </form>
+      <p class="helper">{{ reference_view.active_filter_summary }}</p>
+      {% if reference_view.empty_message %}
+      <p class="cwe-reference-empty" role="status">{{ reference_view.empty_message }}</p>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="card targets-table-card">
+    <div class="targets-table-toolbar">
+      <h2 class="targets-table-toolbar-title">Catalog entries</h2>
+    </div>
+    <div class="targets-table-wrap">
+      <table class="targets-data-table cwe-reference-table">
+        <thead>
+          <tr>
+            <th scope="col">CWE</th>
+            <th scope="col">Name</th>
+            <th scope="col">Abstraction</th>
+            <th scope="col">Languages</th>
+            <th scope="col">Tractability</th>
+            <th scope="col">Top 25</th>
+            <th scope="col">Handler rule</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in reference_view.rows %}
+          <tr>
+            <td><span class="mono">{{ row.cwe_id }}</span></td>
+            <td>{{ row.name }}</td>
+            <td>{{ row.abstraction }}</td>
+            <td>{{ row.languages_label }}</td>
+            <td>{{ row.tractability }}</td>
+            <td>{% if row.in_top25 %}<span class="status-pill status-pill--accent">Top 25</span>{% else %}—{% endif %}</td>
+            <td>{% if row.has_handler_rule %}<span class="status-pill status-pill--info">Handler</span>{% else %}—{% endif %}</td>
+            <td class="cwe-reference-actions">
+              {% if row.launch_href %}
+              <a class="btn btn-ghost btn-sm" href="{{ row.launch_href }}">Start investigation</a>
+              {% else %}
+              —
+              {% endif %}
+            </td>
+          </tr>
+          <tr class="cwe-reference-detail-row">
+            <td colspan="8">
+              <details class="cwe-reference-detail">
+                <summary>Details for {{ row.cwe_id }}</summary>
+                <div class="cwe-reference-detail-body">
+                  <p>{{ row.short_description }}</p>
+                  <p><strong>Applicable languages:</strong> {{ row.applicable_languages|join(', ') if row.applicable_languages else '—' }}</p>
+                  {% if row.tractability in ['strong', 'weak'] and row.tractability_source %}
+                  <p><strong>Tractability source:</strong> <span class="mono">{{ row.tractability_source }}</span></p>
+                  {% endif %}
+                  {% if row.handler_rules %}
+                  <p><strong>Handler rules asserting this CWE:</strong></p>
+                  <ul class="cwe-reference-handler-list">
+                    {% for rule in row.handler_rules %}
+                    <li>
+                      <span class="mono">{{ rule.rule_id }}</span>
+                      ({{ rule.source }}{% if rule.target_type %}, {{ rule.target_type }}{% endif %})
+                      — {{ rule.description }}
+                    </li>
+                    {% endfor %}
+                  </ul>
+                  {% else %}
+                  <p><strong>Handler rules:</strong> none in the deterministic registry.</p>
+                  {% endif %}
+                </div>
+              </details>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="cwe-reference-pagination card-body">
+      <span>Page {{ reference_view.page }} of {{ reference_view.total_pages }}</span>
+      <div>
+        {% if reference_view.prev_href %}
+        <a class="btn btn-ghost btn-sm" href="{{ reference_view.prev_href }}">Previous</a>
+        {% endif %}
+        {% if reference_view.next_href %}
+        <a class="btn btn-ghost btn-sm" href="{{ reference_view.next_href }}">Next</a>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <section class="card targets-table-card cwe-reference-out-of-catalog-card">
+    <div class="targets-table-toolbar">
+      <h2 class="targets-table-toolbar-title">Handler-asserted CWEs outside this catalog</h2>
+    </div>
+    <div class="card-body">
+      <p class="helper">Fixed reference list — deterministic handler rules assert these CWEs, but they are Pillar or Class abstractions and are excluded from the Base/Variant localization catalog above.</p>
+    </div>
+    <div class="targets-table-wrap">
+      <table class="targets-data-table cwe-reference-out-of-catalog-table">
+        <thead>
+          <tr>
+            <th scope="col">CWE</th>
+            <th scope="col">MITRE abstraction</th>
+            <th scope="col">Name</th>
+            <th scope="col">Rules</th>
+            <th scope="col">Rule ids</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in reference_view.out_of_catalog_rows %}
+          <tr>
+            <td><span class="mono">{{ row.cwe_id }}</span></td>
+            <td>{{ row.mitre_abstraction }}</td>
+            <td>{{ row.name }}</td>
+            <td>{{ row.rule_count }}</td>
+            <td class="mono cwe-reference-rule-ids">{{ row.rule_ids|join(', ') }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+{% endblock %}

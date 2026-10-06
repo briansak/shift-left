@@ -1,0 +1,2 @@
+! HOLDOUT clean bait — broad RFC1918-to-RFC1918 permit (not any any)
+access-list PARTNER extended permit ip 172.20.0.0 255.255.0.0 10.100.0.0 255.255.0.0 log

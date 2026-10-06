@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_ios_xe",
+  "virtual_path": "switches/ios009-violation-access-no-hardening.cfg",
+  "expected_rule_ids": [],
+  "description": "Disabled IOS-009: access port without BPDU guard or port-security."
+}

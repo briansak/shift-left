@@ -1,0 +1,170 @@
+{% set form = status.settings.tier3_form %}
+{% set inv = config_view.inventory %}
+
+{% for notice in config_view.notices %}
+<section class="card system-config-notice system-config-notice--{{ notice.tone }}" role="status">
+  <div class="card-body">
+    <h2 class="system-config-notice-title">{{ notice.title }}</h2>
+    <p class="system-config-notice-message">{{ notice.message }}</p>
+    {% if notice.details %}
+    <ul class="system-config-notice-list">
+      {% for detail in notice.details %}
+      <li><code>{{ detail }}</code></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</section>
+{% endfor %}
+
+{% for group in config_view.groups %}
+<section class="card">
+  <div class="card-body">
+    <h2 class="system-config-group-title">{{ group.title }}</h2>
+    <p class="system-config-tier-note">{{ group.tier_note }}</p>
+    <div class="system-config-fields">
+      {% for field in group.fields %}
+      <div class="system-config-field">
+        <div>
+          <span class="system-config-field-label">{{ field.label }}</span>
+          <span class="system-config-field-tier">{{ field.tier }} — {{ field.tier_reason }}</span>
+          {% if field.requires_restart %}
+          <span class="system-config-field-restart">Requires {{ field.requires_restart }}</span>
+          {% endif %}
+        </div>
+        <div>
+          <span>{{ field.value_display }}</span>
+          {% if field.staged_label %}
+          <span class="status-pill system-staged-pill status-pill--{% if field.staged %}healthy{% else %}danger{% endif %}">
+            <span class="status-pill-dot" aria-hidden="true"></span>
+            {{ field.staged_label }}
+          </span>
+          {% endif %}
+          {% if field.inline_note %}
+          <p class="system-config-field-inline">{{ field.inline_note }}</p>
+          {% endif %}
+          {% if field.error %}
+          <span class="system-config-field-error">{{ field.error }}</span>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endfor %}
+
+{% if config_view.can_edit %}
+<form method="post" action="/ui/system/settings/tier3">
+  <section class="card">
+    <div class="card-body">
+      <h2 class="system-config-group-title">Edit Tier 3 settings</h2>
+      <p class="system-config-tier-note">Validated on submit. Path/URL changes may require restart (see field labels above).</p>
+
+      <div class="system-config-field">
+        <div>
+          <span class="system-config-field-label">Quant profile</span>
+          <span class="system-config-field-tier">Tier 3 — {{ inv.recommended_profile }}</span>
+          <span class="system-config-field-restart">Requires model server restart</span>
+        </div>
+        <div>
+          <label>
+            <input type="checkbox" name="use_low_memory" value="true"
+              {% if form.foundation_sec.use_low_memory %}checked{% endif %}
+              {% if not inv.q4_k_m_staged %}disabled{% endif %}>
+            Use low-memory quant (Q4_K_M)
+          </label>
+          <p class="system-config-field-inline">{{ inv.measured_note }}</p>
+          {% if not inv.q4_k_m_staged %}
+          <span class="system-config-field-error">Q4_K_M not staged — quant switch blocked</span>
+          {% elif form.foundation_sec.use_low_memory and not inv.q4_k_m_staged %}
+          <span class="system-config-field-error">Active profile weights are not staged</span>
+          {% elif not form.foundation_sec.use_low_memory and not inv.q8_0_staged %}
+          <span class="system-config-field-error">Active profile weights are not staged</span>
+          {% endif %}
+        </div>
+      </div>
+
+      <label>Foundation-Sec n_ctx <span class="system-config-field-restart">(model restart)</span></label>
+      <input type="number" name="max_context_tokens" min="1024" max="32768" value="{{ form.foundation_sec.max_context_tokens }}">
+
+      <label>Foundation-Sec load strategy</label>
+      <select name="foundation_sec_load_strategy">
+        {% for opt in ['on_demand', 'resident_for_run'] %}
+        <option value="{{ opt }}" {% if form.foundation_sec.load_strategy == opt %}selected{% endif %}>{{ opt }}</option>
+        {% endfor %}
+      </select>
+
+      <label>Foundation-Sec service URL <span class="system-config-field-restart">(model restart)</span></label>
+      <input type="text" name="foundation_sec_service_url" value="{{ form.foundation_sec.service_url }}">
+
+      <label>Foundation-Sec Q8_0 weights path <span class="system-config-field-restart">(model restart)</span>
+        <span class="status-pill system-staged-pill status-pill--{% if inv.q8_0_staged %}healthy{% else %}danger{% endif %}">
+          <span class="status-pill-dot" aria-hidden="true"></span>
+          {% if inv.q8_0_staged %}staged{% else %}not staged{% endif %}
+        </span>
+      </label>
+      <input type="text" name="foundation_sec_local_path" value="{{ form.foundation_sec.local_path }}">
+
+      <label>Foundation-Sec Q4_K_M weights path <span class="system-config-field-restart">(model restart)</span>
+        <span class="status-pill system-staged-pill status-pill--{% if inv.q4_k_m_staged %}healthy{% else %}danger{% endif %}">
+          <span class="status-pill-dot" aria-hidden="true"></span>
+          {% if inv.q4_k_m_staged %}staged{% else %}not staged{% endif %}
+        </span>
+      </label>
+      <input type="text" name="foundation_sec_local_path_q4" value="{{ form.foundation_sec.local_path_low_memory }}">
+      {% if not inv.q4_k_m_staged %}
+      <p class="system-config-field-inline">Stage: <code>{{ form.foundation_sec.q4_staging_command }}</code></p>
+      {% endif %}
+
+      <label>Antares service URL <span class="system-config-field-restart">(model restart)</span></label>
+      <input type="text" name="antares_service_url" value="{{ form.antares.service_url }}">
+
+      <label>Antares weights directory <span class="system-config-field-restart">(model restart)</span></label>
+      <input type="text" name="antares_local_path" value="{{ form.antares.local_path }}">
+
+      <label>Antares load strategy</label>
+      <select name="antares_load_strategy">
+        {% for opt in ['on_demand', 'resident_for_run'] %}
+        <option value="{{ opt }}" {% if form.antares.load_strategy == opt %}selected{% endif %}>{{ opt }}</option>
+        {% endfor %}
+      </select>
+
+      <label>Antares recycle_after_runs</label>
+      <input type="number" name="recycle_after_runs" min="1" max="1000" value="{{ form.antares.recycle_after_runs }}">
+
+      <label>Reference cache directory <span class="system-config-field-restart">(orchestrator restart)</span></label>
+      <input type="text" name="reference_cache_dir" value="{{ form.paths.reference_cache_dir }}">
+
+      <label>Findings store (SQLite) <span class="system-config-field-restart">(orchestrator restart)</span></label>
+      <input type="text" name="findings_sqlite_path" value="{{ form.paths.findings_sqlite_path }}">
+
+      <label><input type="checkbox" name="enrichment_enabled" value="true" {% if form.enrichment.enabled %}checked{% endif %}> Enrichment enabled</label>
+      <label><input type="checkbox" name="enrich_findings" value="true" {% if form.enrichment.enrich_findings %}checked{% endif %}> Enrich findings</label>
+      <label><input type="checkbox" name="generate_review_summary" value="true" {% if form.enrichment.generate_review_summary %}checked{% endif %}> Generate review summary</label>
+
+      <button type="submit" class="btn btn-primary">Save configuration</button>
+    </div>
+  </section>
+</form>
+{% endif %}
+
+<section class="card">
+  <div class="card-body">
+    <h2 class="system-config-group-title">Security (Tier 2)</h2>
+    <p class="system-config-tier-note">Typed confirmation required — writes audit event on change.</p>
+    <p><code>rbac.allow_self_approval</code>: {{ config_view.rbac_allow_self_approval }}</p>
+    <p class="system-config-field-inline">{{ config_view.rbac_note }}</p>
+    {% if config_view.can_edit %}
+    <form method="post" action="/ui/system/settings/rbac">
+      <label>
+        <input type="checkbox" name="enabled" value="true" {% if config_view.rbac_allow_self_approval %}checked{% endif %}>
+        Allow self-approval (development only)
+      </label>
+      <label>Confirmation phrase</label>
+      <input type="text" name="confirmation_phrase" required placeholder="{{ config_view.rbac_phrases.enable }} or {{ config_view.rbac_phrases.disable }}">
+      <button type="submit" class="btn btn-secondary btn-sm">Apply RBAC change</button>
+    </form>
+    {% endif %}
+  </div>
+</section>

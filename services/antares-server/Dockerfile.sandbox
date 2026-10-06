@@ -1,0 +1,15 @@
+# Read-only investigation sandbox for Antares terminal exploration.
+# Build: docker build -f services/antares-server/Dockerfile.sandbox -t shift-left-antares-sandbox:bookworm .
+FROM debian:bookworm-slim
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        coreutils \
+        findutils \
+        grep \
+        ripgrep \
+        tree \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /workspace/repo

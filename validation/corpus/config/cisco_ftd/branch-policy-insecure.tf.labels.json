@@ -1,0 +1,11 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "terraform/policies/branch-policy-insecure.tf",
+  "expected_rule_ids": [
+    "FTD-001",
+    "FTD-002",
+    "FTD-003",
+    "FTD-005"
+  ],
+  "description": "FMC policy with permissive port object, logging disabled, and public SSH."
+}

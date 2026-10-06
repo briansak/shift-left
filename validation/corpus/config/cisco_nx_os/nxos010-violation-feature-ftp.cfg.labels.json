@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_nx_os",
+  "virtual_path": "switches/nxos010-violation-feature-ftp.cfg",
+  "expected_rule_ids": [
+    "NXOS-010"
+  ],
+  "description": "FTP file-transfer feature enabled."
+}

@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_ios_xe",
+  "virtual_path": "switches/ios005-violation-no-encryption-only.cfg",
+  "expected_rule_ids": [
+    "IOS-005"
+  ],
+  "description": "Password encryption disabled without HTTP (single-vector IOS-005)."
+}

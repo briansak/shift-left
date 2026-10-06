@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_ios_xe",
+  "virtual_path": "switches/circular-object-group.cfg",
+  "expected_rule_ids": ["IOS-001"],
+  "description": "Circular network object-group reference emits IOS-001."
+}

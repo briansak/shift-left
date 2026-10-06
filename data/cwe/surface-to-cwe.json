@@ -1,0 +1,52 @@
+{
+  "_meta": {
+    "purpose": "Maps deterministic repo profiler surfaces to candidate CWE ids for scope selection (not detection).",
+    "review": "Each surface includes a one-line rationale; adjust mappings here without code changes."
+  },
+  "surfaces": {
+    "database_driver": {
+      "rationale": "Database client libraries imply SQL or query construction may occur.",
+      "cwes": ["CWE-89", "CWE-943"]
+    },
+    "orm": {
+      "rationale": "ORM usage still permits raw SQL and unsafe query assembly.",
+      "cwes": ["CWE-89"]
+    },
+    "raw_sql_callsite": {
+      "rationale": "String-built or interpolated SQL at a call site is direct injection surface.",
+      "cwes": ["CWE-89"]
+    },
+    "web_framework": {
+      "rationale": "HTTP handlers process untrusted input for rendering and routing.",
+      "cwes": ["CWE-79", "CWE-352", "CWE-20"]
+    },
+    "template_engine": {
+      "rationale": "Template rendering can mix untrusted data into output.",
+      "cwes": ["CWE-79", "CWE-94"]
+    },
+    "serialization": {
+      "rationale": "Parsing serialized objects from untrusted input enables gadget chains.",
+      "cwes": ["CWE-502"]
+    },
+    "subprocess_shell": {
+      "rationale": "Subprocess or shell invocation with external input risks command injection.",
+      "cwes": ["CWE-78", "CWE-77"]
+    },
+    "http_client": {
+      "rationale": "Outbound HTTP requests built from user input enable SSRF.",
+      "cwes": ["CWE-918"]
+    },
+    "crypto_api": {
+      "rationale": "Cryptographic API misuse covers weak algorithms and hard-coded secrets.",
+      "cwes": ["CWE-327", "CWE-798"]
+    },
+    "file_path_api": {
+      "rationale": "File and path operations with external input enable path traversal.",
+      "cwes": ["CWE-22"]
+    },
+    "authz_api": {
+      "rationale": "Authorization checks and permission APIs relate to access control flaws.",
+      "cwes": ["CWE-862", "CWE-863", "CWE-287"]
+    }
+  }
+}

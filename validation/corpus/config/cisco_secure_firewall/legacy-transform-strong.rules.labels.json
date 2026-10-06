@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "vpn/legacy-transform-strong.rules",
+  "expected_rule_ids": [],
+  "description": "Transform-set uses AES256 and SHA256."
+}

@@ -1,0 +1,10 @@
+hostname branch-fw-12
+!
+object network BRANCH_LAN
+ subnet 172.16.12.0 255.255.255.0
+!
+access-list INSIDE_OUT extended permit tcp object BRANCH_LAN any eq 443
+access-list INSIDE_OUT extended permit udp object BRANCH_LAN any eq 53
+access-list INSIDE_OUT extended deny ip any any log
+!
+access-group INSIDE_OUT out interface inside

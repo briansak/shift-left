@@ -1,0 +1,146 @@
+/* Design tokens — single source of truth for the review UI. */
+
+:root {
+  /* Color */
+  --bg-app: #0b1220;
+  --bg-surface: #131c2b;
+  --bg-surface-2: #1a2436;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --text-primary: #e8edf5;
+  --text-secondary: #8fa3bf;
+  --accent: #1ba0d7;
+  --accent-teal: #2fd3b5;
+  --warn: #e8a33d;
+  --danger: #e5546b;
+
+  /* Derived (token-only math — no new hex) */
+  --accent-soft: color-mix(in srgb, var(--accent) 18%, transparent);
+  --danger-soft: color-mix(in srgb, var(--danger) 16%, transparent);
+  --warn-soft: color-mix(in srgb, var(--warn) 16%, transparent);
+  --teal-soft: color-mix(in srgb, var(--accent-teal) 16%, transparent);
+
+  /* Shape & space */
+  --radius-card: 8px;
+  --radius-control: 6px;
+  --radius-pill: 999px;
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --card-padding: 24px;
+  --card-gap: 20px;
+  --shadow-elevation: 0 1px 2px rgba(0, 0, 0, 0.4);
+
+  /* Typography */
+  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --text-body: 13px;
+  --text-label: 12px;
+  --text-title: 20px;
+  --text-metric: 24px;
+  --tracking-label: 0.04em;
+
+  /* Layout */
+  --sidebar-width: 240px;
+  --topbar-height: 56px;
+  --nav-row-height: 36px;
+  --table-row-height: 44px;
+  --z-popover: 1000;
+}
+
+/* CWE reference popover (offline dictionary) */
+.cwe-ref-trigger {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  color: var(--accent);
+  font: inherit;
+  font-size: inherit;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 2px;
+}
+
+.cwe-ref-trigger:hover,
+.cwe-ref-trigger:focus-visible {
+  color: var(--accent-teal);
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.cwe-popover {
+  position: fixed;
+  z-index: var(--z-popover);
+  max-width: 320px;
+  padding: var(--space-2);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-elevation);
+  color: var(--text-primary);
+  pointer-events: auto;
+}
+
+.cwe-popover[hidden] {
+  display: none;
+}
+
+.cwe-popover-id {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.cwe-popover-name {
+  margin: 0 0 var(--space-1);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.cwe-popover-abstraction {
+  display: inline-block;
+  margin: 0 0 var(--space-1);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-label);
+  color: var(--text-secondary);
+  background: var(--bg-surface-2);
+  border: 1px solid var(--border-subtle);
+}
+
+.cwe-popover-description {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-body);
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+.cwe-popover-source {
+  margin: 0;
+  font-size: var(--text-label);
+  color: var(--text-secondary);
+}
+
+.cwe-popover-unrecognized {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted, #6b7280);
+}
+
+.cwe-popover-url {
+  display: block;
+  margin-top: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  color: var(--text-secondary);
+  word-break: break-all;
+  user-select: all;
+}

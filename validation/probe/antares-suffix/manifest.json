@@ -1,0 +1,95 @@
+{
+  "description": "Hand-written code probe fixtures for Antares prompt-suffix sensitivity (obvious seeded defects).",
+  "files": [
+    {
+      "id": "py-sqli-login",
+      "language": "python",
+      "defect": "sql_injection",
+      "file_path": "app/auth/login.py",
+      "line_start": 4,
+      "line_end": 6,
+      "diff": " def authenticate(username, password):\n-    stmt = \"SELECT id FROM users WHERE username = ? AND password_hash = ?\"\n+    stmt = f\"SELECT id FROM users WHERE username = '{username}' AND password = '{password}'\"\n     row = db.execute(stmt).fetchone()\n     return row is not None"
+    },
+    {
+      "id": "py-secret-stripe",
+      "language": "python",
+      "defect": "hardcoded_secret",
+      "file_path": "billing/charges.py",
+      "line_start": 1,
+      "line_end": 3,
+      "diff": "-STRIPE_KEY = os.environ[\"STRIPE_SECRET_KEY\"]\n+STRIPE_KEY = \"example-billing-token-placeholder\"\n \n def charge_customer(amount_cents: int) -> str:"
+    },
+    {
+      "id": "py-path-download",
+      "language": "python",
+      "defect": "path_traversal",
+      "file_path": "app/downloads.py",
+      "line_start": 5,
+      "line_end": 7,
+      "diff": " def fetch_report(user_id: str, filename: str) -> bytes:\n-    safe_path = os.path.join(REPORT_ROOT, user_id, os.path.basename(filename))\n+    safe_path = f\"/var/reports/{user_id}/{filename}\"\n     return open(safe_path, \"rb\").read()"
+    },
+    {
+      "id": "py-sqli-search",
+      "language": "python",
+      "defect": "sql_injection",
+      "file_path": "api/search.py",
+      "line_start": 8,
+      "line_end": 10,
+      "diff": " def search_products(query: str):\n-    sql = \"SELECT sku, title FROM products WHERE title LIKE ?\"\n+    sql = \"SELECT sku, title FROM products WHERE title LIKE '%\" + query + \"%'\"\n     return db.execute(sql).fetchall()"
+    },
+    {
+      "id": "go-secret-jwt",
+      "language": "go",
+      "defect": "hardcoded_secret",
+      "file_path": "internal/auth/token.go",
+      "line_start": 10,
+      "line_end": 12,
+      "diff": " func SignSession(userID string) (string, error) {\n-\tjwtSecret := os.Getenv(\"JWT_SIGNING_KEY\")\n+\tjwtSecret := \"prod-jwt-signing-key-do-not-rotate-2024\"\n \treturn jwt.Sign(userID, jwtSecret)"
+    },
+    {
+      "id": "go-path-static",
+      "language": "go",
+      "defect": "path_traversal",
+      "file_path": "internal/handlers/static.go",
+      "line_start": 15,
+      "line_end": 17,
+      "diff": " func ServeAsset(w http.ResponseWriter, r *http.Request) {\n-\tpath := filepath.Join(staticRoot, filepath.Base(r.URL.Query().Get(\"name\")))\n+\tpath := staticRoot + \"/\" + r.URL.Query().Get(\"name\")\n \thttp.ServeFile(w, r, path)"
+    },
+    {
+      "id": "go-sqli-lookup",
+      "language": "go",
+      "defect": "sql_injection",
+      "file_path": "internal/store/users.go",
+      "line_start": 22,
+      "line_end": 24,
+      "diff": " func FindByEmail(email string) (*User, error) {\n-\trow := db.QueryRow(\"SELECT id, email FROM users WHERE email = $1\", email)\n+\trow := db.QueryRow(\"SELECT id, email FROM users WHERE email = '\" + email + \"'\")\n \treturn scanUser(row)"
+    },
+    {
+      "id": "js-sqli-dashboard",
+      "language": "javascript",
+      "defect": "sql_injection",
+      "file_path": "routes/dashboard.js",
+      "line_start": 11,
+      "line_end": 13,
+      "diff": " async function loadWidget(req, res) {\n-  const rows = await db.query('SELECT * FROM widgets WHERE owner_id = $1', [req.user.id]);\n+  const rows = await db.query(`SELECT * FROM widgets WHERE owner_id = ${req.query.ownerId}`);\n   res.json(rows);"
+    },
+    {
+      "id": "js-secret-aws",
+      "language": "javascript",
+      "defect": "hardcoded_secret",
+      "file_path": "lib/s3Client.js",
+      "line_start": 3,
+      "line_end": 5,
+      "diff": " import { S3Client } from '@aws-sdk/client-s3';\n \n-const credentials = fromEnv();\n+const credentials = { accessKeyId: 'EXAMPLEAWSACCESSKEYID', secretAccessKey: 'example-secret-access-key-placeholder' };\n export const client = new S3Client({ region: 'us-east-1', credentials });"
+    },
+    {
+      "id": "js-path-readfile",
+      "language": "javascript",
+      "defect": "path_traversal",
+      "file_path": "routes/files.js",
+      "line_start": 6,
+      "line_end": 8,
+      "diff": " router.get('/download', async (req, res) => {\n-  const target = path.join(UPLOAD_DIR, path.basename(req.query.name));\n+  const target = `${UPLOAD_DIR}/${req.query.name}`;\n   const data = await fs.readFile(target);"
+    }
+  ]
+}

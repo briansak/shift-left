@@ -1,0 +1,9 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "holdout/firewall/holdout-asa-mixed-case-cooccur.rules",
+  "expected_rule_ids": [
+    "ASA-001",
+    "ASA-006"
+  ],
+  "description": "Co-occurring: mixed-case permit ip any any is shadowed by preceding deny ip any any."
+}

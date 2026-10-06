@@ -1,0 +1,9 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "holdout/firewall/holdout-asa-wide-plus-object.rules",
+  "expected_rule_ids": [
+    "ASA-001",
+    "ASA-002"
+  ],
+  "description": "Co-occurring: bare permit ip any any plus unconstrained service tcp object."
+}

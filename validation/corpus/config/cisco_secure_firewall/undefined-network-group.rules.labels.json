@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "firewall/undefined-network-group.rules",
+  "expected_rule_ids": [
+    "ASA-007"
+  ],
+  "description": "ACE references undefined network object-group UNDEFINED-NET-GROUP."
+}

@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "holdout/firewall/holdout-asa-permissive-object-continuation.rules",
+  "expected_rule_ids": [
+    "ASA-002"
+  ],
+  "description": "ASA-002 via multi-line object service with inline comment (not generator template)."
+}

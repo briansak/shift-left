@@ -1,0 +1,59 @@
+# dCloud FTDv VM profile — ftdv-10.0.0-140-preconfig (created 20260406)
+# Reference only; credentials belong in local terraform.tfvars (never commit).
+
+profile:
+  name: ftdv-10.0.0-140-preconfig
+  created: "20260406"
+  shift_left_repo_path: examples/ftdv-firewall
+
+management:
+  hostname: ftdv-10.0.0-140-preconfig
+  ip: 198.18.134.100
+  dhcp: true
+  adapter: 0
+  network: Default Network
+
+routing:
+  default_gateway: 198.18.128.1
+  primary_dns: 198.18.128.1
+  secondary_dns: 1.1.1.1
+
+networks:
+  - name: Default Network
+    description: Routed by vPodGW
+    routed_by_vpodgw: true
+    cidr: 198.18.128.0/18
+  - name: Private
+    description: Private Network (not routed by vPodGW)
+    routed_by_vpodgw: false
+    cidr: 198.18.10.0/24
+
+adapters:
+  - id: 0
+    name: Network adapter 0
+    network: Default Network
+    nic_type: VIRTUAL_VMXNET_3
+    mac: "00:50:56:10:0a:02"
+    ip: 198.18.134.100
+    dhcp: true
+  - id: 1
+    name: Network adapter 1
+    network: Private
+    nic_type: VIRTUAL_VMXNET_3
+    mac: "00:50:56:10:0a:03"
+    ip: 198.18.10.1
+    dhcp: false
+  - id: 2
+    name: Network adapter 2
+    network: Private
+    nic_type: VIRTUAL_VMXNET_3
+    mac: "00:50:56:10:0a:01"
+    ip: null
+    dhcp: false
+  - id: 3
+    name: Network adapter 3
+    network: Private
+    nic_type: VIRTUAL_VMXNET_3
+    mac: "00:50:56:10:0a:04"
+    ip: null
+    dhcp: false

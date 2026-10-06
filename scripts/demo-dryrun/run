@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# End-to-end operational smoke test — see dryrun.py
+set -euo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+export PYTHONPATH="${ROOT}/cli:${ROOT}/services/orchestrator:${ROOT}/services/shift-left-shared${PYTHONPATH:+:$PYTHONPATH}"
+PY="${ROOT}/.venv/bin/python3"
+if [[ ! -x "$PY" ]]; then
+  exec "${ROOT}/scripts/shift-left" demo-dryrun "$@"
+fi
+exec "$PY" "${ROOT}/scripts/demo-dryrun/dryrun.py" "$@"

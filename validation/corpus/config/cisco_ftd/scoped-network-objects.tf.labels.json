@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "terraform/policies/scoped-network-objects.tf",
+  "expected_rule_ids": [],
+  "description": "ALLOW references in-module network objects instead of open literals."
+}

@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_ios_xe",
+  "virtual_path": "switches/ios003-violation-snmp-rw.cfg",
+  "expected_rule_ids": [
+    "IOS-003"
+  ],
+  "description": "SNMP community grants read-write access."
+}

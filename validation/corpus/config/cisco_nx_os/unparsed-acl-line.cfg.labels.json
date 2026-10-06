@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_nx_os",
+  "virtual_path": "switches/unparsed-acl-line.cfg",
+  "expected_rule_ids": ["NXOS-001"],
+  "description": "Unparseable ACL ACE line triggers NXOS-001."
+}

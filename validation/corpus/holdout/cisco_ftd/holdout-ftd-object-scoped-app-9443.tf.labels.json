@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "terraform/policies/holdout-ftd-object-scoped-app-9443.tf",
+  "expected_rule_ids": [],
+  "description": "Holdout clean scoped object references on non-mgmt application port 9443."
+}

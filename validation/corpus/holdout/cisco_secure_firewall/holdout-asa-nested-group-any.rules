@@ -1,0 +1,17 @@
+! HOLDOUT — nested group-object indirection resolves to any/any
+hostname holdout-nested-any
+!
+object-group network SRC-OUTER
+ group-object SRC-INNER
+!
+object-group network SRC-INNER
+ network-object any
+!
+object-group network DST-OUTER
+ group-object DST-INNER
+!
+object-group network DST-INNER
+ network-object 0.0.0.0 0.0.0.0
+!
+access-list HOLDOUT_IN extended permit ip object-group SRC-OUTER object-group DST-OUTER
+access-list HOLDOUT_IN extended deny ip any any log

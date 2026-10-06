@@ -1,0 +1,6 @@
+{
+  "target_type": "undeclared",
+  "virtual_path": "configs/holdout-marker-free-cli.cfg",
+  "expected_rule_ids": ["CLI-001"],
+  "description": "Holdout: marker-free CLI paste on the undeclared path. Expects CLI-001."
+}

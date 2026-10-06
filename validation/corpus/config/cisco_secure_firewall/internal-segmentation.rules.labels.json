@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "firewall/internal-segmentation.rules",
+  "expected_rule_ids": [],
+  "description": "East-west segmentation between internal VLANs."
+}

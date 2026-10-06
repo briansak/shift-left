@@ -1,0 +1,9 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "firewall/multi-violation-edge.rules",
+  "expected_rule_ids": [
+    "ASA-001",
+    "ASA-006"
+  ],
+  "description": "Combines any-any permit with shadowed follow-on ACEs."
+}

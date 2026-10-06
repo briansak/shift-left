@@ -1,0 +1,6 @@
+{
+  "target_type": "generic_terraform",
+  "virtual_path": "terraform/gcp-scoped-firewall.tf",
+  "expected_rule_ids": [],
+  "description": "GCP firewall limited to internal range."
+}

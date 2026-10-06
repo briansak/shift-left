@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "mgmt/mgmt-rfc1918-only.rules",
+  "expected_rule_ids": [],
+  "description": "Management plane restricted to RFC1918 jump networks."
+}

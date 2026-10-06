@@ -1,0 +1,309 @@
+{% extends "base.html" %}
+{% block title %}Investigations{% endblock %}
+{% block content %}
+<div
+  class="targets-page investigations-page"
+  {% if list_view.auto_refresh %}
+  data-investigation-live-poll="true"
+  data-investigation-live-url="/ui/investigations/live-state.json?page={{ list_view.page }}"
+  data-investigation-poll-interval="{{ list_view.poll_interval_ms }}"
+  {% endif %}
+>
+  <header class="targets-page-header">
+    <div>
+      <h1 class="targets-page-title">Investigations</h1>
+      <p class="targets-page-subtitle">Advisory Antares localization — candidate files for review, never merge gate findings.</p>
+    </div>
+  </header>
+
+  {% if list_view.launch_form.notice %}
+  <p class="investigation-launch-notice" role="status">{{ list_view.launch_form.notice }}</p>
+  {% endif %}
+  {% if list_view.launch_form.error %}
+  <p class="investigation-launch-error" role="alert">{{ list_view.launch_form.error }}</p>
+  {% endif %}
+
+  <details class="card investigation-launch-card investigation-launch-details" {% if list_view.launch_form.launch_prefill %}open{% endif %}>
+    <summary class="investigation-launch-summary btn btn-ghost">Launch investigation</summary>
+    <div id="investigation-launch-panel" class="investigation-launch-panel">
+      <p class="helper">{{ list_view.batch_launch_notice }}</p>
+      <form method="post" action="/ui/investigations" class="investigation-launch-form" data-investigation-launch="true" data-median-seconds="{{ list_view.launch_form.median_investigation_seconds }}" data-confirm-threshold="{{ list_view.launch_form.confirm_threshold }}">
+        <fieldset class="investigation-source-fieldset">
+          <legend>Source</legend>
+          <label><input type="radio" name="source" value="single" {% if list_view.launch_form.source == 'single' %}checked{% endif %} {% if not list_view.launch_form.can_submit %}disabled{% endif %}> Single CWE</label>
+          <label><input type="radio" name="source" value="top25" {% if list_view.launch_form.source == 'top25' %}checked{% endif %} {% if not list_view.launch_form.can_submit %}disabled{% endif %}> CWE Top 25</label>
+          <label><input type="radio" name="source" value="profiled" {% if list_view.launch_form.source == 'profiled' %}checked{% endif %} {% if not list_view.launch_form.can_submit %}disabled{% endif %}> Profiled</label>
+          <label><input type="radio" name="source" value="custom" {% if list_view.launch_form.source == 'custom' %}checked{% endif %} {% if not list_view.launch_form.can_submit %}disabled{% endif %}> Custom catalog</label>
+        </fieldset>
+        <div class="investigation-launch-grid">
+          <label>Repo <span class="mono">owner/repo</span>
+            <input name="repo" required placeholder="demo/app" value="{{ list_view.launch_form.repo }}" {% if not list_view.launch_form.can_submit %}disabled{% endif %}>
+          </label>
+          <label>Ref
+            <input name="ref" required placeholder="main" value="{{ list_view.launch_form.ref }}" {% if not list_view.launch_form.can_submit %}disabled{% endif %}>
+          </label>
+        </div>
+        <fieldset class="investigation-scope-fieldset">
+          <legend>Snapshot scope</legend>
+          <label><input type="radio" name="snapshot_scope" value="full" {% if list_view.launch_form.snapshot_scope != 'pr_changed' %}checked{% endif %} {% if not list_view.launch_form.can_submit %}disabled{% endif %}> Full checkout</label>
+          <label><input type="radio" name="snapshot_scope" value="pr_changed" {% if list_view.launch_form.snapshot_scope == 'pr_changed' %}checked{% endif %} {% if not list_view.launch_form.can_submit %}disabled{% endif %}> PR changed files</label>
+          <label class="investigation-base-ref" data-launch-base-ref>
+            Base ref (PR scope)
+            <input name="snapshot_base_ref" value="{{ list_view.launch_form.snapshot_base_ref }}" placeholder="main" {% if not list_view.launch_form.can_submit %}disabled{% endif %}>
+          </label>
+        </fieldset>
+        <p class="helper" data-launch-snapshot>
+          Snapshot size:
+          <span data-launch-snapshot-label>{% if list_view.launch_form.snapshot_bytes_label %}{{ list_view.launch_form.snapshot_bytes_label }}{% else %}preview to measure{% endif %}</span>
+        </p>
+        <p class="helper" data-launch-queue>
+          Queue depth: <span data-launch-queue-depth>{{ list_view.launch_form.queue_depth }}</span>
+          / <span data-launch-queue-cap>{{ list_view.launch_form.queue_depth_cap }}</span>
+          · Estimated wall-clock:
+          <span data-launch-wall-clock>{{ list_view.launch_form.estimated_wall_clock_label or '—' }}</span>
+        </p>
+        <div data-launch-panel="single" class="investigation-launch-source-panel">
+          <div class="investigation-launch-grid">
+            <label>Task CWE
+              <input name="task_cwe" placeholder="CWE-843" value="{{ list_view.launch_form.default_task_cwe }}" {% if not list_view.launch_form.can_submit %}disabled{% endif %}>
+            </label>
+            <label>CVE (optional)
+              <input name="advisory_cve" placeholder="CVE-2024-0001" {% if not list_view.launch_form.can_submit %}disabled{% endif %}>
+            </label>
+          </div>
+          <label>CWE description (optional)
+            <textarea name="task_cwe_description" rows="2" {% if not list_view.launch_form.can_submit %}disabled{% endif %}>{{ list_view.launch_form.default_task_cwe_description }}</textarea>
+          </label>
+        </div>
+        <div data-launch-panel="preview" class="investigation-launch-source-panel">
+          <p class="helper">Resolve members against the entered repo and ref. Language-only rows are deselected by default — they had no mapped surface evidence in measured runs.</p>
+          {% if list_view.launch_form.preview_members %}
+          <input type="hidden" name="previewed" value="1">
+          <div class="targets-table-wrap investigation-preview-wrap">
+            <table class="targets-data-table investigation-preview-table">
+              <thead>
+                <tr>
+                  <th scope="col">Include</th>
+                  <th scope="col">CWE</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Evidence tier</th>
+                  <th scope="col">Tractability</th>
+                  <th scope="col">Top 25 rank</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for member in list_view.launch_form.preview_members %}
+                <tr data-evidence-tier="{{ member.evidence_tier }}">
+                  <td>
+                    <input type="checkbox" name="selected_cwes" value="{{ member.cwe_id }}" data-launch-member {% if member.selected %}checked{% endif %} {% if not list_view.launch_form.can_submit %}disabled{% endif %}>
+                  </td>
+                  <td class="mono">{{ member.cwe_id }}</td>
+                  <td>{{ member.name }}</td>
+                  <td>{{ member.evidence_tier }}</td>
+                  <td>{{ member.tractability }}</td>
+                  <td>{% if member.top25_rank %}{{ member.top25_rank }}{% else %}—{% endif %}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% endif %}
+        </div>
+        <div data-launch-panel="custom" class="investigation-launch-source-panel">
+          <label>Search catalog
+            <input type="search" data-catalog-search placeholder="CWE id or name" {% if not list_view.launch_form.can_submit %}disabled{% endif %}>
+          </label>
+          <div class="investigation-catalog-picker" data-catalog-picker>
+            {% for row in list_view.launch_form.catalog %}
+            <label class="investigation-catalog-row" data-cwe-id="{{ row.cwe_id }}" data-cwe-name="{{ row.name }}">
+              <input type="checkbox" name="catalog_cwes" value="{{ row.cwe_id }}" data-catalog-cwe {% if row.selected %}checked{% endif %} {% if not list_view.launch_form.can_submit %}disabled{% endif %}>
+              <span class="mono">{{ row.cwe_id }}</span>
+              <span>{{ row.name }}</span>
+              <span class="targets-cell-secondary">{{ row.tractability }}{% if row.top25_rank %} · Top 25 #{{ row.top25_rank }}{% endif %}</span>
+            </label>
+            {% endfor %}
+          </div>
+        </div>
+        <label class="investigation-launch-checkbox">
+          <input type="hidden" name="exclude_test_paths" value="0">
+          <input type="checkbox" name="exclude_test_paths" value="1" {% if list_view.launch_form.exclude_test_paths %}checked{% endif %} {% if not list_view.launch_form.can_submit %}disabled{% endif %}>
+          Exclude test and fixture paths from snapshot (default — <span class="mono">t/</span>, <span class="mono">tests/</span>, etc.)
+        </label>
+        <label class="investigation-launch-checkbox" data-launch-confirm hidden>
+          <input type="checkbox" name="confirmed_large_batch" value="1" {% if not list_view.launch_form.can_submit %}disabled{% endif %}>
+          Confirm batch larger than {{ list_view.launch_form.confirm_threshold }} investigations
+        </label>
+        <p class="helper investigation-cwe-hints">
+          <a href="/ui/cwe">Browse the CWE reference catalog</a> (838 Base/Variant entries).
+          Model card — strong: {{ list_view.launch_form.strong_cwes|join(', ') }}.
+          Weak: {{ list_view.launch_form.weak_cwes|join(', ') }}.
+          Snapshots above {{ list_view.launch_form.snapshot_warn_mb }} MB may be slow to materialize.
+        </p>
+        {% if not list_view.launch_form.can_submit %}
+        <p class="investigation-launch-error">{{ list_view.launch_form.disabled_reason }} <a href="/ui/system">System</a></p>
+        {% else %}
+        <div class="investigation-launch-actions">
+          <button type="submit" class="btn btn-secondary" formaction="/ui/investigations/preview" data-launch-preview-button>Preview members</button>
+          <button type="submit" class="btn btn-primary" data-launch-queue-button>Queue investigation</button>
+        </div>
+        {% endif %}
+      </form>
+      <script type="application/json" id="investigation-cwe-catalog">{{ list_view.launch_form.catalog_json | safe }}</script>
+    </div>
+  </details>
+
+  <section
+    class="card investigation-runner-card{% if list_view.runner_status.show_warn %} investigation-runner-card--warn{% endif %}"
+    aria-label="Queue runner status"
+    data-live-runner-card
+  >
+    <div class="investigation-runner-card-header">
+      <h2 class="targets-table-toolbar-title">Queue runner</h2>
+      <span class="status-pill {{ list_view.runner_status.status_pill_class }}" data-live-runner-worker-pill>
+        <span class="status-pill-dot" aria-hidden="true"></span>
+        <span data-live-runner-worker-label>{{ list_view.runner_status.worker_label }}</span>
+      </span>
+    </div>
+    <div class="investigation-runner-warn" role="alert" data-live-runner-warn {% if not list_view.runner_status.show_warn %}hidden{% endif %}>
+      <p><span data-live-runner-warn-message>{{ list_view.runner_status.warn_message }}</span> <a href="{{ list_view.runner_status.system_href }}" data-live-runner-system-href>System</a></p>
+    </div>
+    <dl class="investigation-runner-metrics">
+      <div>
+        <dt>Queue depth</dt>
+        <dd data-live-runner-queue-depth>{{ list_view.runner_status.queue_depth }}</dd>
+      </div>
+      <div>
+        <dt>Current investigation</dt>
+        <dd data-live-runner-current>
+          {% if list_view.runner_status.current_investigation_id %}
+          <span class="mono">{{ list_view.runner_status.current_investigation_short }}</span>
+          · {{ list_view.runner_status.current_elapsed_label }}
+          {% else %}
+          —
+          {% endif %}
+        </dd>
+      </div>
+      <div>
+        <dt>Health gate</dt>
+        <dd data-live-runner-health-gate>{{ list_view.runner_status.health_gate_reason or '—' }}</dd>
+      </div>
+    </dl>
+  </section>
+
+  <div class="targets-summary-grid" aria-label="Investigation summary">
+    <article class="card metric-card">
+      <p class="metric-card-label">Total investigations</p>
+      <p class="metric-card-value">{{ list_view.summary.total }}</p>
+      <p class="metric-card-meta">All recorded runs</p>
+    </article>
+    <article class="card metric-card">
+      <p class="metric-card-label">By state</p>
+      <p class="metric-card-value">{{ list_view.summary.by_state.get('running', 0) + list_view.summary.by_state.get('queued', 0) }}</p>
+      <p class="metric-card-meta">
+        {% for state, count in list_view.summary.by_state.items()|sort %}
+        {{ state }} {{ count }}{% if not loop.last %} · {% endif %}
+        {% else %}No investigations{% endfor %}
+      </p>
+    </article>
+    <article class="card metric-card">
+      <p class="metric-card-label">Open dispositions</p>
+      <p class="metric-card-value">{{ list_view.summary.open_disposition_total }}</p>
+      <p class="metric-card-meta">Candidates awaiting review</p>
+    </article>
+  </div>
+
+  {% if list_view.empty %}
+  <section class="card targets-empty-card">
+    <div class="card-body">
+      <h2 class="targets-empty-title">No investigations yet</h2>
+      <p>Queue a run with the launch form above or POST <code>/api/v1/investigations</code>.</p>
+      {% if not list_view.antares_available %}
+      <p class="helper">Antares is not available on this host. Check <a href="/ui/system">System</a> to install or start <code>antares-server</code>.</p>
+      {% endif %}
+    </div>
+  </section>
+  {% else %}
+  <section class="card targets-table-card">
+    <div class="targets-table-toolbar">
+      <h2 class="targets-table-toolbar-title">All investigations</h2>
+    </div>
+    <div class="targets-table-wrap">
+      <table class="targets-data-table">
+        <thead>
+          <tr>
+            <th scope="col">Repo @ ref</th>
+            <th scope="col">CWE</th>
+            <th scope="col">State</th>
+            <th scope="col">Queue / calls</th>
+            <th scope="col">Candidates</th>
+            <th scope="col">Duration</th>
+            <th scope="col">Actor</th>
+            <th scope="col">Created</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in list_view.rows %}
+          <tr data-investigation-row-id="{{ row.investigation_id }}">
+            <td>
+              <a class="targets-cell-primary" href="{{ row.detail_href }}">{{ row.repo_ref_label }}</a>
+              <span class="targets-cell-secondary mono">{{ row.short_sha }}</span>
+              {% if row.is_stale %}
+              <span class="investigation-stale-badge" title="Checkout HEAD has advanced past the investigated commit">Stale ref</span>
+              {% endif %}
+            </td>
+            <td>
+              <span class="mono">{{ row.task_cwe }}</span>
+              {% if row.batch_href %}
+              <a class="targets-cell-secondary" href="{{ row.batch_href }}">batch</a>
+              {% endif %}
+            </td>
+            <td data-live-row-state>
+              <span class="status-pill {{ row.state_pill_class }}" data-live-state-pill>
+                <span class="status-pill-dot" aria-hidden="true"></span>
+                <span data-live-state-text>{{ row.state.value }}</span>
+              </span>
+              <p class="helper investigation-waiting-reason" data-live-waiting-reason {% if not row.waiting_reason %}hidden{% endif %}>{{ row.waiting_reason or '' }}</p>
+            </td>
+            <td data-live-row-queue-calls>{{ row.queue_status_label or row.terminal_calls_label }}</td>
+            <td>
+              {{ row.candidate_count }}
+              {% if row.open_disposition_count %}
+              <span class="targets-cell-secondary">· {{ row.open_disposition_count }} open</span>
+              {% endif %}
+            </td>
+            <td data-live-row-duration>{{ row.duration_label }}</td>
+            <td>{{ row.actor }}</td>
+            <td>{{ row.created_at_label }}</td>
+            <td class="investigation-row-actions">
+              {% if row.can_cancel %}
+              <form method="post" action="/ui/investigations/{{ row.investigation_id }}/cancel" onclick="event.stopPropagation()">
+                <button type="submit" class="btn btn-ghost btn-sm">Cancel</button>
+              </form>
+              {% endif %}
+              {% if row.can_rerun %}
+              <form method="post" action="/ui/investigations/{{ row.investigation_id }}/rerun" onclick="event.stopPropagation()">
+                <button type="submit" class="btn btn-ghost btn-sm">Re-run</button>
+              </form>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="investigation-pagination card-body">
+      <span>Page {{ list_view.page }} of {{ list_view.total_pages }}</span>
+      <div>
+        {% if list_view.page > 1 %}
+        <a class="btn btn-ghost btn-sm" href="/ui/investigations?page={{ list_view.page - 1 }}">Previous</a>
+        {% endif %}
+        {% if list_view.page < list_view.total_pages %}
+        <a class="btn btn-ghost btn-sm" href="/ui/investigations?page={{ list_view.page + 1 }}">Next</a>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+</div>
+{% endblock %}

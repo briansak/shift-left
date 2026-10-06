@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_ios_xe",
+  "virtual_path": "switches/ios005-clean-encrypted-no-http.cfg",
+  "expected_rule_ids": [],
+  "description": "Password encryption enabled and HTTP server disabled."
+}

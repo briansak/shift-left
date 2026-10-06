@@ -1,0 +1,9 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "holdout/ftd/holdout-ftd-cooccur-ports-mgmt.tf",
+  "expected_rule_ids": [
+    "FTD-002",
+    "FTD-005"
+  ],
+  "description": "Co-occurring: unconstrained fmc_port TCP plus management HTTPS from non-RFC1918."
+}

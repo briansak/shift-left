@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_ios_xe",
+  "virtual_path": "switches/ios007-clean-trunk-hardened.cfg",
+  "expected_rule_ids": [],
+  "description": "Trunk uses non-default native VLAN and DTP disabled."
+}

@@ -1,0 +1,5 @@
+! legacy ASA export — noisy comments, still scoped
+! ticket INC-88421 approved exception for migration window
+access-list CORP-OUT remark allow corp HTTPS to app tier only
+access-list CORP-OUT extended permit tcp 10.10.0.0/16 host 10.20.5.10 eq 443
+access-list CORP-OUT extended deny ip any any log

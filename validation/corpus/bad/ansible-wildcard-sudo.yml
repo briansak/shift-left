@@ -1,0 +1,5 @@
+- name: Grant passwordless sudo to everyone
+  lineinfile:
+    path: /etc/sudoers
+    line: "ALL ALL=(ALL) NOPASSWD: ALL"
+    validate: "visudo -cf %s"

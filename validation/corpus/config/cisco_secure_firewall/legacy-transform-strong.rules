@@ -1,0 +1,8 @@
+hostname crypto-fw-03
+!
+crypto ipsec transform-set MODERN esp-aes-256 esp-sha256-hmac
+!
+crypto ikev2 policy 40
+ encryption aes-256
+ integrity sha256
+ group 19

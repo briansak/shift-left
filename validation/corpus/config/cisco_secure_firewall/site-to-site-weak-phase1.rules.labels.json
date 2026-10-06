@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "vpn/site-to-site-weak-phase1.rules",
+  "expected_rule_ids": [
+    "ASA-004"
+  ],
+  "description": "Site-to-site profile keeps SHA1 and DH group 5."
+}

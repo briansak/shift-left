@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_ios_xe",
+  "virtual_path": "switches/ios006-clean-scoped-acl.cfg",
+  "expected_rule_ids": [],
+  "description": "ACL permits only resolved RFC1918 sources to a fixed host."
+}

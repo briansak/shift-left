@@ -1,0 +1,10 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "firewall/multi-object-and-mgmt.rules",
+  "expected_rule_ids": [
+    "ASA-001",
+    "ASA-002",
+    "ASA-005"
+  ],
+  "description": "Permissive service object, any-any permit ACE, plus public SSH management."
+}

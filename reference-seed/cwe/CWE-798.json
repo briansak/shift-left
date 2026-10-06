@@ -1,0 +1,5 @@
+{
+  "id": "CWE-798",
+  "name": "Use of Hard-coded Credentials",
+  "description": "The product contains hard-coded credentials, such as a password or cryptographic key."
+}

@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "mgmt/ops-jump-host-public.rules",
+  "expected_rule_ids": [
+    "ASA-005"
+  ],
+  "description": "Operations published SSH to a public /24 range."
+}

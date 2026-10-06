@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "firewall/dmz-restricted-services.rules",
+  "expected_rule_ids": [],
+  "description": "DMZ ACL allows only specific services to app tier."
+}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Audit log{% endblock %}
+{% block content %}
+<div class="repo-page">
+<header class="page-header-row">
+  <div>
+    <h1 class="page-title">Audit log</h1>
+    <p class="text-muted">Append-only. Retention {{ retention_days }} days — export before pruning.</p>
+  </div>
+</header>
+
+<form method="get" class="panel">
+  <label for="actor">Actor</label><input id="actor" name="actor" value="{{ filters.actor }}">
+  <label for="action">Action</label><input id="action" name="action" value="{{ filters.action }}">
+  <label for="subject_prefix">Subject prefix</label><input id="subject_prefix" name="subject_prefix" value="{{ filters.subject_prefix }}">
+  <button type="submit" style="margin-top:0.75rem">Filter</button>
+  <a class="btn" href="/api/v1/audit/export" style="margin-left:0.5rem">Export JSON</a>
+</form>
+
+<table>
+  <thead><tr><th>Time</th><th>Actor</th><th>Action</th><th>Subject</th></tr></thead>
+  <tbody>
+  {% for event in events %}
+  <tr>
+    <td>{{ event.timestamp }}</td>
+    <td>{{ event.actor }}</td>
+    <td>{{ event.action }}</td>
+    <td>{{ event.subject }}</td>
+  </tr>
+  {% else %}
+  <tr><td colspan="4">No events.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

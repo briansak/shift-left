@@ -1,0 +1,8 @@
+{
+  "target_type": "generic_terraform",
+  "virtual_path": "terraform/aws-sg-nested-ingress.tf",
+  "expected_rule_ids": [
+    "TF-001"
+  ],
+  "description": "Nested ingress block on aws_security_group."
+}

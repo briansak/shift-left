@@ -1,0 +1,35 @@
+=== Model eval experiments comparison (quant_evaluated=Q8_0 quant_intended=Q4_K_M accuracy_only=True, semantic matcher: best_fit_v1) ===
+
+Rule-level TP/FP/FN: baseline and platform_specific from semantic-corrected sidecars;
+constrained variants from native reports (same matcher). Fabrication = evidence_not_substring
+rejections / emitted findings. Line attribution population: all emitted model findings (n per run).
+
+Experiment            emit   rej  surv   fab%   TP   FP   FN   Recall
+baseline               108    54    54  50.0%   11   26   97 11/108
+platform_specific       85    50    35  58.8%   13    6   95 13/108
+constrained_output     105    68    37  64.8%    7    4  101 7/108
+platform_constrained    83    49    34  59.0%    4    5  104 4/108
+
+Fabrication detail (evidence_not_substring / emitted):
+  baseline               54/108  (50.0%)
+  platform_specific      50/85   (58.8%)
+  constrained_output     68/105  (64.8%)
+  platform_constrained   49/83   (59.0%)
+
+Emitted-finding payload coverage (line attribution input):
+  constrained_output   97/105 payloads stored (8 missing)
+    gap: 8 TP survivor payloads not persisted in the original report (no findings cache for this variant)
+    note: 8 TP survivor payloads were not persisted in the original report and cannot be reconstructed without a findings cache.
+
+Line attribution (population: all emitted model findings):
+  experiment               n contains mismatch fabricated tight_anchor
+  baseline               108       54       51          3           17
+  platform_specific       85       46       34          5           34
+  constrained_output      97       58       39          0           46  [97/105 payloads; 8 missing TP survivors]
+  platform_constrained    83       35       48          0           24
+
+Retro constrained validation — rule-level TP/FP/FN among survivors only (baseline/platform_specific sidecars; native for constrained variants):
+  baseline             survivors= 54  TP/FP/FN=4/16/104
+  platform_specific    survivors= 35  TP/FP/FN=8/1/100
+  constrained_output   survivors= 37  TP/FP/FN=7/4/101 (harness-scored)
+  platform_constrained survivors= 34  TP/FP/FN=4/5/104 (harness-scored)

@@ -1,0 +1,26 @@
+# Model weights — mounted at runtime on host, never baked into orchestrator image.
+models/
+data/
+
+# Local dev / CI artifacts
+.venv/
+.venv-*/
+**/__pycache__/
+**/*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+.git/
+.bundle/
+
+# Large validation and offline bundles
+validation/reports/
+*.tar.zst
+*.gguf
+*.gguf.part
+*.safetensors
+
+# Editor and OS noise
+.cursor/
+.DS_Store

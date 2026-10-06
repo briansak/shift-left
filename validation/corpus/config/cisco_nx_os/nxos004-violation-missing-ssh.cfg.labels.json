@@ -1,0 +1,10 @@
+{
+  "target_type": "cisco_nx_os",
+  "virtual_path": "switches/nxos004-violation-missing-ssh.cfg",
+  "expected_rule_ids": [
+    "NXOS-003",
+    "NXOS-004",
+    "NXOS-006"
+  ],
+  "description": "VTY configured without SSH feature enabled."
+}

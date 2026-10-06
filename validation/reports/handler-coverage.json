@@ -1,0 +1,6893 @@
+{
+  "generated_at": "2026-10-06T14:35:11.197135+00:00",
+  "corpus_version": "handler-corpus-v4",
+  "corpus_version_notes": "150 labeled defect instances after CLI-001 undeclared-platform fixtures (2 generated positives, 1 holdout positive; not waivable). Supersedes handler-corpus-v3 (147 instances).",
+  "handler_baseline": {
+    "corpus_version": "handler-corpus-v4",
+    "corpus_version_notes": "150 labeled defect instances after CLI-001 undeclared-platform fixtures (2 generated positives, 1 holdout positive; not waivable). Supersedes handler-corpus-v3 (147 instances).",
+    "prior_corpus_version": "handler-corpus-v3",
+    "prior_labeled_defect_instance_count": 147,
+    "files_total": 202,
+    "labeled_files": 119,
+    "labeled_defect_instances": 150,
+    "true_positives": 150,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "per_target_type": {
+      "cisco_ftd": {
+        "files_total": 38,
+        "labeled_files": 22,
+        "labeled_defect_instances": 33,
+        "true_positives": 33,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "cisco_ios_xe": {
+        "files_total": 40,
+        "labeled_files": 26,
+        "labeled_defect_instances": 30,
+        "true_positives": 30,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "cisco_nx_os": {
+        "files_total": 49,
+        "labeled_files": 28,
+        "labeled_defect_instances": 38,
+        "true_positives": 38,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "cisco_secure_firewall": {
+        "files_total": 46,
+        "labeled_files": 26,
+        "labeled_defect_instances": 32,
+        "true_positives": 32,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "generic_terraform": {
+        "files_total": 24,
+        "labeled_files": 14,
+        "labeled_defect_instances": 14,
+        "true_positives": 14,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "undeclared": {
+        "files_total": 5,
+        "labeled_files": 3,
+        "labeled_defect_instances": 3,
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    "per_rule": {
+      "ASA-001": {
+        "true_positives": 8,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "ASA-002": {
+        "true_positives": 6,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "ASA-004": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "ASA-005": {
+        "true_positives": 5,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "ASA-006": {
+        "true_positives": 5,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "ASA-007": {
+        "true_positives": 5,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "CLI-001": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "FTD-001": {
+        "true_positives": 5,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "FTD-002": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "FTD-003": {
+        "true_positives": 5,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "FTD-004": {
+        "true_positives": 4,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "FTD-005": {
+        "true_positives": 5,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "FTD-006": {
+        "true_positives": 4,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "FTD-008": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "FTD-009": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "HCL-001": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "HCL-002": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "IOS-001": {
+        "true_positives": 5,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "IOS-002": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "IOS-003": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "IOS-004": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "IOS-005": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "IOS-006": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "IOS-007": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "IOS-008": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "IOS-010": {
+        "true_positives": 4,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "NXOS-001": {
+        "true_positives": 4,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "NXOS-002": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "NXOS-003": {
+        "true_positives": 4,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "NXOS-004": {
+        "true_positives": 4,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "NXOS-005": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "NXOS-006": {
+        "true_positives": 6,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "NXOS-007": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "NXOS-008": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "NXOS-009": {
+        "true_positives": 5,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "NXOS-010": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "TF-001": {
+        "true_positives": 9,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    }
+  },
+  "fmc_provider_version": "2.0.1",
+  "fmc_provider_schema": "validation/schemas/fmc-2.0.1-schema.json",
+  "ftd_schema_audit": [
+    {
+      "rule_id": "FTD-001",
+      "schema_valid": true,
+      "resources": [
+        {
+          "resource_type": "fmc_access_rule",
+          "exists_in_provider": true,
+          "attributes": [
+            {
+              "attribute": "action",
+              "exists_in_provider": true
+            },
+            {
+              "attribute": "destination_network_literals",
+              "exists_in_provider": true
+            },
+            {
+              "attribute": "enabled",
+              "exists_in_provider": true
+            },
+            {
+              "attribute": "source_network_literals",
+              "exists_in_provider": true
+            }
+          ]
+        },
+        {
+          "resource_type": "fmc_access_rules",
+          "exists_in_provider": true,
+          "attributes": [
+            {
+              "attribute": "items",
+              "exists_in_provider": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rule_id": "FTD-002",
+      "schema_valid": true,
+      "resources": [
+        {
+          "resource_type": "fmc_port",
+          "exists_in_provider": true,
+          "attributes": [
+            {
+              "attribute": "port",
+              "exists_in_provider": true
+            },
+            {
+              "attribute": "protocol",
+              "exists_in_provider": true
+            }
+          ]
+        },
+        {
+          "resource_type": "fmc_ports",
+          "exists_in_provider": true,
+          "attributes": [
+            {
+              "attribute": "items",
+              "exists_in_provider": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rule_id": "FTD-003",
+      "schema_valid": true,
+      "resources": [
+        {
+          "resource_type": "fmc_access_rule",
+          "exists_in_provider": true,
+          "attributes": [
+            {
+              "attribute": "action",
+              "exists_in_provider": true
+            },
+            {
+              "attribute": "enabled",
+              "exists_in_provider": true
+            },
+            {
+              "attribute": "log_connection_begin",
+              "exists_in_provider": true
+            },
+            {
+              "attribute": "log_connection_end",
+              "exists_in_provider": true
+            }
+          ]
+        },
+        {
+          "resource_type": "fmc_access_rules",
+          "exists_in_provider": true,
+          "attributes": [
+            {
+              "attribute": "items",
+              "exists_in_provider": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rule_id": "FTD-004",
+      "schema_valid": true,
+      "resources": [
+        {
+          "resource_type": "fmc_ikev2_policy",
+          "exists_in_provider": true,
+          "attributes": [
+            {
+              "attribute": "dh_groups",
+              "exists_in_provider": true
+            },
+            {
+              "attribute": "encryption_algorithms",
+              "exists_in_provider": true
+            },
+            {
+              "attribute": "integrity_algorithms",
+              "exists_in_provider": true
+            }
+          ]
+        },
+        {
+          "resource_type": "fmc_ikev2_policies",
+          "exists_in_provider": true,
+          "attributes": [
+            {
+              "attribute": "items",
+              "exists_in_provider": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rule_id": "FTD-005",
+      "schema_valid": true,
+      "resources": [
+        {
+          "resource_type": "fmc_access_rule",
+          "exists_in_provider": true,
+          "attributes": [
+            {
+              "attribute": "action",
+              "exists_in_provider": true
+            },
+            {
+              "attribute": "destination_port_literals",
+              "exists_in_provider": true
+            },
+            {
+              "attribute": "enabled",
+              "exists_in_provider": true
+            },
+            {
+              "attribute": "source_network_literals",
+              "exists_in_provider": true
+            }
+          ]
+        },
+        {
+          "resource_type": "fmc_access_rules",
+          "exists_in_provider": true,
+          "attributes": [
+            {
+              "attribute": "items",
+              "exists_in_provider": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rule_id": "FTD-006",
+      "schema_valid": true,
+      "resources": [
+        {
+          "resource_type": "fmc_access_rules",
+          "exists_in_provider": true,
+          "attributes": [
+            {
+              "attribute": "items",
+              "exists_in_provider": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rule_id": "FTD-008",
+      "schema_valid": true,
+      "resources": [
+        {
+          "resource_type": "fmc_access_rule",
+          "exists_in_provider": true,
+          "attributes": [
+            {
+              "attribute": "destination_network_objects",
+              "exists_in_provider": true
+            },
+            {
+              "attribute": "source_network_objects",
+              "exists_in_provider": true
+            }
+          ]
+        },
+        {
+          "resource_type": "fmc_access_rules",
+          "exists_in_provider": true,
+          "attributes": [
+            {
+              "attribute": "items",
+              "exists_in_provider": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rule_id": "FTD-009",
+      "schema_valid": true,
+      "resources": []
+    }
+  ],
+  "ftd_resolver_schema_audit": [
+    {
+      "resource_type": "fmc_host",
+      "parser_attribute": "ip",
+      "exists_in_provider": true,
+      "listed_in_resolver_schema": true,
+      "resource_exists_in_provider": true
+    },
+    {
+      "resource_type": "fmc_network",
+      "parser_attribute": "prefix",
+      "exists_in_provider": true,
+      "listed_in_resolver_schema": true,
+      "resource_exists_in_provider": true
+    },
+    {
+      "resource_type": "fmc_network_group",
+      "parser_attribute": "objects",
+      "exists_in_provider": true,
+      "listed_in_resolver_schema": true,
+      "resource_exists_in_provider": true
+    },
+    {
+      "resource_type": "fmc_range",
+      "parser_attribute": "ip_range",
+      "exists_in_provider": true,
+      "listed_in_resolver_schema": true,
+      "resource_exists_in_provider": true
+    }
+  ],
+  "rule_gaps": [
+    {
+      "rule_id": "ASA-003",
+      "target_type": "cisco_secure_firewall",
+      "cwe": "CWE-778",
+      "severity": "flag",
+      "status": "disabled",
+      "reason": "enabled=False in registry (permit-without-log is too noisy for production gating)."
+    },
+    {
+      "rule_id": "IOS-009",
+      "target_type": "cisco_ios_xe",
+      "cwe": "CWE-693",
+      "severity": "flag",
+      "status": "disabled",
+      "reason": "Access-port BPDU guard and port-security requirements vary by campus baseline; rule remains disabled to avoid false positives on lab and legacy access layers."
+    },
+    {
+      "rule_id": "FTD-007",
+      "target_type": "cisco_ftd",
+      "cwe": "CWE-693",
+      "severity": "flag",
+      "status": "disabled",
+      "reason": "Legitimate internal and lab ALLOW rules often omit intrusion policy during staged rollouts; rule remains in registry for optional enablement."
+    }
+  ],
+  "model_asserted_cwe_unrecognized": {
+    "total": 0,
+    "by_cwe_id": {}
+  },
+  "parse_coverage": {
+    "cisco_ftd": {
+      "parsed_resources": 80,
+      "total_resource_blocks": 81,
+      "parse_failure_files": 1,
+      "parse_coverage_ratio": 0.9877
+    },
+    "cisco_ios_xe": {
+      "parsed_cli_lines": 21,
+      "total_evaluable_cli_lines": 24,
+      "parse_coverage_ratio": 0.875
+    },
+    "cisco_nx_os": {
+      "parsed_cli_lines": 19,
+      "total_evaluable_cli_lines": 21,
+      "parse_coverage_ratio": 0.9048
+    },
+    "cisco_secure_firewall": {
+      "parsed_acl_lines": 91,
+      "total_acl_bearing_lines": 92,
+      "remark_acl_lines": 2,
+      "parse_coverage_ratio": 0.9891
+    },
+    "generic_terraform": {
+      "parsed_resources": 31,
+      "total_resource_blocks": 33,
+      "parse_failure_files": 2,
+      "parse_coverage_ratio": 0.9394
+    }
+  },
+  "generated_corpus": {
+    "corpus_name": "generated",
+    "corpus_dir": "validation/corpus/config",
+    "summary": {
+      "files_total": 151,
+      "clean_files": 67,
+      "violation_files": 84,
+      "enabled_rules_evaluated": 37,
+      "rules_at_full_precision": 37,
+      "files_with_unexpected_matches": 0,
+      "files_with_missed_expected": 0
+    },
+    "per_rule": {
+      "ASA-001": {
+        "true_positives": 5,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "ASA-002": {
+        "true_positives": 4,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "ASA-004": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "ASA-005": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "ASA-006": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "ASA-007": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "CLI-001": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "FTD-001": {
+        "true_positives": 4,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "FTD-002": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "FTD-003": {
+        "true_positives": 4,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "FTD-004": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "FTD-005": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "FTD-006": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "FTD-008": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "FTD-009": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "HCL-001": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "HCL-002": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "IOS-001": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "IOS-002": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "IOS-003": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "IOS-004": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "IOS-005": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "IOS-006": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "IOS-007": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "IOS-008": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "IOS-010": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "NXOS-001": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "NXOS-002": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "NXOS-003": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "NXOS-004": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "NXOS-005": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "NXOS-006": {
+        "true_positives": 5,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "NXOS-007": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "NXOS-008": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "NXOS-009": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "NXOS-010": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "TF-001": {
+        "true_positives": 8,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      }
+    },
+    "per_file": [
+      {
+        "path": "cisco_ftd/app-https-scoped.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/aws-mixed-uncovered.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-009"
+        ],
+        "matched_rule_ids": [
+          "FTD-009"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/branch-policy-insecure.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-001",
+          "FTD-002",
+          "FTD-003",
+          "FTD-005"
+        ],
+        "matched_rule_ids": [
+          "FTD-001",
+          "FTD-002",
+          "FTD-003",
+          "FTD-005"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/broad-dest-missing.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-001"
+        ],
+        "matched_rule_ids": [
+          "FTD-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/broad-source-any.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-001"
+        ],
+        "matched_rule_ids": [
+          "FTD-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/bulk-safe-order.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/cooccur-ftd-001-006-object-shadow.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-001",
+          "FTD-003",
+          "FTD-006"
+        ],
+        "matched_rule_ids": [
+          "FTD-001",
+          "FTD-003",
+          "FTD-006"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/dangling-dest-network.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-008"
+        ],
+        "matched_rule_ids": [
+          "FTD-008"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/dangling-source-network.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-008"
+        ],
+        "matched_rule_ids": [
+          "FTD-008"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/dcloud-baseline.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/device-vpn-weak.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-004"
+        ],
+        "matched_rule_ids": [
+          "FTD-004"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/edge-unbounded-ports.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-002",
+          "FTD-003"
+        ],
+        "matched_rule_ids": [
+          "FTD-002",
+          "FTD-003"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/fmc-only-scoped-clean.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/iosxe-provider-uncovered.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-009"
+        ],
+        "matched_rule_ids": [
+          "FTD-009"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/literals-only-no-refs.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/mgmt-https-public.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-005"
+        ],
+        "matched_rule_ids": [
+          "FTD-005"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/multi-violation-edge.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-003",
+          "FTD-006"
+        ],
+        "matched_rule_ids": [
+          "FTD-003",
+          "FTD-006"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/port-catalog-clean.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/private-mgmt-ssh.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/resolved-network-objects.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/scoped-network-objects.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/scoped-network-pair.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/separate-rules-no-shadow.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/shadowed-bulk-rules.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-005",
+          "FTD-006"
+        ],
+        "matched_rule_ids": [
+          "FTD-005",
+          "FTD-006"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/strong-vpn-policy.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/vpn-weak-ike.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-004"
+        ],
+        "matched_rule_ids": [
+          "FTD-004"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/circular-object-group.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-001"
+        ],
+        "matched_rule_ids": [
+          "IOS-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/clean-scoped.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/ios002-clean-ssh-only-vty.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/ios002-violation-telnet-vty.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-002"
+        ],
+        "matched_rule_ids": [
+          "IOS-002"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/ios002-violation-transport-all.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-002"
+        ],
+        "matched_rule_ids": [
+          "IOS-002"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/ios003-clean-snmp-custom.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/ios003-violation-snmp-public.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-003"
+        ],
+        "matched_rule_ids": [
+          "IOS-003"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/ios003-violation-snmp-rw.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-003"
+        ],
+        "matched_rule_ids": [
+          "IOS-003"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/ios004-clean-aaa-secret.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/ios004-violation-aaa-enable.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-004"
+        ],
+        "matched_rule_ids": [
+          "IOS-004"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/ios004-violation-enable-only.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-004"
+        ],
+        "matched_rule_ids": [
+          "IOS-004"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/ios005-clean-encrypted-no-http.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/ios005-violation-http-cleartext.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-005"
+        ],
+        "matched_rule_ids": [
+          "IOS-005"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/ios005-violation-no-encryption-only.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-005"
+        ],
+        "matched_rule_ids": [
+          "IOS-005"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/ios006-clean-scoped-acl.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/ios006-violation-any-any-acl.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-006"
+        ],
+        "matched_rule_ids": [
+          "IOS-006"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/ios006-violation-literal-any-any.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-006"
+        ],
+        "matched_rule_ids": [
+          "IOS-006"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/ios007-clean-trunk-hardened.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/ios007-violation-dtp-auto.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-007"
+        ],
+        "matched_rule_ids": [
+          "IOS-007"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/ios007-violation-trunk-native-dtp.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-007"
+        ],
+        "matched_rule_ids": [
+          "IOS-007"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/ios008-clean-vty-rfc1918-acl.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/ios008-violation-vty-extended-public.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-008"
+        ],
+        "matched_rule_ids": [
+          "IOS-008"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/ios008-violation-vty-public-acl.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-008"
+        ],
+        "matched_rule_ids": [
+          "IOS-008"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/ios009-clean-access-hardened.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/ios009-violation-access-no-hardening.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/iosxe-sniff-asa.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-001",
+          "IOS-010"
+        ],
+        "matched_rule_ids": [
+          "IOS-001",
+          "IOS-010"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/iosxe-sniff-nxos.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-010"
+        ],
+        "matched_rule_ids": [
+          "IOS-010"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/nested-group-resolution.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/unparsed-acl-line.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-001"
+        ],
+        "matched_rule_ids": [
+          "IOS-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/circular-object-group.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-001"
+        ],
+        "matched_rule_ids": [
+          "NXOS-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/clean-scoped.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nested-group-resolution.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos-sniff-asa.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-001",
+          "NXOS-002"
+        ],
+        "matched_rule_ids": [
+          "NXOS-001",
+          "NXOS-002"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos-sniff-iosxe.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-002"
+        ],
+        "matched_rule_ids": [
+          "NXOS-002"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos003-clean-no-telnet.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos003-clean-ssh-only.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos003-violation-feature-telnet.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-003"
+        ],
+        "matched_rule_ids": [
+          "NXOS-003"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos003-violation-telnet-after-ssh.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-003"
+        ],
+        "matched_rule_ids": [
+          "NXOS-003"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos004-clean-feature-ssh.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos004-clean-ssh-explicit.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos004-violation-missing-ssh.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-003",
+          "NXOS-004",
+          "NXOS-006"
+        ],
+        "matched_rule_ids": [
+          "NXOS-003",
+          "NXOS-004",
+          "NXOS-006"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos004-violation-no-feature-ssh.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-004",
+          "NXOS-006"
+        ],
+        "matched_rule_ids": [
+          "NXOS-004",
+          "NXOS-006"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos004-violation-ssh-disabled-only.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-004"
+        ],
+        "matched_rule_ids": [
+          "NXOS-004"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos005-clean-snmp-custom.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos005-clean-snmp-scoped.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos005-violation-snmp-public.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-005"
+        ],
+        "matched_rule_ids": [
+          "NXOS-005"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos005-violation-snmp-rw.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-005"
+        ],
+        "matched_rule_ids": [
+          "NXOS-005"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos006-clean-aaa-login.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos006-clean-radius-login.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos006-violation-aaa-no-login.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-006"
+        ],
+        "matched_rule_ids": [
+          "NXOS-006"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos006-violation-login-only.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-006"
+        ],
+        "matched_rule_ids": [
+          "NXOS-006"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos006-violation-no-aaa.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-006"
+        ],
+        "matched_rule_ids": [
+          "NXOS-006"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos007-clean-role-deny.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos007-clean-role-scoped.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos007-violation-role-broad.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-007"
+        ],
+        "matched_rule_ids": [
+          "NXOS-007"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos007-violation-role-star.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-007"
+        ],
+        "matched_rule_ids": [
+          "NXOS-007"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos008-clean-mgmt-deny.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos008-clean-mgmt-rfc1918.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos008-violation-mgmt-any.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-008",
+          "NXOS-009"
+        ],
+        "matched_rule_ids": [
+          "NXOS-008",
+          "NXOS-009"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos008-violation-mgmt-public.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-008"
+        ],
+        "matched_rule_ids": [
+          "NXOS-008"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos009-clean-deny-default.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos009-clean-scoped-acl.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos009-violation-any-any-tcp.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-009"
+        ],
+        "matched_rule_ids": [
+          "NXOS-009"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos009-violation-any-any.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-009"
+        ],
+        "matched_rule_ids": [
+          "NXOS-009"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos010-clean-no-transfer.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos010-clean-scp-only.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos010-violation-feature-ftp.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-010"
+        ],
+        "matched_rule_ids": [
+          "NXOS-010"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/nxos010-violation-feature-tftp.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-010"
+        ],
+        "matched_rule_ids": [
+          "NXOS-010"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/unparsed-acl-line.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-001"
+        ],
+        "matched_rule_ids": [
+          "NXOS-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/acl-order-correct.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/acl-shadowed-permits.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-006"
+        ],
+        "matched_rule_ids": [
+          "ASA-006"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/branch-office-outbound.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/branch-vpn-legacy-crypto.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-004"
+        ],
+        "matched_rule_ids": [
+          "ASA-004"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/dead-ace-cleanup.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-006"
+        ],
+        "matched_rule_ids": [
+          "ASA-006"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/dmz-restricted-services.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/edge-perimeter-wide.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-001"
+        ],
+        "matched_rule_ids": [
+          "ASA-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/edge-scoped-production.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/guest-wifi-bypass.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-001"
+        ],
+        "matched_rule_ids": [
+          "ASA-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/inspection-defaults.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/internal-segmentation.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/lab-temp-open.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-001"
+        ],
+        "matched_rule_ids": [
+          "ASA-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/legacy-any-tcp-object.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-002"
+        ],
+        "matched_rule_ids": [
+          "ASA-002"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/legacy-transform-strong.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/logging-enabled-permits.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/mgmt-plane-exposure.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-005"
+        ],
+        "matched_rule_ids": [
+          "ASA-005"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/mgmt-rfc1918-only.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/multi-object-and-mgmt.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-001",
+          "ASA-002",
+          "ASA-005"
+        ],
+        "matched_rule_ids": [
+          "ASA-001",
+          "ASA-002",
+          "ASA-005"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/multi-violation-edge.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-001",
+          "ASA-006"
+        ],
+        "matched_rule_ids": [
+          "ASA-001",
+          "ASA-006"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/nat-and-acl-combo.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/ops-jump-host-public.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-005"
+        ],
+        "matched_rule_ids": [
+          "ASA-005"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/partner-dmz-service-objects.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-002"
+        ],
+        "matched_rule_ids": [
+          "ASA-002"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/partner-vpn-acl.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/scoped-network-group-clean.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/service-objects-scoped.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/shadow-safe-deny-tcp.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/shared-object-catalog.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-002"
+        ],
+        "matched_rule_ids": [
+          "ASA-002"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/site-to-site-weak-phase1.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-004"
+        ],
+        "matched_rule_ids": [
+          "ASA-004"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/undefined-network-group.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-007"
+        ],
+        "matched_rule_ids": [
+          "ASA-007"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/undefined-service-group.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-007"
+        ],
+        "matched_rule_ids": [
+          "ASA-007"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/vpn-strong-crypto.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/aws-egress-only.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/aws-open-sg.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "TF-001"
+        ],
+        "matched_rule_ids": [
+          "TF-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/aws-scoped-sg.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/aws-sg-ingress-block.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "TF-001"
+        ],
+        "matched_rule_ids": [
+          "TF-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/aws-sg-nested-ingress.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "TF-001"
+        ],
+        "matched_rule_ids": [
+          "TF-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/aws-var-cidr.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/azure-nsg-group-rule.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "TF-001"
+        ],
+        "matched_rule_ids": [
+          "TF-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/azure-nsg-open.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "TF-001"
+        ],
+        "matched_rule_ids": [
+          "TF-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/azure-scoped-nsg.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/fmc-inbound-open.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "TF-001"
+        ],
+        "matched_rule_ids": [
+          "TF-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/fmc-only-clean.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/fmc-scoped-allow.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "TF-001"
+        ],
+        "matched_rule_ids": [
+          "TF-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/gcp-egress.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/gcp-firewall-open.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "TF-001"
+        ],
+        "matched_rule_ids": [
+          "TF-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/gcp-scoped-firewall.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/hcl-missing-brace.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "HCL-001"
+        ],
+        "matched_rule_ids": [
+          "HCL-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/hcl-parse-clean-aws.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/hcl-syntax-error.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "HCL-001"
+        ],
+        "matched_rule_ids": [
+          "HCL-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/hcl002-clean-gcp.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/iosxe-uncovered-permit.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "HCL-002"
+        ],
+        "matched_rule_ids": [
+          "HCL-002"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/tls-uncovered-provider.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "HCL-002"
+        ],
+        "matched_rule_ids": [
+          "HCL-002"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "undeclared/marker-free-aaa.cfg",
+        "target_type": "undeclared",
+        "expected_rule_ids": [
+          "CLI-001"
+        ],
+        "matched_rule_ids": [
+          "CLI-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "undeclared/marker-free-vty.cfg",
+        "target_type": "undeclared",
+        "expected_rule_ids": [
+          "CLI-001"
+        ],
+        "matched_rule_ids": [
+          "CLI-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "undeclared/sniffed-ios-version.cfg",
+        "target_type": "undeclared",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "undeclared/sniffed-nxos-switchname.cfg",
+        "target_type": "undeclared",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      }
+    ]
+  },
+  "holdout_corpus": {
+    "corpus_name": "holdout",
+    "corpus_dir": "validation/corpus/holdout",
+    "summary": {
+      "files_total": 51,
+      "clean_files": 16,
+      "violation_files": 35,
+      "enabled_rules_evaluated": 37,
+      "rules_at_full_precision": 37,
+      "files_with_unexpected_matches": 0,
+      "files_with_missed_expected": 0
+    },
+    "per_rule": {
+      "ASA-001": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "ASA-002": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "ASA-004": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "ASA-005": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "ASA-006": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "ASA-007": {
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "CLI-001": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "FTD-001": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "FTD-002": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "FTD-003": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "FTD-004": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "FTD-005": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "FTD-006": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "FTD-008": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "FTD-009": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "HCL-001": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "HCL-002": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "IOS-001": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "IOS-002": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "IOS-003": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "IOS-004": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "IOS-005": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "IOS-006": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "IOS-007": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "IOS-008": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "IOS-010": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "NXOS-001": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "NXOS-002": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "NXOS-003": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "NXOS-004": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "NXOS-005": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "NXOS-006": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "NXOS-007": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "NXOS-008": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "NXOS-009": {
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "NXOS-010": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      },
+      "TF-001": {
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_files": []
+      }
+    },
+    "per_file": [
+      {
+        "path": "cisco_ftd/holdout-ftd-broad-mixed-literals.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-001"
+        ],
+        "matched_rule_ids": [
+          "FTD-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/holdout-ftd-bulk-shadow-weak-vpn.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-004",
+          "FTD-005",
+          "FTD-006"
+        ],
+        "matched_rule_ids": [
+          "FTD-004",
+          "FTD-005",
+          "FTD-006"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/holdout-ftd-cooccur-ports-mgmt.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-002",
+          "FTD-005"
+        ],
+        "matched_rule_ids": [
+          "FTD-002",
+          "FTD-005"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/holdout-ftd-dangling-ref.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-008"
+        ],
+        "matched_rule_ids": [
+          "FTD-008"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/holdout-ftd-fmc-only-clean.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/holdout-ftd-iosxe-uncovered.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-009"
+        ],
+        "matched_rule_ids": [
+          "FTD-009"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/holdout-ftd-no-log-begin.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-003"
+        ],
+        "matched_rule_ids": [
+          "FTD-003"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/holdout-ftd-object-scoped-app-9443.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/holdout-ftd-object-scoped-clean.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/holdout-ftd-tricky-scoped-https.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/holdout-ftd-weak-ike-nested.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-004"
+        ],
+        "matched_rule_ids": [
+          "FTD-004"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ftd/holdout-hcl-syntax-error.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "HCL-001"
+        ],
+        "matched_rule_ids": [
+          "HCL-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/holdout-iosxe-clean-jump-host.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/holdout-iosxe-cooccur-telnet-snmp.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-002",
+          "IOS-003"
+        ],
+        "matched_rule_ids": [
+          "IOS-002",
+          "IOS-003"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/holdout-iosxe-cooccur-trunk-any.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-006",
+          "IOS-007"
+        ],
+        "matched_rule_ids": [
+          "IOS-006",
+          "IOS-007"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/holdout-iosxe-enable-password-only.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-004"
+        ],
+        "matched_rule_ids": [
+          "IOS-004"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/holdout-iosxe-http-server-only.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-005"
+        ],
+        "matched_rule_ids": [
+          "IOS-005"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/holdout-iosxe-sniff-asa.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-001",
+          "IOS-010"
+        ],
+        "matched_rule_ids": [
+          "IOS-001",
+          "IOS-010"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/holdout-iosxe-sniff-nxos.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-010"
+        ],
+        "matched_rule_ids": [
+          "IOS-010"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/holdout-iosxe-tricky-public-hostname.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/holdout-iosxe-tricky-telnet-comment.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/holdout-iosxe-undefined-group-ref.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-001"
+        ],
+        "matched_rule_ids": [
+          "IOS-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_ios_xe/holdout-iosxe-vty-extended-host.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-008"
+        ],
+        "matched_rule_ids": [
+          "IOS-008"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/holdout-nxos-circular-group.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-001"
+        ],
+        "matched_rule_ids": [
+          "NXOS-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/holdout-nxos-cooccur-mgmt-acl.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-008",
+          "NXOS-009"
+        ],
+        "matched_rule_ids": [
+          "NXOS-008",
+          "NXOS-009"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/holdout-nxos-cooccur-role-transfer.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-007",
+          "NXOS-010"
+        ],
+        "matched_rule_ids": [
+          "NXOS-007",
+          "NXOS-010"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/holdout-nxos-cooccur-ssh-aaa.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-004",
+          "NXOS-006"
+        ],
+        "matched_rule_ids": [
+          "NXOS-004",
+          "NXOS-006"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/holdout-nxos-cooccur-telnet-snmp.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-003",
+          "NXOS-005"
+        ],
+        "matched_rule_ids": [
+          "NXOS-003",
+          "NXOS-005"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/holdout-nxos-mgmt-scoped-jump.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/holdout-nxos-sniff-iosxe.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-002",
+          "NXOS-009"
+        ],
+        "matched_rule_ids": [
+          "NXOS-002",
+          "NXOS-009"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/holdout-nxos-tricky-snmp-location-public.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_nx_os/holdout-nxos-tricky-telnet-comment.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-circular-group.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-007"
+        ],
+        "matched_rule_ids": [
+          "ASA-007"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-mgmt-mixed-whitespace.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-005"
+        ],
+        "matched_rule_ids": [
+          "ASA-005"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-mixed-case-cooccur.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-001",
+          "ASA-006"
+        ],
+        "matched_rule_ids": [
+          "ASA-001",
+          "ASA-006"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-narrow-group-28.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-nested-group-any.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-001"
+        ],
+        "matched_rule_ids": [
+          "ASA-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-nonrules-cfg.cfg",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-permissive-object-continuation.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-002"
+        ],
+        "matched_rule_ids": [
+          "ASA-002"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-standard-acl-unparsed.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-007"
+        ],
+        "matched_rule_ids": [
+          "ASA-007"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-tricky-broad-but-masked.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-tricky-correct-order-deny.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-tricky-deny-then-host.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-006"
+        ],
+        "matched_rule_ids": [
+          "ASA-006"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-tricky-scoped-tcp.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-undefined-object-group.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-007"
+        ],
+        "matched_rule_ids": [
+          "ASA-007"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-weak-crypto-and-mgmt.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-004",
+          "ASA-005"
+        ],
+        "matched_rule_ids": [
+          "ASA-004",
+          "ASA-005"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-wide-plus-object.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-001",
+          "ASA-002"
+        ],
+        "matched_rule_ids": [
+          "ASA-001",
+          "ASA-002"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/holdout-iosxe-uncovered.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "HCL-002"
+        ],
+        "matched_rule_ids": [
+          "HCL-002"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/holdout-tf-azure-messy-open.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "TF-001"
+        ],
+        "matched_rule_ids": [
+          "TF-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "generic_terraform/holdout-tf-tricky-var-cidr.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [],
+        "matched_rule_ids": [],
+        "unexpected_matches": [],
+        "missed_expected": []
+      },
+      {
+        "path": "undeclared/holdout-marker-free-cli.cfg",
+        "target_type": "undeclared",
+        "expected_rule_ids": [
+          "CLI-001"
+        ],
+        "matched_rule_ids": [
+          "CLI-001"
+        ],
+        "unexpected_matches": [],
+        "missed_expected": []
+      }
+    ]
+  },
+  "gate_outcomes": {
+    "generated": [
+      {
+        "path": "cisco_ftd/app-https-scoped.tf",
+        "virtual_path": "terraform/policies/app-https-scoped.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ftd/aws-mixed-uncovered.tf",
+        "virtual_path": "terraform/aws-mixed-uncovered.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-009"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "flag",
+        "gate_cwes": [
+          "CWE-657"
+        ],
+        "findings": [
+          {
+            "trace": "handler:FTD-009",
+            "handler_asserted_cwe": "CWE-657",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ftd/branch-policy-insecure.tf",
+        "virtual_path": "terraform/policies/branch-policy-insecure.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-001",
+          "FTD-002",
+          "FTD-003",
+          "FTD-005"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284",
+          "CWE-778"
+        ],
+        "findings": [
+          {
+            "trace": "handler:FTD-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:FTD-002",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:FTD-003",
+            "handler_asserted_cwe": "CWE-778",
+            "policy_severity": "medium"
+          },
+          {
+            "trace": "handler:FTD-005",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ftd/broad-dest-missing.tf",
+        "virtual_path": "terraform/policies/broad-dest-missing.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:FTD-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ftd/broad-source-any.tf",
+        "virtual_path": "terraform/policies/broad-source-any.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:FTD-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ftd/bulk-safe-order.tf",
+        "virtual_path": "terraform/policies/bulk-safe-order.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ftd/cooccur-ftd-001-006-object-shadow.tf",
+        "virtual_path": "terraform/policies/cooccur-ftd-001-006-object-shadow.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-001",
+          "FTD-003",
+          "FTD-006"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284",
+          "CWE-693",
+          "CWE-778"
+        ],
+        "findings": [
+          {
+            "trace": "handler:FTD-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:FTD-003",
+            "handler_asserted_cwe": "CWE-778",
+            "policy_severity": "medium"
+          },
+          {
+            "trace": "handler:FTD-006",
+            "handler_asserted_cwe": "CWE-693",
+            "policy_severity": "medium"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ftd/dangling-dest-network.tf",
+        "virtual_path": "terraform/policies/dangling-dest-network.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-008"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:FTD-008",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ftd/dangling-source-network.tf",
+        "virtual_path": "terraform/policies/dangling-source-network.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-008"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:FTD-008",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ftd/dcloud-baseline.tf",
+        "virtual_path": "terraform/policies/dcloud-baseline.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ftd/device-vpn-weak.tf",
+        "virtual_path": "terraform/vpn/device-vpn-weak.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-004"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-327"
+        ],
+        "findings": [
+          {
+            "trace": "handler:FTD-004",
+            "handler_asserted_cwe": "CWE-327",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ftd/edge-unbounded-ports.tf",
+        "virtual_path": "terraform/policies/edge-unbounded-ports.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-002",
+          "FTD-003"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "flag",
+        "gate_cwes": [
+          "CWE-284",
+          "CWE-778"
+        ],
+        "findings": [
+          {
+            "trace": "handler:FTD-002",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:FTD-003",
+            "handler_asserted_cwe": "CWE-778",
+            "policy_severity": "medium"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ftd/fmc-only-scoped-clean.tf",
+        "virtual_path": "terraform/fmc-only-scoped-clean.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ftd/iosxe-provider-uncovered.tf",
+        "virtual_path": "terraform/iosxe-provider-uncovered.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-009"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "flag",
+        "gate_cwes": [
+          "CWE-657"
+        ],
+        "findings": [
+          {
+            "trace": "handler:FTD-009",
+            "handler_asserted_cwe": "CWE-657",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ftd/literals-only-no-refs.tf",
+        "virtual_path": "terraform/policies/literals-only-no-refs.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ftd/mgmt-https-public.tf",
+        "virtual_path": "terraform/policies/mgmt-https-public.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-005"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:FTD-005",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ftd/multi-violation-edge.tf",
+        "virtual_path": "terraform/policies/multi-violation-edge.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-003",
+          "FTD-006"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "flag",
+        "gate_cwes": [
+          "CWE-693",
+          "CWE-778"
+        ],
+        "findings": [
+          {
+            "trace": "handler:FTD-003",
+            "handler_asserted_cwe": "CWE-778",
+            "policy_severity": "medium"
+          },
+          {
+            "trace": "handler:FTD-003",
+            "handler_asserted_cwe": "CWE-778",
+            "policy_severity": "medium"
+          },
+          {
+            "trace": "handler:FTD-006",
+            "handler_asserted_cwe": "CWE-693",
+            "policy_severity": "medium"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ftd/port-catalog-clean.tf",
+        "virtual_path": "terraform/objects/port-catalog-clean.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ftd/private-mgmt-ssh.tf",
+        "virtual_path": "terraform/policies/private-mgmt-ssh.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ftd/resolved-network-objects.tf",
+        "virtual_path": "terraform/policies/resolved-network-objects.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ftd/scoped-network-objects.tf",
+        "virtual_path": "terraform/policies/scoped-network-objects.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ftd/scoped-network-pair.tf",
+        "virtual_path": "terraform/policies/scoped-network-pair.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ftd/separate-rules-no-shadow.tf",
+        "virtual_path": "terraform/policies/separate-rules-no-shadow.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ftd/shadowed-bulk-rules.tf",
+        "virtual_path": "terraform/policies/shadowed-bulk-rules.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-005",
+          "FTD-006"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284",
+          "CWE-693"
+        ],
+        "findings": [
+          {
+            "trace": "handler:FTD-005",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:FTD-006",
+            "handler_asserted_cwe": "CWE-693",
+            "policy_severity": "medium"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ftd/strong-vpn-policy.tf",
+        "virtual_path": "terraform/vpn/strong-vpn-policy.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ftd/vpn-weak-ike.tf",
+        "virtual_path": "terraform/vpn/vpn-weak-ike.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-004"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-327"
+        ],
+        "findings": [
+          {
+            "trace": "handler:FTD-004",
+            "handler_asserted_cwe": "CWE-327",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/circular-object-group.cfg",
+        "virtual_path": "switches/circular-object-group.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-001",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/clean-scoped.cfg",
+        "virtual_path": "switches/clean-scoped.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ios_xe/ios002-clean-ssh-only-vty.cfg",
+        "virtual_path": "switches/ios002-clean-ssh-only-vty.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ios_xe/ios002-violation-telnet-vty.cfg",
+        "virtual_path": "switches/ios002-violation-telnet-vty.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-002"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-319"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-002",
+            "handler_asserted_cwe": "CWE-319",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/ios002-violation-transport-all.cfg",
+        "virtual_path": "switches/ios002-violation-transport-all.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-002"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-319"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-002",
+            "handler_asserted_cwe": "CWE-319",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/ios003-clean-snmp-custom.cfg",
+        "virtual_path": "switches/ios003-clean-snmp-custom.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ios_xe/ios003-violation-snmp-public.cfg",
+        "virtual_path": "switches/ios003-violation-snmp-public.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-003"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-003",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/ios003-violation-snmp-rw.cfg",
+        "virtual_path": "switches/ios003-violation-snmp-rw.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-003"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-003",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/ios004-clean-aaa-secret.cfg",
+        "virtual_path": "switches/ios004-clean-aaa-secret.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ios_xe/ios004-violation-aaa-enable.cfg",
+        "virtual_path": "switches/ios004-violation-aaa-enable.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-004"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-287"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-004",
+            "handler_asserted_cwe": "CWE-287",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:IOS-004",
+            "handler_asserted_cwe": "CWE-287",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/ios004-violation-enable-only.cfg",
+        "virtual_path": "switches/ios004-violation-enable-only.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-004"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-287"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-004",
+            "handler_asserted_cwe": "CWE-287",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/ios005-clean-encrypted-no-http.cfg",
+        "virtual_path": "switches/ios005-clean-encrypted-no-http.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ios_xe/ios005-violation-http-cleartext.cfg",
+        "virtual_path": "switches/ios005-violation-http-cleartext.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-005"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-319"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-005",
+            "handler_asserted_cwe": "CWE-319",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:IOS-005",
+            "handler_asserted_cwe": "CWE-319",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/ios005-violation-no-encryption-only.cfg",
+        "virtual_path": "switches/ios005-violation-no-encryption-only.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-005"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-319"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-005",
+            "handler_asserted_cwe": "CWE-319",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/ios006-clean-scoped-acl.cfg",
+        "virtual_path": "switches/ios006-clean-scoped-acl.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ios_xe/ios006-violation-any-any-acl.cfg",
+        "virtual_path": "switches/ios006-violation-any-any-acl.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-006"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-006",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/ios006-violation-literal-any-any.cfg",
+        "virtual_path": "switches/ios006-violation-literal-any-any.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-006"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-006",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/ios007-clean-trunk-hardened.cfg",
+        "virtual_path": "switches/ios007-clean-trunk-hardened.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ios_xe/ios007-violation-dtp-auto.cfg",
+        "virtual_path": "switches/ios007-violation-dtp-auto.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-007"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "flag",
+        "gate_cwes": [
+          "CWE-693"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-007",
+            "handler_asserted_cwe": "CWE-693",
+            "policy_severity": "medium"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/ios007-violation-trunk-native-dtp.cfg",
+        "virtual_path": "switches/ios007-violation-trunk-native-dtp.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-007"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "flag",
+        "gate_cwes": [
+          "CWE-693"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-007",
+            "handler_asserted_cwe": "CWE-693",
+            "policy_severity": "medium"
+          },
+          {
+            "trace": "handler:IOS-007",
+            "handler_asserted_cwe": "CWE-693",
+            "policy_severity": "medium"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/ios008-clean-vty-rfc1918-acl.cfg",
+        "virtual_path": "switches/ios008-clean-vty-rfc1918-acl.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ios_xe/ios008-violation-vty-extended-public.cfg",
+        "virtual_path": "switches/ios008-violation-vty-extended-public.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-008"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-008",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/ios008-violation-vty-public-acl.cfg",
+        "virtual_path": "switches/ios008-violation-vty-public-acl.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-008"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-008",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/ios009-clean-access-hardened.cfg",
+        "virtual_path": "switches/ios009-clean-access-hardened.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ios_xe/ios009-violation-access-no-hardening.cfg",
+        "virtual_path": "switches/ios009-violation-access-no-hardening.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ios_xe/iosxe-sniff-asa.cfg",
+        "virtual_path": "switches/iosxe-sniff-asa.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-001",
+          "IOS-010"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-001",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:IOS-010",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/iosxe-sniff-nxos.cfg",
+        "virtual_path": "switches/iosxe-sniff-nxos.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-010"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-010",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/nested-group-resolution.cfg",
+        "virtual_path": "switches/nested-group-resolution.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ios_xe/unparsed-acl-line.cfg",
+        "virtual_path": "switches/unparsed-acl-line.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-001",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/circular-object-group.cfg",
+        "virtual_path": "switches/circular-object-group.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-001",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/clean-scoped.cfg",
+        "virtual_path": "switches/clean-scoped.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_nx_os/nested-group-resolution.cfg",
+        "virtual_path": "switches/nested-group-resolution.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_nx_os/nxos-sniff-asa.cfg",
+        "virtual_path": "switches/nxos-sniff-asa.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-001",
+          "NXOS-002"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-001",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:NXOS-002",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/nxos-sniff-iosxe.cfg",
+        "virtual_path": "switches/nxos-sniff-iosxe.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-002"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-002",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/nxos003-clean-no-telnet.cfg",
+        "virtual_path": "switches/nxos003-clean-no-telnet.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_nx_os/nxos003-clean-ssh-only.cfg",
+        "virtual_path": "switches/nxos003-clean-ssh-only.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_nx_os/nxos003-violation-feature-telnet.cfg",
+        "virtual_path": "switches/nxos003-violation-feature-telnet.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-003"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-319"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-003",
+            "handler_asserted_cwe": "CWE-319",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/nxos003-violation-telnet-after-ssh.cfg",
+        "virtual_path": "switches/nxos003-violation-telnet-after-ssh.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-003"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-319"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-003",
+            "handler_asserted_cwe": "CWE-319",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/nxos004-clean-feature-ssh.cfg",
+        "virtual_path": "switches/nxos004-clean-feature-ssh.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_nx_os/nxos004-clean-ssh-explicit.cfg",
+        "virtual_path": "switches/nxos004-clean-ssh-explicit.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_nx_os/nxos004-violation-missing-ssh.cfg",
+        "virtual_path": "switches/nxos004-violation-missing-ssh.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-003",
+          "NXOS-004",
+          "NXOS-006"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-287",
+          "CWE-319"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-003",
+            "handler_asserted_cwe": "CWE-319",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:NXOS-004",
+            "handler_asserted_cwe": "CWE-287",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:NXOS-006",
+            "handler_asserted_cwe": "CWE-287",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/nxos004-violation-no-feature-ssh.cfg",
+        "virtual_path": "switches/nxos004-violation-no-feature-ssh.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-004",
+          "NXOS-006"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-287"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-004",
+            "handler_asserted_cwe": "CWE-287",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:NXOS-006",
+            "handler_asserted_cwe": "CWE-287",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/nxos004-violation-ssh-disabled-only.cfg",
+        "virtual_path": "switches/nxos004-violation-ssh-disabled-only.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-004"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-287"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-004",
+            "handler_asserted_cwe": "CWE-287",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/nxos005-clean-snmp-custom.cfg",
+        "virtual_path": "switches/nxos005-clean-snmp-custom.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_nx_os/nxos005-clean-snmp-scoped.cfg",
+        "virtual_path": "switches/nxos005-clean-snmp-scoped.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_nx_os/nxos005-violation-snmp-public.cfg",
+        "virtual_path": "switches/nxos005-violation-snmp-public.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-005"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-005",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/nxos005-violation-snmp-rw.cfg",
+        "virtual_path": "switches/nxos005-violation-snmp-rw.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-005"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-005",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/nxos006-clean-aaa-login.cfg",
+        "virtual_path": "switches/nxos006-clean-aaa-login.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_nx_os/nxos006-clean-radius-login.cfg",
+        "virtual_path": "switches/nxos006-clean-radius-login.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_nx_os/nxos006-violation-aaa-no-login.cfg",
+        "virtual_path": "switches/nxos006-violation-aaa-no-login.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-006"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-287"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-006",
+            "handler_asserted_cwe": "CWE-287",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/nxos006-violation-login-only.cfg",
+        "virtual_path": "switches/nxos006-violation-login-only.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-006"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-287"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-006",
+            "handler_asserted_cwe": "CWE-287",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/nxos006-violation-no-aaa.cfg",
+        "virtual_path": "switches/nxos006-violation-no-aaa.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-006"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-287"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-006",
+            "handler_asserted_cwe": "CWE-287",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/nxos007-clean-role-deny.cfg",
+        "virtual_path": "switches/nxos007-clean-role-deny.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_nx_os/nxos007-clean-role-scoped.cfg",
+        "virtual_path": "switches/nxos007-clean-role-scoped.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_nx_os/nxos007-violation-role-broad.cfg",
+        "virtual_path": "switches/nxos007-violation-role-broad.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-007"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-007",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/nxos007-violation-role-star.cfg",
+        "virtual_path": "switches/nxos007-violation-role-star.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-007"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-007",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/nxos008-clean-mgmt-deny.cfg",
+        "virtual_path": "switches/nxos008-clean-mgmt-deny.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_nx_os/nxos008-clean-mgmt-rfc1918.cfg",
+        "virtual_path": "switches/nxos008-clean-mgmt-rfc1918.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_nx_os/nxos008-violation-mgmt-any.cfg",
+        "virtual_path": "switches/nxos008-violation-mgmt-any.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-008",
+          "NXOS-009"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-008",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:NXOS-009",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/nxos008-violation-mgmt-public.cfg",
+        "virtual_path": "switches/nxos008-violation-mgmt-public.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-008"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-008",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/nxos009-clean-deny-default.cfg",
+        "virtual_path": "switches/nxos009-clean-deny-default.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_nx_os/nxos009-clean-scoped-acl.cfg",
+        "virtual_path": "switches/nxos009-clean-scoped-acl.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_nx_os/nxos009-violation-any-any-tcp.cfg",
+        "virtual_path": "switches/nxos009-violation-any-any-tcp.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-009"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-009",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/nxos009-violation-any-any.cfg",
+        "virtual_path": "switches/nxos009-violation-any-any.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-009"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-009",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/nxos010-clean-no-transfer.cfg",
+        "virtual_path": "switches/nxos010-clean-no-transfer.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_nx_os/nxos010-clean-scp-only.cfg",
+        "virtual_path": "switches/nxos010-clean-scp-only.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_nx_os/nxos010-violation-feature-ftp.cfg",
+        "virtual_path": "switches/nxos010-violation-feature-ftp.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-010"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-319"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-010",
+            "handler_asserted_cwe": "CWE-319",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/nxos010-violation-feature-tftp.cfg",
+        "virtual_path": "switches/nxos010-violation-feature-tftp.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-010"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-319"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-010",
+            "handler_asserted_cwe": "CWE-319",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/unparsed-acl-line.cfg",
+        "virtual_path": "switches/unparsed-acl-line.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-001",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/acl-order-correct.rules",
+        "virtual_path": "firewall/acl-order-correct.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_secure_firewall/acl-shadowed-permits.rules",
+        "virtual_path": "firewall/acl-shadowed-permits.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-006"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "flag",
+        "gate_cwes": [
+          "CWE-693"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-006",
+            "handler_asserted_cwe": "CWE-693",
+            "policy_severity": "medium"
+          },
+          {
+            "trace": "handler:ASA-006",
+            "handler_asserted_cwe": "CWE-693",
+            "policy_severity": "medium"
+          },
+          {
+            "trace": "handler:ASA-006",
+            "handler_asserted_cwe": "CWE-693",
+            "policy_severity": "medium"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/branch-office-outbound.rules",
+        "virtual_path": "firewall/branch-office-outbound.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_secure_firewall/branch-vpn-legacy-crypto.rules",
+        "virtual_path": "vpn/branch-vpn-legacy-crypto.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-004"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-327"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-004",
+            "handler_asserted_cwe": "CWE-327",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:ASA-004",
+            "handler_asserted_cwe": "CWE-327",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:ASA-004",
+            "handler_asserted_cwe": "CWE-327",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/dead-ace-cleanup.rules",
+        "virtual_path": "firewall/dead-ace-cleanup.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-006"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "flag",
+        "gate_cwes": [
+          "CWE-693"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-006",
+            "handler_asserted_cwe": "CWE-693",
+            "policy_severity": "medium"
+          },
+          {
+            "trace": "handler:ASA-006",
+            "handler_asserted_cwe": "CWE-693",
+            "policy_severity": "medium"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/dmz-restricted-services.rules",
+        "virtual_path": "firewall/dmz-restricted-services.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_secure_firewall/edge-perimeter-wide.rules",
+        "virtual_path": "firewall/edge-perimeter-wide.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/edge-scoped-production.rules",
+        "virtual_path": "firewall/edge-scoped-production.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_secure_firewall/guest-wifi-bypass.rules",
+        "virtual_path": "policy/guest-wifi-bypass.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:ASA-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/inspection-defaults.rules",
+        "virtual_path": "firewall/inspection-defaults.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_secure_firewall/internal-segmentation.rules",
+        "virtual_path": "firewall/internal-segmentation.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_secure_firewall/lab-temp-open.rules",
+        "virtual_path": "firewall/lab-temp-open.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:ASA-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/legacy-any-tcp-object.rules",
+        "virtual_path": "firewall/legacy-any-tcp-object.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-002"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "flag",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-002",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/legacy-transform-strong.rules",
+        "virtual_path": "vpn/legacy-transform-strong.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_secure_firewall/logging-enabled-permits.rules",
+        "virtual_path": "firewall/logging-enabled-permits.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_secure_firewall/mgmt-plane-exposure.rules",
+        "virtual_path": "mgmt/mgmt-plane-exposure.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-005"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-005",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:ASA-005",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/mgmt-rfc1918-only.rules",
+        "virtual_path": "mgmt/mgmt-rfc1918-only.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_secure_firewall/multi-object-and-mgmt.rules",
+        "virtual_path": "firewall/multi-object-and-mgmt.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-001",
+          "ASA-002",
+          "ASA-005"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:ASA-002",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:ASA-005",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/multi-violation-edge.rules",
+        "virtual_path": "firewall/multi-violation-edge.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-001",
+          "ASA-006"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284",
+          "CWE-693"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:ASA-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:ASA-006",
+            "handler_asserted_cwe": "CWE-693",
+            "policy_severity": "medium"
+          },
+          {
+            "trace": "handler:ASA-006",
+            "handler_asserted_cwe": "CWE-693",
+            "policy_severity": "medium"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/nat-and-acl-combo.rules",
+        "virtual_path": "firewall/nat-and-acl-combo.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_secure_firewall/ops-jump-host-public.rules",
+        "virtual_path": "mgmt/ops-jump-host-public.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-005"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-005",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:ASA-005",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/partner-dmz-service-objects.rules",
+        "virtual_path": "firewall/partner-dmz-service-objects.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-002"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "flag",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-002",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:ASA-002",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/partner-vpn-acl.rules",
+        "virtual_path": "vpn/partner-vpn-acl.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_secure_firewall/scoped-network-group-clean.rules",
+        "virtual_path": "firewall/scoped-network-group-clean.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_secure_firewall/service-objects-scoped.rules",
+        "virtual_path": "objects/service-objects-scoped.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_secure_firewall/shadow-safe-deny-tcp.rules",
+        "virtual_path": "firewall/shadow-safe-deny-tcp.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_secure_firewall/shared-object-catalog.rules",
+        "virtual_path": "objects/shared-object-catalog.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-002"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "flag",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-002",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/site-to-site-weak-phase1.rules",
+        "virtual_path": "vpn/site-to-site-weak-phase1.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-004"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-327"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-004",
+            "handler_asserted_cwe": "CWE-327",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:ASA-004",
+            "handler_asserted_cwe": "CWE-327",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/undefined-network-group.rules",
+        "virtual_path": "firewall/undefined-network-group.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-007"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-007",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/undefined-service-group.rules",
+        "virtual_path": "firewall/undefined-service-group.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-007"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-007",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/vpn-strong-crypto.rules",
+        "virtual_path": "vpn/vpn-strong-crypto.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "generic_terraform/aws-egress-only.tf",
+        "virtual_path": "terraform/aws-egress-only.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "generic_terraform/aws-open-sg.tf",
+        "virtual_path": "terraform/aws-open-sg.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "TF-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:TF-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "generic_terraform/aws-scoped-sg.tf",
+        "virtual_path": "terraform/aws-scoped-sg.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "generic_terraform/aws-sg-ingress-block.tf",
+        "virtual_path": "terraform/aws-sg-ingress-block.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "TF-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:TF-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "generic_terraform/aws-sg-nested-ingress.tf",
+        "virtual_path": "terraform/aws-sg-nested-ingress.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "TF-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:TF-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "generic_terraform/aws-var-cidr.tf",
+        "virtual_path": "terraform/aws-var-cidr.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "generic_terraform/azure-nsg-group-rule.tf",
+        "virtual_path": "terraform/azure-nsg-group-rule.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "TF-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:TF-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "generic_terraform/azure-nsg-open.tf",
+        "virtual_path": "terraform/azure-nsg-open.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "TF-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:TF-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "generic_terraform/azure-scoped-nsg.tf",
+        "virtual_path": "terraform/azure-scoped-nsg.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "generic_terraform/fmc-inbound-open.tf",
+        "virtual_path": "terraform/fmc-inbound-open.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "TF-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:TF-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "generic_terraform/fmc-only-clean.tf",
+        "virtual_path": "terraform/fmc-only-clean.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "generic_terraform/fmc-scoped-allow.tf",
+        "virtual_path": "terraform/fmc-scoped-allow.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "TF-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:TF-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "generic_terraform/gcp-egress.tf",
+        "virtual_path": "terraform/gcp-egress.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "generic_terraform/gcp-firewall-open.tf",
+        "virtual_path": "terraform/gcp-firewall-open.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "TF-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:TF-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "generic_terraform/gcp-scoped-firewall.tf",
+        "virtual_path": "terraform/gcp-scoped-firewall.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "generic_terraform/hcl-missing-brace.tf",
+        "virtual_path": "terraform/hcl-missing-brace.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "HCL-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:HCL-001",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "generic_terraform/hcl-parse-clean-aws.tf",
+        "virtual_path": "terraform/hcl-parse-clean-aws.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "generic_terraform/hcl-syntax-error.tf",
+        "virtual_path": "terraform/hcl-syntax-error.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "HCL-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:HCL-001",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "generic_terraform/hcl002-clean-gcp.tf",
+        "virtual_path": "terraform/hcl002-clean-gcp.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "generic_terraform/iosxe-uncovered-permit.tf",
+        "virtual_path": "terraform/iosxe-uncovered-permit.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "HCL-002"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "flag",
+        "gate_cwes": [
+          "CWE-657"
+        ],
+        "findings": [
+          {
+            "trace": "handler:HCL-002",
+            "handler_asserted_cwe": "CWE-657",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "generic_terraform/tls-uncovered-provider.tf",
+        "virtual_path": "terraform/tls-uncovered-provider.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "HCL-002"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "flag",
+        "gate_cwes": [
+          "CWE-657"
+        ],
+        "findings": [
+          {
+            "trace": "handler:HCL-002",
+            "handler_asserted_cwe": "CWE-657",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "undeclared/marker-free-aaa.cfg",
+        "virtual_path": "configs/marker-free-aaa.cfg",
+        "target_type": "undeclared",
+        "expected_rule_ids": [
+          "CLI-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:CLI-001",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "undeclared/marker-free-vty.cfg",
+        "virtual_path": "configs/marker-free-vty.cfg",
+        "target_type": "undeclared",
+        "expected_rule_ids": [
+          "CLI-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:CLI-001",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "undeclared/sniffed-ios-version.cfg",
+        "virtual_path": "configs/sniffed-ios-version.cfg",
+        "target_type": "undeclared",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "undeclared/sniffed-nxos-switchname.cfg",
+        "virtual_path": "configs/sniffed-nxos-switchname.cfg",
+        "target_type": "undeclared",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      }
+    ],
+    "holdout": [
+      {
+        "path": "cisco_ftd/holdout-ftd-broad-mixed-literals.tf",
+        "virtual_path": "terraform/policies/holdout-ftd-broad-mixed-literals.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:FTD-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ftd/holdout-ftd-bulk-shadow-weak-vpn.tf",
+        "virtual_path": "holdout/ftd/holdout-ftd-bulk-shadow-weak-vpn.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-004",
+          "FTD-005",
+          "FTD-006"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284",
+          "CWE-327",
+          "CWE-693"
+        ],
+        "findings": [
+          {
+            "trace": "handler:FTD-004",
+            "handler_asserted_cwe": "CWE-327",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:FTD-005",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:FTD-006",
+            "handler_asserted_cwe": "CWE-693",
+            "policy_severity": "medium"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ftd/holdout-ftd-cooccur-ports-mgmt.tf",
+        "virtual_path": "holdout/ftd/holdout-ftd-cooccur-ports-mgmt.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-002",
+          "FTD-005"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:FTD-002",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:FTD-005",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ftd/holdout-ftd-dangling-ref.tf",
+        "virtual_path": "terraform/policies/holdout-ftd-dangling-ref.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-008"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:FTD-008",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ftd/holdout-ftd-fmc-only-clean.tf",
+        "virtual_path": "terraform/holdout-ftd-fmc-only-clean.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ftd/holdout-ftd-iosxe-uncovered.tf",
+        "virtual_path": "terraform/holdout-ftd-iosxe-uncovered.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-009"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "flag",
+        "gate_cwes": [
+          "CWE-657"
+        ],
+        "findings": [
+          {
+            "trace": "handler:FTD-009",
+            "handler_asserted_cwe": "CWE-657",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ftd/holdout-ftd-no-log-begin.tf",
+        "virtual_path": "holdout/holdout-ftd-no-log-begin.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-003"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "flag",
+        "gate_cwes": [
+          "CWE-778"
+        ],
+        "findings": [
+          {
+            "trace": "handler:FTD-003",
+            "handler_asserted_cwe": "CWE-778",
+            "policy_severity": "medium"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ftd/holdout-ftd-object-scoped-app-9443.tf",
+        "virtual_path": "terraform/policies/holdout-ftd-object-scoped-app-9443.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ftd/holdout-ftd-object-scoped-clean.tf",
+        "virtual_path": "terraform/policies/holdout-ftd-object-scoped-clean.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ftd/holdout-ftd-tricky-scoped-https.tf",
+        "virtual_path": "holdout/ftd/holdout-ftd-tricky-scoped-https.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ftd/holdout-ftd-weak-ike-nested.tf",
+        "virtual_path": "holdout/ftd/holdout-ftd-weak-ike-nested.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "FTD-004"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-327"
+        ],
+        "findings": [
+          {
+            "trace": "handler:FTD-004",
+            "handler_asserted_cwe": "CWE-327",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ftd/holdout-hcl-syntax-error.tf",
+        "virtual_path": "terraform/holdout-hcl-syntax-error.tf",
+        "target_type": "cisco_ftd",
+        "expected_rule_ids": [
+          "HCL-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:HCL-001",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/holdout-iosxe-clean-jump-host.cfg",
+        "virtual_path": "switches/holdout-iosxe-clean-jump-host.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ios_xe/holdout-iosxe-cooccur-telnet-snmp.cfg",
+        "virtual_path": "switches/holdout-iosxe-cooccur-telnet-snmp.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-002",
+          "IOS-003"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284",
+          "CWE-319"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-002",
+            "handler_asserted_cwe": "CWE-319",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:IOS-003",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/holdout-iosxe-cooccur-trunk-any.cfg",
+        "virtual_path": "switches/holdout-iosxe-cooccur-trunk-any.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-006",
+          "IOS-007"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284",
+          "CWE-693"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-006",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:IOS-007",
+            "handler_asserted_cwe": "CWE-693",
+            "policy_severity": "medium"
+          },
+          {
+            "trace": "handler:IOS-007",
+            "handler_asserted_cwe": "CWE-693",
+            "policy_severity": "medium"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/holdout-iosxe-enable-password-only.cfg",
+        "virtual_path": "switches/holdout-iosxe-enable-password-only.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-004"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-287"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-004",
+            "handler_asserted_cwe": "CWE-287",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/holdout-iosxe-http-server-only.cfg",
+        "virtual_path": "switches/holdout-iosxe-http-server-only.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-005"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-319"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-005",
+            "handler_asserted_cwe": "CWE-319",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/holdout-iosxe-sniff-asa.cfg",
+        "virtual_path": "switches/holdout-iosxe-sniff-asa.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-001",
+          "IOS-010"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-001",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:IOS-010",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/holdout-iosxe-sniff-nxos.cfg",
+        "virtual_path": "switches/holdout-iosxe-sniff-nxos.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-010"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-010",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/holdout-iosxe-tricky-public-hostname.cfg",
+        "virtual_path": "switches/holdout-iosxe-tricky-public-hostname.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ios_xe/holdout-iosxe-tricky-telnet-comment.cfg",
+        "virtual_path": "switches/holdout-iosxe-tricky-telnet-comment.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_ios_xe/holdout-iosxe-undefined-group-ref.cfg",
+        "virtual_path": "switches/holdout-iosxe-undefined-group-ref.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-001",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_ios_xe/holdout-iosxe-vty-extended-host.cfg",
+        "virtual_path": "switches/holdout-iosxe-vty-extended-host.cfg",
+        "target_type": "cisco_ios_xe",
+        "expected_rule_ids": [
+          "IOS-008"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:IOS-008",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/holdout-nxos-circular-group.cfg",
+        "virtual_path": "switches/holdout-nxos-circular-group.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-001",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/holdout-nxos-cooccur-mgmt-acl.cfg",
+        "virtual_path": "switches/holdout-nxos-cooccur-mgmt-acl.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-008",
+          "NXOS-009"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-008",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:NXOS-009",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/holdout-nxos-cooccur-role-transfer.cfg",
+        "virtual_path": "switches/holdout-nxos-cooccur-role-transfer.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-007",
+          "NXOS-010"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284",
+          "CWE-319"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-007",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:NXOS-010",
+            "handler_asserted_cwe": "CWE-319",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/holdout-nxos-cooccur-ssh-aaa.cfg",
+        "virtual_path": "switches/holdout-nxos-cooccur-ssh-aaa.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-004",
+          "NXOS-006"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-287"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-004",
+            "handler_asserted_cwe": "CWE-287",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:NXOS-006",
+            "handler_asserted_cwe": "CWE-287",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/holdout-nxos-cooccur-telnet-snmp.cfg",
+        "virtual_path": "switches/holdout-nxos-cooccur-telnet-snmp.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-003",
+          "NXOS-005"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284",
+          "CWE-319"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-003",
+            "handler_asserted_cwe": "CWE-319",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:NXOS-005",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/holdout-nxos-mgmt-scoped-jump.cfg",
+        "virtual_path": "switches/holdout-nxos-mgmt-scoped-jump.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_nx_os/holdout-nxos-sniff-iosxe.cfg",
+        "virtual_path": "switches/holdout-nxos-sniff-iosxe.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [
+          "NXOS-002",
+          "NXOS-009"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284",
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:NXOS-002",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:NXOS-009",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_nx_os/holdout-nxos-tricky-snmp-location-public.cfg",
+        "virtual_path": "switches/holdout-nxos-tricky-snmp-location-public.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_nx_os/holdout-nxos-tricky-telnet-comment.cfg",
+        "virtual_path": "switches/holdout-nxos-tricky-telnet-comment.cfg",
+        "target_type": "cisco_nx_os",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-circular-group.rules",
+        "virtual_path": "holdout/holdout-asa-circular-group.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-007"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-007",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-mgmt-mixed-whitespace.rules",
+        "virtual_path": "holdout/firewall/holdout-asa-mgmt-mixed-whitespace.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-005"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-005",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-mixed-case-cooccur.rules",
+        "virtual_path": "holdout/firewall/holdout-asa-mixed-case-cooccur.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-001",
+          "ASA-006"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284",
+          "CWE-693"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:ASA-006",
+            "handler_asserted_cwe": "CWE-693",
+            "policy_severity": "medium"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-narrow-group-28.rules",
+        "virtual_path": "holdout/holdout-asa-narrow-group-28.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-nested-group-any.rules",
+        "virtual_path": "holdout/holdout-asa-nested-group-any.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-nonrules-cfg.cfg",
+        "virtual_path": "firewall/holdout-asa-nonrules-cfg.cfg",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [
+          "CWE-657"
+        ],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-657"
+        ],
+        "findings": [
+          {
+            "trace": "handler:unclaimed-file",
+            "handler_asserted_cwe": "CWE-657",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-permissive-object-continuation.rules",
+        "virtual_path": "holdout/firewall/holdout-asa-permissive-object-continuation.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-002"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "flag",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-002",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-standard-acl-unparsed.rules",
+        "virtual_path": "holdout/firewall/holdout-asa-standard-acl-unparsed.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-007"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-007",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-tricky-broad-but-masked.rules",
+        "virtual_path": "holdout/firewall/holdout-asa-tricky-broad-but-masked.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-tricky-correct-order-deny.rules",
+        "virtual_path": "holdout/firewall/holdout-asa-tricky-correct-order-deny.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-tricky-deny-then-host.rules",
+        "virtual_path": "holdout/firewall/holdout-asa-tricky-deny-then-host.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-006"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "flag",
+        "gate_cwes": [
+          "CWE-693"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-006",
+            "handler_asserted_cwe": "CWE-693",
+            "policy_severity": "medium"
+          },
+          {
+            "trace": "handler:ASA-006",
+            "handler_asserted_cwe": "CWE-693",
+            "policy_severity": "medium"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-tricky-scoped-tcp.rules",
+        "virtual_path": "holdout/firewall/holdout-asa-tricky-scoped-tcp.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-undefined-object-group.rules",
+        "virtual_path": "holdout/holdout-asa-undefined-object-group.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-007"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-007",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-weak-crypto-and-mgmt.rules",
+        "virtual_path": "holdout/firewall/holdout-asa-weak-crypto-and-mgmt.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-004",
+          "ASA-005"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284",
+          "CWE-327"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-004",
+            "handler_asserted_cwe": "CWE-327",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:ASA-005",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "cisco_secure_firewall/holdout-asa-wide-plus-object.rules",
+        "virtual_path": "holdout/firewall/holdout-asa-wide-plus-object.rules",
+        "target_type": "cisco_secure_firewall",
+        "expected_rule_ids": [
+          "ASA-001",
+          "ASA-002"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:ASA-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          },
+          {
+            "trace": "handler:ASA-002",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "generic_terraform/holdout-iosxe-uncovered.tf",
+        "virtual_path": "terraform/holdout-iosxe-uncovered.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "HCL-002"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "flag",
+        "gate_cwes": [
+          "CWE-657"
+        ],
+        "findings": [
+          {
+            "trace": "handler:HCL-002",
+            "handler_asserted_cwe": "CWE-657",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "generic_terraform/holdout-tf-azure-messy-open.tf",
+        "virtual_path": "holdout/terraform/holdout-tf-azure-messy-open.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [
+          "TF-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-284"
+        ],
+        "findings": [
+          {
+            "trace": "handler:TF-001",
+            "handler_asserted_cwe": "CWE-284",
+            "policy_severity": "high"
+          }
+        ]
+      },
+      {
+        "path": "generic_terraform/holdout-tf-tricky-var-cidr.tf",
+        "virtual_path": "holdout/terraform/holdout-tf-tricky-var-cidr.tf",
+        "target_type": "generic_terraform",
+        "expected_rule_ids": [],
+        "expected_gate_cwes": [],
+        "gate_action": "pass",
+        "gate_cwes": [],
+        "findings": []
+      },
+      {
+        "path": "undeclared/holdout-marker-free-cli.cfg",
+        "virtual_path": "configs/holdout-marker-free-cli.cfg",
+        "target_type": "undeclared",
+        "expected_rule_ids": [
+          "CLI-001"
+        ],
+        "expected_gate_cwes": [],
+        "gate_action": "block",
+        "gate_cwes": [
+          "CWE-754"
+        ],
+        "findings": [
+          {
+            "trace": "handler:CLI-001",
+            "handler_asserted_cwe": "CWE-754",
+            "policy_severity": "high"
+          }
+        ]
+      }
+    ],
+    "generated_summary": {
+      "pass": 67,
+      "flag": 13,
+      "block": 71
+    },
+    "holdout_summary": {
+      "pass": 15,
+      "flag": 5,
+      "block": 31
+    }
+  }
+}

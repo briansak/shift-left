@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "firewall/edge-scoped-production.rules",
+  "expected_rule_ids": [],
+  "description": "Production edge ACL with scoped permits and explicit deny."
+}

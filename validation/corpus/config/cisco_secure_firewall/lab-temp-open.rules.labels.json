@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "firewall/lab-temp-open.rules",
+  "expected_rule_ids": [
+    "ASA-001"
+  ],
+  "description": "Lab change ticket left a broad permit in OUT ACL."
+}

@@ -1,0 +1,5 @@
+{
+  "id": "CWE-778",
+  "name": "Insufficient Logging",
+  "description": "When a security-critical event occurs, the product either does not record the event or does not record enough information about the event."
+}

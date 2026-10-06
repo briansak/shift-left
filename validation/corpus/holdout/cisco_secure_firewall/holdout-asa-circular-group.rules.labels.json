@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "holdout/holdout-asa-circular-group.rules",
+  "expected_rule_ids": [
+    "ASA-007"
+  ],
+  "description": "Circular group-object references cannot be resolved."
+}

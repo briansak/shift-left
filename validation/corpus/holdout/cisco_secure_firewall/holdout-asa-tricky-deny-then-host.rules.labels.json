@@ -1,0 +1,9 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "holdout/firewall/holdout-asa-tricky-deny-then-host.rules",
+  "expected_rule_ids": [
+    "ASA-006"
+  ],
+  "justification": "ASA evaluates ACLs top-down with first-match-wins. A preceding 'deny ip any any' matches all IP traffic, so later permit ACEs (even host-scoped tcp/icmp lines) are unreachable dead code.",
+  "description": "Shadowed permits after catch-all deny — ASA-006 true positive, not clean bait."
+}

@@ -1,0 +1,9 @@
+hostname partner-vpn-01
+!
+access-list PARTNER_VPN extended permit ip 10.60.0.0 255.255.255.0 10.70.0.0 255.255.255.0
+access-list PARTNER_VPN extended deny ip any any log
+!
+crypto ikev2 policy 30
+ encryption aes-256
+ integrity sha512
+ group 21

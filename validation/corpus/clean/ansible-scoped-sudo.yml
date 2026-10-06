@@ -1,0 +1,5 @@
+- name: Allow deploy user limited sudo
+  lineinfile:
+    path: /etc/sudoers.d/deploy
+    line: "deploy ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart app.service"
+    validate: "visudo -cf %s"

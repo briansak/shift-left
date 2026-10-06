@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "terraform/policies/broad-source-any.tf",
+  "expected_rule_ids": [
+    "FTD-001"
+  ],
+  "description": "ALLOW with 0.0.0.0/0 source literal."
+}

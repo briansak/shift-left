@@ -1,0 +1,10 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "terraform/policies/cooccur-ftd-001-006-object-shadow.tf",
+  "expected_rule_ids": [
+    "FTD-001",
+    "FTD-003",
+    "FTD-006"
+  ],
+  "description": "Object-resolved permissive ALLOW shadowed by object-referenced catch-all BLOCK."
+}

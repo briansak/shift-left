@@ -1,0 +1,8 @@
+{
+  "target_type": "generic_terraform",
+  "virtual_path": "terraform/azure-nsg-group-rule.tf",
+  "expected_rule_ids": [
+    "TF-001"
+  ],
+  "description": "Azure NSG embedded security_rule allows any source."
+}

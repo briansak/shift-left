@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_nx_os",
+  "virtual_path": "switches/nested-group-resolution.cfg",
+  "expected_rule_ids": [],
+  "description": "Nested address object-groups resolve cleanly; no NXOS-001."
+}

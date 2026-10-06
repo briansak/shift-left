@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_nx_os",
+  "virtual_path": "switches/nxos008-violation-mgmt-public.cfg",
+  "expected_rule_ids": [
+    "NXOS-008"
+  ],
+  "description": "Management VRF VTY ACL permits internet source."
+}

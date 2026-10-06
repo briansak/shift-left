@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_nx_os",
+  "virtual_path": "switches/holdout-nxos-mgmt-scoped-jump.cfg",
+  "expected_rule_ids": [],
+  "description": "Holdout clean bait: management VRF VTY ACL limited to RFC1918 jump subnet."
+}

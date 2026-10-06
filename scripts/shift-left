@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# Shift-Left operator CLI wrapper
+set -euo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+VENV="${ROOT}/.venv"
+PY="${VENV}/bin/python3"
+PIP="${VENV}/bin/pip"
+
+# CLI plus orchestrator/shared packages (shift_left.* imports).
+export PYTHONPATH="${ROOT}/cli:${ROOT}/services/orchestrator:${ROOT}/services/shift-left-shared${PYTHONPATH:+:$PYTHONPATH}"
+export HF_HUB_DISABLE_XET="${HF_HUB_DISABLE_XET:-1}"
+
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "python3 not found — install Python 3.11+ and re-run ./shift-left" >&2
+  exit 1
+fi
+
+if [[ ! -x "$PY" ]]; then
+  echo "Creating Python virtualenv at .venv …"
+  python3 -m venv "$VENV"
+fi
+
+if ! "$PY" -c "import yaml; from pydantic import BaseModel; import certifi; import nacl" 2>/dev/null; then
+  echo "Installing operator CLI Python packages (first run only) …"
+  "$PIP" install --upgrade pip >/dev/null
+  "$PIP" install \
+    -e "${ROOT}/cli" \
+    -e "${ROOT}/services/shift-left-shared" \
+    -e "${ROOT}/services/orchestrator"
+fi
+
+CERT="$("$PY" -m certifi 2>/dev/null || true)"
+if [[ -n "$CERT" ]]; then
+  export SSL_CERT_FILE="$CERT"
+  export REQUESTS_CA_BUNDLE="$CERT"
+  export CURL_CA_BUNDLE="$CERT"
+fi
+
+exec "$PY" -m shift_left_cli.main "$@"

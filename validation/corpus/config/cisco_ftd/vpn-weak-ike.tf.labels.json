@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "terraform/vpn/vpn-weak-ike.tf",
+  "expected_rule_ids": [
+    "FTD-004"
+  ],
+  "description": "FMC IKEv2 policy with DES and low DH group."
+}

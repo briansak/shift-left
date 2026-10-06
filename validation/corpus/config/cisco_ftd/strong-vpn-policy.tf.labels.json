@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "terraform/vpn/strong-vpn-policy.tf",
+  "expected_rule_ids": [],
+  "description": "Strong FMC IKEv2 policy."
+}

@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "holdout/firewall/holdout-asa-tricky-broad-but-masked.rules",
+  "expected_rule_ids": [],
+  "description": "Clean bait: /16-to-/16 permit — regex ASA-001 FP regression (comment text); must stay clean under structural parser."
+}

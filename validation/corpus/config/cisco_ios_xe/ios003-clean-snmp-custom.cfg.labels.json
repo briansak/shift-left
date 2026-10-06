@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_ios_xe",
+  "virtual_path": "switches/ios003-clean-snmp-custom.cfg",
+  "expected_rule_ids": [],
+  "description": "SNMP community uses non-default read-only string."
+}

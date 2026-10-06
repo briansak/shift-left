@@ -1,0 +1,5 @@
+{
+  "id": "CWE-327",
+  "name": "Use of a Broken or Risky Cryptographic Algorithm",
+  "description": "The product uses a broken or risky cryptographic algorithm or protocol."
+}

@@ -1,0 +1,30 @@
+log:
+  level: info
+
+runner:
+  file: /data/.runner
+  capacity: 2
+  timeout: 3h
+  insecure: false
+  fetch_timeout: 5s
+  shutdown_timeout: 0s
+
+container:
+  # Job containers must join the sovereign internal network to reach orchestrator
+  # without egress. Compose project prefix may vary — verify with `docker network ls`.
+  network: shift-left_sovereign_internal
+  privileged: false
+  options:
+  workdir_parent:
+  valid_volumes: []
+  docker_host: ""
+  force_pull: false
+
+host:
+  workdir_parent:
+
+cache:
+  enabled: true
+  dir: /data/cache
+  host:
+  port: 0

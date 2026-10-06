@@ -1,0 +1,4 @@
+! HOLDOUT clean bait — deny ip any any precedes only host-scoped permits (not shadowed wide open)
+access-list DMZ extended deny ip any any log
+access-list DMZ extended permit tcp host 192.168.50.10 host 10.1.1.5 eq 443 log
+access-list DMZ extended permit icmp 192.168.50.0 255.255.255.0 10.1.1.0 255.255.255.0 log

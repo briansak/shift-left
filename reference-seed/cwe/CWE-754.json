@@ -1,0 +1,5 @@
+{
+  "id": "CWE-754",
+  "name": "Improper Check for Unusual or Exceptional Conditions",
+  "description": "The product does not check or incorrectly checks for unusual or exceptional conditions that are not expected to occur frequently during day to day operation of the product."
+}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Investigation trace{% endblock %}
+{% block content %}
+<div class="targets-page investigations-page">
+  <nav class="target-breadcrumb" aria-label="Breadcrumb">
+    <a class="target-breadcrumb-link" href="/ui/investigations">Investigations</a>
+    <span class="target-breadcrumb-sep" aria-hidden="true">/</span>
+    <a class="target-breadcrumb-link" href="/ui/investigations/{{ detail.investigation_id }}">{{ detail.repo_ref_label }}</a>
+    <span class="target-breadcrumb-sep" aria-hidden="true">/</span>
+    <span class="target-breadcrumb-current">Trace</span>
+  </nav>
+
+  <header class="targets-page-header">
+    <div>
+      <h1 class="targets-page-title">Exploration trace</h1>
+      <p class="targets-page-subtitle">{{ detail.repo_ref_label }} · {{ detail.trace_turn_count }} turns · read-only</p>
+    </div>
+  </header>
+
+  <section class="investigation-advisory-banner" aria-label="Redaction notice">
+    <strong>Presentation redaction applied</strong>
+    <p>Command and output text is redacted for display. Stored records remain raw.</p>
+  </section>
+
+  <div class="investigation-trace-drawer-body" style="position:static;width:auto;border:none;box-shadow:none;">
+    {% for turn in trace_turns %}
+    <details class="investigation-trace-turn">
+      <summary>Turn {{ turn.turn_index + 1 }} · {% if turn.phase == "dispatched" %}pending{% else %}exit {{ turn.exit_status }}{% endif %} · <span class="mono">{{ turn.command }}</span></summary>
+      <div class="investigation-trace-turn-body">
+        <p><strong>Command</strong></p>
+        <pre class="investigation-trace-output">{{ turn.command }}</pre>
+        <p><strong>Output (truncated)</strong></p>
+        <pre class="investigation-trace-output">{{ turn.output_truncated }}</pre>
+      </div>
+    </details>
+    {% else %}
+    <p class="helper">No trace turns recorded.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,6 @@
+{
+  "target_type": "undeclared",
+  "virtual_path": "configs/sniffed-nxos-switchname.cfg",
+  "expected_rule_ids": [],
+  "description": "NX-OS switchname marker and no violation. Negative control for CLI-001."
+}

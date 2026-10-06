@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_nx_os",
+  "virtual_path": "switches/nxos007-violation-role-star.cfg",
+  "expected_rule_ids": [
+    "NXOS-007"
+  ],
+  "description": "Role grants permit command *."
+}

@@ -1,0 +1,5 @@
+! HOLDOUT — ACE references undefined object-group
+hostname holdout-undefined-group
+!
+access-list HOLDOUT_IN extended permit ip object-group MISSING-GROUP any any
+access-list HOLDOUT_IN extended deny ip any any log

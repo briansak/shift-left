@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_nx_os",
+  "virtual_path": "switches/nxos005-violation-snmp-public.cfg",
+  "expected_rule_ids": [
+    "NXOS-005"
+  ],
+  "description": "SNMP community uses default public string."
+}

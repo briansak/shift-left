@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "terraform/policies/app-https-scoped.tf",
+  "expected_rule_ids": [],
+  "description": "Application HTTPS rule with private source."
+}

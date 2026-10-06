@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shift-Left HTTP API</title>
+    <!-- Vendored swagger-ui-dist@5.17.14 — do not track latest. -->
+    <link rel="stylesheet" href="./vendor/swagger-ui/swagger-ui.css" />
+    <style>
+      html { box-sizing: border-box; overflow-y: scroll; }
+      *, *:before, *:after { box-sizing: inherit; }
+      body { margin: 0; background: #fafafa; font-family: Helvetica, Arial, sans-serif; }
+      .sl-banner {
+        margin: 0;
+        padding: 14px 20px;
+        background: #12263a;
+        color: #f4f7fb;
+        font-size: 15px;
+        line-height: 1.45;
+      }
+      .sl-banner a { color: #9cd3ff; }
+      .sl-banner code { font-size: 0.95em; }
+    </style>
+  </head>
+  <body>
+    <p class="sl-banner">
+      This explorer is documentation only. Try it out is disabled because the API
+      is loopback-only with token auth and cannot be reached from GitHub Pages.
+      On the operator host it listens at
+      <code>http://127.0.0.1:8080</code>.
+      Narrative:
+      <a href="https://github.com/briansak/shift-left/blob/main/docs/api-guide.md">api-guide.md</a>
+      · tokens:
+      <a href="https://github.com/briansak/shift-left/blob/main/docs/auth-tokens.md">auth-tokens.md</a>
+      · machine-readable:
+      <a href="./openapi.yaml">openapi.yaml</a>.
+    </p>
+    <div id="swagger-ui"></div>
+    <script src="./vendor/swagger-ui/swagger-ui-bundle.js"></script>
+    <script>
+      window.ui = SwaggerUIBundle({
+        url: "./openapi.yaml",
+        dom_id: "#swagger-ui",
+        deepLinking: true,
+        tryItOutEnabled: false,
+        supportedSubmitMethods: [],
+        defaultModelsExpandDepth: 1,
+        docExpansion: "list",
+        filter: true,
+      });
+    </script>
+  </body>
+</html>

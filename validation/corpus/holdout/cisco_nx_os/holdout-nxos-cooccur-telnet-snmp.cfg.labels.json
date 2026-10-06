@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_nx_os",
+  "virtual_path": "switches/holdout-nxos-cooccur-telnet-snmp.cfg",
+  "expected_rule_ids": ["NXOS-003", "NXOS-005"],
+  "description": "Holdout co-occur: telnet feature enabled and default SNMP community."
+}

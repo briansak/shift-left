@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "firewall/nat-and-acl-combo.rules",
+  "expected_rule_ids": [],
+  "description": "NAT policies with matching scoped ACL entries."
+}

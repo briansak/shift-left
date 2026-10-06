@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Repo-root operator entrypoint — same as scripts/shift-left
+set -euo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+exec "${ROOT}/scripts/shift-left" "$@"

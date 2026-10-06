@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "firewall/branch-office-outbound.rules",
+  "expected_rule_ids": [],
+  "description": "Branch office outbound restrictions with deny default."
+}

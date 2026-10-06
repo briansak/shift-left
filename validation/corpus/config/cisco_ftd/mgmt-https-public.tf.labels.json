@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "terraform/policies/mgmt-https-public.tf",
+  "expected_rule_ids": [
+    "FTD-005"
+  ],
+  "description": "HTTPS management allowed from public /24."
+}

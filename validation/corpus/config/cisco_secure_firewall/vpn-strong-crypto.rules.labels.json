@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "vpn/vpn-strong-crypto.rules",
+  "expected_rule_ids": [],
+  "description": "Modern IKEv2/IPsec proposals with strong algorithms."
+}

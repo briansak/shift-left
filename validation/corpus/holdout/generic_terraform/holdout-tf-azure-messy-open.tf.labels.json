@@ -1,0 +1,8 @@
+{
+  "target_type": "generic_terraform",
+  "virtual_path": "holdout/terraform/holdout-tf-azure-messy-open.tf",
+  "expected_rule_ids": [
+    "TF-001"
+  ],
+  "description": "TF-001 via Azure NSG with source_address_prefix * and inline comment (not generator template)."
+}

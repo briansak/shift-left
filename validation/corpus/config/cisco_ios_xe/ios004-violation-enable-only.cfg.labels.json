@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_ios_xe",
+  "virtual_path": "switches/ios004-violation-enable-only.cfg",
+  "expected_rule_ids": [
+    "IOS-004"
+  ],
+  "description": "Enable password without enable secret on legacy AAA."
+}

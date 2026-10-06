@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "terraform/policies/holdout-ftd-dangling-ref.tf",
+  "expected_rule_ids": [
+    "FTD-008"
+  ],
+  "description": "Holdout access rule with undefined source network object."
+}

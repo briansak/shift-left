@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "holdout/ftd/holdout-ftd-tricky-scoped-https.tf",
+  "expected_rule_ids": [],
+  "description": "Clean bait: RFC1918-scoped ALLOW on port 443 with logging enabled."
+}

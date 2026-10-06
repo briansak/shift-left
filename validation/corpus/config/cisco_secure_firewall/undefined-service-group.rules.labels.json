@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "firewall/undefined-service-group.rules",
+  "expected_rule_ids": [
+    "ASA-007"
+  ],
+  "description": "ACE references undefined service object-group UNDEFINED-SVC-GROUP."
+}

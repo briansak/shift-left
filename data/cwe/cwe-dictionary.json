@@ -1,0 +1,65 @@
+{
+  "CWE-20": {
+    "id": "CWE-20",
+    "name": "Improper Input Validation",
+    "abstraction": "Class",
+    "short_description": "The product receives input or data, but does not validate or incorrectly validates that the input has the properties required to process the data safely and correctly.",
+    "url": "https://cwe.mitre.org/data/definitions/20.html"
+  },
+  "CWE-284": {
+    "id": "CWE-284",
+    "name": "Improper Access Control",
+    "abstraction": "Base",
+    "short_description": "The product does not restrict or incorrectly restricts access to a resource from an unauthorized actor.",
+    "url": "https://cwe.mitre.org/data/definitions/284.html"
+  },
+  "CWE-327": {
+    "id": "CWE-327",
+    "name": "Use of a Broken or Risky Cryptographic Algorithm",
+    "abstraction": "Base",
+    "short_description": "The product uses a broken or risky cryptographic algorithm or protocol that attackers known to be vulnerable can compromise the security of the product.",
+    "url": "https://cwe.mitre.org/data/definitions/327.html"
+  },
+  "CWE-657": {
+    "id": "CWE-657",
+    "name": "Violation of Secure Design Principles",
+    "abstraction": "Class",
+    "short_description": "The product violates well-established secure design principles. Secure design principles are rules for simplifying software security and include concepts such as minimizing attack surface and failing securely.",
+    "url": "https://cwe.mitre.org/data/definitions/657.html"
+  },
+  "CWE-693": {
+    "id": "CWE-693",
+    "name": "Protection Mechanism Failure",
+    "abstraction": "Class",
+    "short_description": "The product does not use or incorrectly uses a protection mechanism that provides sufficient defense against attack.",
+    "url": "https://cwe.mitre.org/data/definitions/693.html"
+  },
+  "CWE-754": {
+    "id": "CWE-754",
+    "name": "Improper Check for Unusual or Exceptional Conditions",
+    "abstraction": "Base",
+    "short_description": "The product does not check or incorrectly checks for unusual or exceptional conditions that are not expected to occur frequently during day to day operation of the product.",
+    "url": "https://cwe.mitre.org/data/definitions/754.html"
+  },
+  "CWE-778": {
+    "id": "CWE-778",
+    "name": "Insufficient Logging",
+    "abstraction": "Base",
+    "short_description": "When a security-critical event occurs, the product either does not record the event or omits important details about the event when logging it.",
+    "url": "https://cwe.mitre.org/data/definitions/778.html"
+  },
+  "CWE-287": {
+    "id": "CWE-287",
+    "name": "Improper Authentication",
+    "abstraction": "Base",
+    "short_description": "When an actor claims to have a given identity, the product does not prove or insufficiently proves that the claim is correct.",
+    "url": "https://cwe.mitre.org/data/definitions/287.html"
+  },
+  "CWE-319": {
+    "id": "CWE-319",
+    "name": "Cleartext Transmission of Sensitive Information",
+    "abstraction": "Base",
+    "short_description": "The product transmits sensitive or security-critical data in cleartext.",
+    "url": "https://cwe.mitre.org/data/definitions/319.html"
+  }
+}

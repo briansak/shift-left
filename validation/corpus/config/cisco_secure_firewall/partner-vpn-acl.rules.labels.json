@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "vpn/partner-vpn-acl.rules",
+  "expected_rule_ids": [],
+  "description": "Partner VPN interesting traffic ACL is narrowly scoped."
+}

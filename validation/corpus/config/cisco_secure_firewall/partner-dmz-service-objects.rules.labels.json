@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "firewall/partner-dmz-service-objects.rules",
+  "expected_rule_ids": [
+    "ASA-002"
+  ],
+  "description": "Service objects include unconstrained TCP and IP protocol objects."
+}

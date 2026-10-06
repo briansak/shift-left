@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "terraform/aws-mixed-uncovered.tf",
+  "expected_rule_ids": ["FTD-009"],
+  "description": "fmc_* plus aws_* on cisco_ftd — FTD-009 for uncovered aws_ prefix."
+}

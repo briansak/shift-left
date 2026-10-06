@@ -1,0 +1,137 @@
+{
+  "provider": "CiscoDevNet/fmc",
+  "provider_version": "2.0.1",
+  "source": "https://github.com/CiscoDevNet/terraform-provider-fmc/tree/v2.0.1/docs/resources",
+  "resources": {
+    "fmc_access_rule": [
+      "access_control_policy_id",
+      "action",
+      "application_filter_objects",
+      "application_filters",
+      "applications",
+      "category_name",
+      "description",
+      "destination_dynamic_objects",
+      "destination_network_literals",
+      "destination_network_objects",
+      "destination_port_literals",
+      "destination_port_objects",
+      "destination_sgt_objects",
+      "destination_zones",
+      "domain",
+      "enabled",
+      "endpoint_device_types",
+      "file_policy_id",
+      "id",
+      "intrusion_policy_id",
+      "log_connection_begin",
+      "log_connection_end",
+      "log_files",
+      "name",
+      "section",
+      "send_events_to_fmc",
+      "send_syslog",
+      "snmp_alert_id",
+      "source_dynamic_objects",
+      "source_network_literals",
+      "source_network_objects",
+      "source_port_literals",
+      "source_port_objects",
+      "source_sgt_objects",
+      "source_zones",
+      "syslog_alert_id",
+      "syslog_severity",
+      "time_range_id",
+      "url_categories",
+      "url_literals",
+      "url_objects",
+      "variable_set_id",
+      "vlan_tag_literals",
+      "vlan_tag_objects"
+    ],
+    "fmc_access_rules": [
+      "access_control_policy_id",
+      "category_name",
+      "domain",
+      "id",
+      "items",
+      "section"
+    ],
+    "fmc_port": [
+      "description",
+      "domain",
+      "id",
+      "name",
+      "overridable",
+      "port",
+      "protocol",
+      "type"
+    ],
+    "fmc_ports": [
+      "domain",
+      "id",
+      "items"
+    ],
+    "fmc_ikev2_policy": [
+      "description",
+      "dh_groups",
+      "domain",
+      "encryption_algorithms",
+      "id",
+      "integrity_algorithms",
+      "lifetime",
+      "name",
+      "prf_algorithms",
+      "priority",
+      "type"
+    ],
+    "fmc_ikev2_policies": [
+      "domain",
+      "id",
+      "items"
+    ],
+    "fmc_host": [
+      "description",
+      "domain",
+      "id",
+      "ip",
+      "name",
+      "overridable",
+      "type"
+    ],
+    "fmc_network": [
+      "description",
+      "domain",
+      "id",
+      "name",
+      "overridable",
+      "prefix",
+      "type"
+    ],
+    "fmc_range": [
+      "description",
+      "domain",
+      "id",
+      "ip_range",
+      "name",
+      "overridable",
+      "type"
+    ],
+    "fmc_network_group": [
+      "description",
+      "domain",
+      "id",
+      "literals",
+      "name",
+      "objects",
+      "overridable",
+      "type"
+    ]
+  },
+  "resolver_membership_attributes": {
+    "fmc_network": ["prefix"],
+    "fmc_host": ["ip"],
+    "fmc_range": ["ip_range"],
+    "fmc_network_group": ["objects"]
+  }
+}

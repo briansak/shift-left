@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "firewall/acl-shadowed-permits.rules",
+  "expected_rule_ids": [
+    "ASA-006"
+  ],
+  "description": "Catch-all deny precedes several permit lines that can never match."
+}

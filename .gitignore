@@ -1,0 +1,48 @@
+# Local runtime data (never commit)
+data/*
+!data/cwe/
+!data/cwe/**
+data/cwe/source/
+.shift-left/
+sample-firewall/
+.venv-sovereignty-test/
+.venv-phase2-test/
+*.db
+.env
+.env.local
+config/shift-left.yaml
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local experiment trees (not part of the release)
+experiment/
+
+# Upstream validation checkouts (fetched at pinned commits; not redistributed)
+validation/corpus/multidefect/
+validation/corpus/multidefect-prscope/
+validation/corpus/localization/
+validation/corpus/localization-source/
+
+# Models (pre-staged locally, never committed)
+/models/
+*.gguf
+*.safetensors
+
+# IDE
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Docker overrides with secrets
+docker-compose.override.yml

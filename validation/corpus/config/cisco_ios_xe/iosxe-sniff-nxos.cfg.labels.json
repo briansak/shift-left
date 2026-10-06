@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_ios_xe",
+  "virtual_path": "switches/iosxe-sniff-nxos.cfg",
+  "expected_rule_ids": ["IOS-010"],
+  "description": "Platform mismatch: declared IOS-XE, content sniffs as NX-OS — IOS-010 only."
+}

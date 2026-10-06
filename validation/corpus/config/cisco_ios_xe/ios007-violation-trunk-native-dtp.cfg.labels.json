@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_ios_xe",
+  "virtual_path": "switches/ios007-violation-trunk-native-dtp.cfg",
+  "expected_rule_ids": [
+    "IOS-007"
+  ],
+  "description": "Trunk uses native VLAN 1 and DTP desirable."
+}

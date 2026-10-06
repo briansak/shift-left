@@ -1,0 +1,22 @@
+# dCloud ftdv-10.0.0-140-preconfig — copy to terraform.tfvars (gitignored).
+# See docs/dcloud-lab.md and config/dcloud-vm.profile.yaml
+
+fmc_host     = "198.18.134.1" # TODO: your dCloud FMC IP on Default Network
+fmc_username = "admin"
+fmc_password = "change-me"      # dCloud default — set locally, never commit
+
+fmc_insecure = true
+environment  = "dcloud"
+
+policy_name     = "ftdv-dcloud-default"
+ftd_device_name = "ftdv-10.0.0-140-preconfig"
+
+# Defaults match dCloud pod; override only if your session differs
+default_network_cidr  = "198.18.128.0/18"
+private_network_cidr  = "198.18.10.0/24"
+private_interface_ip  = "198.18.10.1"
+management_ip         = "198.18.134.100"
+default_gateway       = "198.18.128.1"
+primary_dns           = "198.18.128.1"
+secondary_dns         = "1.1.1.1"
+lab_admin_source_cidr = "198.18.128.0/18"

@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "holdout/holdout-ftd-no-log-begin.tf",
+  "expected_rule_ids": [
+    "FTD-003"
+  ],
+  "description": "FMC ALLOW rule with log_connection_begin explicitly set to false."
+}

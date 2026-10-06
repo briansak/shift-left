@@ -1,0 +1,12 @@
+hostname ops-fw-01
+!
+interface Management0/0
+ nameif management
+ security-level 100
+ ip address 192.168.255.1 255.255.255.0
+!
+ssh 203.0.113.0 255.255.255.0 outside
+telnet 203.0.113.10 255.255.255.255 outside
+http 10.0.0.0 255.0.0.0 management
+!
+access-list MGMT extended deny ip any any

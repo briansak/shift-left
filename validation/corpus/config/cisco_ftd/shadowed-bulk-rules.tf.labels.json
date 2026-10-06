@@ -1,0 +1,9 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "terraform/policies/shadowed-bulk-rules.tf",
+  "expected_rule_ids": [
+    "FTD-005",
+    "FTD-006"
+  ],
+  "description": "Shadowed mgmt ALLOW (FTD-005) co-occurring with catch-all BLOCK shadow (FTD-006)."
+}

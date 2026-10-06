@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "firewall/acl-order-correct.rules",
+  "expected_rule_ids": [],
+  "description": "Permits precede catch-all deny; no shadowed ACEs."
+}

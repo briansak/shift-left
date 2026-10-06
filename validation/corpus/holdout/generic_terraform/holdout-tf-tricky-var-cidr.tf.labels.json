@@ -1,0 +1,6 @@
+{
+  "target_type": "generic_terraform",
+  "virtual_path": "holdout/terraform/holdout-tf-tricky-var-cidr.tf",
+  "expected_rule_ids": [],
+  "description": "Clean bait: SSH ingress uses variable CIDR — should not match TF-001."
+}

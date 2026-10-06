@@ -1,0 +1,41 @@
+{
+  "_comment": "Copy to models/.prewarm-manifest.json after staging weights.",
+  "models": {
+    "antares-350m": {
+      "hf_repo_id": "fdtn-ai/antares-350m",
+      "weight_filename": "model.safetensors",
+      "sha256": "298dc28c73ba1e02528d5dbc16a064a654c60a5853c131f55934678d85abf121",
+      "license": "Apache-2.0",
+      "hf_gated": true
+    },
+    "antares-1b": {
+      "hf_repo_id": "fdtn-ai/antares-1b",
+      "weight_filename": "model.safetensors",
+      "sha256": "6ba4155a50cd0cede3e10285b0d84b460dcc3caa0175a424e14d3bb606fda675",
+      "license": "Apache-2.0",
+      "hf_gated": true,
+      "_note": "Minimum variant for advisory triage (File F1 0.209). Run hf download on connected host."
+    },
+    "foundation-sec": {
+      "hf_repo_id": "fdtn-ai/Foundation-Sec-1.1-8B-Instruct-Q8_0-GGUF",
+      "gguf_filename": "foundation-sec-1.1-8b-instruct-q8_0.gguf",
+      "sha256": "ea401b43ee9e79607ae34157e88c3b03c468b50b5f4194e7c82b9e3130e0b2e5",
+      "license": "Apache-2.0",
+      "hf_gated": false
+    },
+    "foundation-sec-low-memory": {
+      "hf_repo_id": "fdtn-ai/Foundation-Sec-1.1-8B-Instruct-Q4_K_M-GGUF",
+      "gguf_filename": "foundation-sec-1.1-8b-instruct-q4_k_m.gguf",
+      "sha256": "5813d725b38f0da1eac34486e44b70b0f728c2e2881c96873def69e76f8421ed",
+      "license": "Apache-2.0",
+      "hf_gated": false
+    },
+    "foundation-sec-reasoning": {
+      "hf_repo_id": "fdtn-ai/Foundation-Sec-8B-Reasoning-Q4_K_M-GGUF",
+      "gguf_filename": "foundation-sec-8b-reasoning-q4_k_m.gguf",
+      "sha256": "7a61e41b1ca1b339d41caf3001ea7832469d866e7c52a23980a1e95cbf5cd58b",
+      "license": "Apache-2.0",
+      "hf_gated": false
+    }
+  }
+}

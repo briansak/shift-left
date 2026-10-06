@@ -1,0 +1,13 @@
+{% for turn in trace_turns %}
+<details class="investigation-trace-turn">
+  <summary>Turn {{ turn.turn_index + 1 }} · {% if turn.phase == "dispatched" %}pending{% else %}exit {{ turn.exit_status }}{% endif %}{% if not turn.charged %} · duplicate suppressed (turn {{ turn.duplicate_of_turn }}){% endif %} · <span class="mono">{{ turn.command }}</span></summary>
+  <div class="investigation-trace-turn-body">
+    <p><strong>Command</strong></p>
+    <pre class="investigation-trace-output">{{ turn.command }}</pre>
+    <p><strong>Output (truncated)</strong></p>
+    <pre class="investigation-trace-output">{{ turn.output_truncated }}</pre>
+  </div>
+</details>
+{% else %}
+<p class="helper">No trace turns recorded yet.</p>
+{% endfor %}

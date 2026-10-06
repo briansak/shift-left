@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Sign in — Shift-Left{% endblock %}
+{% block content %}
+<section class="panel" style="max-width:520px;margin:2rem auto">
+  <h2>Sign in with API token</h2>
+  <p class="helper">Actor identity is derived from your token. Revoked tokens stop working on the next request.</p>
+  {% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
+  <form method="post" action="/ui/login">
+    <input type="hidden" name="next" value="{{ login_next or '/ui/targets' }}">
+    <label for="token">API token (slt_…)</label>
+    <input id="token" name="token" type="password" autocomplete="off" required style="width:100%">
+    <button type="submit" style="margin-top:1rem">Continue</button>
+  </form>
+  <p class="helper">Mint tokens with <code>shift-left token mint</code> on the host.</p>
+</section>
+{% endblock %}

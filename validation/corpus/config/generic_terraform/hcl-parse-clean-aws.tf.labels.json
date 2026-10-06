@@ -1,0 +1,6 @@
+{
+  "target_type": "generic_terraform",
+  "virtual_path": "terraform/hcl-parse-clean-aws.tf",
+  "expected_rule_ids": [],
+  "description": "Parseable aws_* HCL — negative control for HCL-001."
+}

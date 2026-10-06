@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_ios_xe",
+  "virtual_path": "switches/ios006-violation-any-any-acl.cfg",
+  "expected_rule_ids": [
+    "IOS-006"
+  ],
+  "description": "Extended ACL permits any/any after object-group resolution."
+}

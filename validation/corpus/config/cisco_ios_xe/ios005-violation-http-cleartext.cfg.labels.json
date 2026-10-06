@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_ios_xe",
+  "virtual_path": "switches/ios005-violation-http-cleartext.cfg",
+  "expected_rule_ids": [
+    "IOS-005"
+  ],
+  "description": "HTTP management enabled with password encryption disabled."
+}

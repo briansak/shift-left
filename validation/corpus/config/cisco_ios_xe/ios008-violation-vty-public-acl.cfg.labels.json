@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_ios_xe",
+  "virtual_path": "switches/ios008-violation-vty-public-acl.cfg",
+  "expected_rule_ids": [
+    "IOS-008"
+  ],
+  "description": "VTY access-class permits non-RFC1918 sources."
+}

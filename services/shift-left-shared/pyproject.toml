@@ -1,0 +1,14 @@
+[project]
+name = "shift-left-shared"
+version = "0.1.0"
+description = "Shared sovereignty and network helpers for Shift-Left services"
+requires-python = ">=3.11"
+dependencies = []
+
+[build-system]
+requires = ["setuptools>=75.0.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["shift_left_shared*"]

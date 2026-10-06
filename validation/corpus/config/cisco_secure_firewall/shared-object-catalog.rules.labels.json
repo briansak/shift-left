@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "objects/shared-object-catalog.rules",
+  "expected_rule_ids": [
+    "ASA-002"
+  ],
+  "description": "Shared catalog defines UDP service without port constraints."
+}

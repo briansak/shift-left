@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Config changes{% endblock %}
+{% block content %}
+<h2>Config changes</h2>
+<p class="helper">
+  Sovereign Shift-Left review queue — embedded Forgejo config pull requests.
+  {% if changes and changes[0].last_fetched_at %}
+  Last fetched from Forgejo: {{ changes[0].last_fetched_at }}.
+  {% endif %}
+</p>
+
+{% if changes and changes[0].runner_notice %}
+<div class="panel status-failed" role="alert">
+  <strong>Forgejo Actions runner</strong>
+  <p>{{ changes[0].runner_notice }}</p>
+</div>
+{% endif %}
+
+{% if not changes %}
+<section class="panel">
+  <h3>No open config pull requests</h3>
+  <p class="helper">Open a config PR in Forgejo or run <code>./shift-left sample</code> after <code>./shift-left up</code>.</p>
+</section>
+{% else %}
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Repository</th>
+      <th scope="col">PR</th>
+      <th scope="col">Target</th>
+      <th scope="col">Author</th>
+      <th scope="col">Head SHA</th>
+      <th scope="col">Scope</th>
+      <th scope="col">Validation</th>
+      <th scope="col">Gate</th>
+      <th scope="col">Your action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in changes %}
+    <tr>
+      <td>
+        <a href="/ui/pr/{{ row.owner }}/{{ row.repo_name }}/{{ row.pr_number }}">{{ row.repo }}</a>
+        {% if row.forgejo_pr_url %}
+        · <a href="{{ row.forgejo_pr_url }}" rel="noopener noreferrer" target="_blank">Forgejo</a>
+        {% endif %}
+      </td>
+      <td>{{ row.pr_ref }}{% if row.title %} — {{ row.title }}{% endif %}</td>
+      <td><code>{{ row.target_environment or 'main' }}</code> / <code>{{ row.branch or '—' }}</code></td>
+      <td>{{ row.author or '—' }}</td>
+      <td><code>{{ row.commit_sha[:7] }}</code></td>
+      <td>
+        {% if row.config_scope == 'non_config' %}
+        <span class="badge severity-medium">non-config only</span>
+        {% elif row.config_scope == 'mixed' %}
+        <span class="badge severity-medium">mixed</span>
+        {% else %}
+        config
+        {% endif %}
+      </td>
+      <td><strong>{{ row.change_state.value }}</strong><br><span class="helper">{{ row.next_action }}</span></td>
+      <td>{% if row.gate_allowed is none %}—{% elif row.gate_allowed %}allowing{% else %}blocked{% endif %}</td>
+      <td>{% if row.viewer_action %}<strong>{{ row.viewer_action }}</strong>{% else %}—{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% endblock %}

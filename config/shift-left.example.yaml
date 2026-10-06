@@ -1,0 +1,453 @@
+# Shift-Left Review Pipeline — example configuration
+# Copy to config/shift-left.yaml and adjust paths for your host.
+#
+# ---------------------------------------------------------------------------
+# Path contract — yaml is repo-relative; Compose remaps data/* onto /data
+# ---------------------------------------------------------------------------
+# Host CLI (no SHIFT_LEFT_DATA_DIR): data/findings → <repo>/data/findings
+# Orchestrator container (SHIFT_LEFT_REPO_ROOT=/shift-left, SHIFT_LEFT_DATA_DIR=/data):
+#   data/findings  → /data/findings   (RW volume ./data/findings)
+#   data/reference → /data/reference  (RO volume ./data/reference)
+#   data/repos     → /data/repos      (RW volume ./data/repos)
+#   models/*       stays repo-relative and is read via /shift-left/models (RO)
+# Do not set container-absolute /data/... or /shift-left/data/... in yaml.
+#
+# schema_version must match CURRENT_SCHEMA_VERSION in shift_left/config.py.
+schema_version: 11
+
+# Phase 1 scope: code review via Antares, Forgejo integration, findings store.
+# Phase 2+: Foundation-Sec, CVE cache, policy engine, web UI, FMC adapter.
+
+# ---------------------------------------------------------------------------
+# Distribution — install/update vs runtime (see docs/distribution-and-sovereignty.md)
+# ---------------------------------------------------------------------------
+distribution:
+  # Open-source project hosted on GitHub; install pulls are operator-initiated.
+  install_source: github
+  # Must remain false — no background update checks.
+  auto_update: false
+  # Must remain false — telemetry is absent, not opt-out.
+  telemetry: false
+
+# ---------------------------------------------------------------------------
+# Runtime sovereignty — analyzed artifacts never leave the host
+# ---------------------------------------------------------------------------
+sovereignty:
+  # When true, orchestrator refuses to start if runtime egress self-check fails.
+  deny_egress: true
+  # Extra host:port endpoints for local HTTP clients (not whole-host wildcards).
+  runtime_allowed_endpoints: []
+  required_assets:
+    - path: data/findings
+      description: "Findings store directory (orchestrator)"
+
+# ---------------------------------------------------------------------------
+# Reference data — populated at install/sync; read-only at runtime
+# ---------------------------------------------------------------------------
+reference_data:
+  cache_dir: data/reference
+  # Phase 2: enrich findings from local cache only (never network at runtime)
+  enrich_findings: true
+  max_staleness_days: 30
+  # Optional: NVD_API_KEY env for higher rate limits during sync-reference-data --fetch-nvd
+  nvd_api_key_env: NVD_API_KEY
+
+# ---------------------------------------------------------------------------
+# Model enrichment — advisory prose (excluded from determinism checks)
+# On-demand load_strategy roughly doubles review latency (load + infer + unload
+# per model); enable enrichment only when that tradeoff is acceptable.
+# ---------------------------------------------------------------------------
+enrichment:
+  enabled: false
+  enrich_findings: true
+  generate_review_summary: true
+  engine: scripted  # scripted | foundation_sec
+
+# ---------------------------------------------------------------------------
+# Git hosting — customer repos (NOT this tool's source on GitHub)
+# Pluggable backend; sovereign default: bundled Forgejo. See docs/git-backends.md
+# ---------------------------------------------------------------------------
+git:
+  backend: bundled-forgejo
+  external_sovereignty_acknowledged: false
+
+  bundled:
+    provider: forgejo
+    url: http://forgejo:3000
+    token_env: FORGEJO_TOKEN
+    default_owner: shift-left
+
+  github:
+    api_url: https://api.github.com
+    token_env: GITHUB_TOKEN
+
+  gitlab:
+    api_url: https://gitlab.com/api/v4
+    token_env: GITLAB_TOKEN
+
+# Legacy top-level `forgejo:` is auto-migrated to git.bundled at load time.
+
+# ---------------------------------------------------------------------------
+# Path routing — code vs config
+# ---------------------------------------------------------------------------
+routing:
+  code_globs:
+    - "**/*.py"
+    - "**/*.go"
+    - "**/*.java"
+    - "**/*.js"
+    - "**/*.ts"
+    - "**/*.tsx"
+    - "**/*.c"
+    - "**/*.cpp"
+    - "**/*.h"
+    - "**/*.rs"
+    - "**/*.rb"
+    - "**/*.php"
+  config_globs:
+    - "**/*.yaml"
+    - "**/*.yml"
+    - "**/*.json"
+    - "**/*.tf"
+    - "**/*.tfvars"
+    - "**/Dockerfile*"
+    - "**/*.xml"
+    - "**/*.rules"
+    - "**/*.conf"
+    - "**/*.cfg"
+  # Files skipped during analysis routing (not analyzed by code/config handlers)
+  ignore_globs:
+    - "**/node_modules/**"
+    - "**/.git/**"
+    - "**/vendor/**"
+    - "**/*.min.js"
+    - "**/dist/**"
+    - "**/build/**"
+    - ".github/workflows/**"
+    - ".forgejo/workflows/**"
+    - "**/.github/workflows/**"
+    - "**/.forgejo/workflows/**"
+  # Explicit PR gate exclusions — changed paths matching these globs pass the
+  # unclaimed-file gate without analysis. Every exclusion must be listed here;
+  # paths outside code_globs, config_globs, and this list produce gate findings.
+  pr_gate_exclusion_globs:
+    - "**/node_modules/**"
+    - "**/.git/**"
+    - "**/vendor/**"
+    - "**/*.min.js"
+    - "**/dist/**"
+    - "**/build/**"
+    - ".github/workflows/**"
+    - ".forgejo/workflows/**"
+    - "**/.github/workflows/**"
+    - "**/.forgejo/workflows/**"
+  # Subset of config_globs with structural parser coverage (see docs/gate-enforcement.md).
+  # config_globs matches outside this set are unclaimed (CWE-657).
+  # ROUTING_PARSER_CLAIM_GLOBS — extensions claimable without managed-target resolution.
+  # **/*.cfg is omitted; cisco_ios_xe claims .cfg via per-target TARGET_TYPE_PARSER_GLOBS.
+  routing_parser_claim_globs:
+    - "**/*.rules"
+    - "**/*.conf"
+    - "**/*.txt"
+    - "**/*.tf"
+    - "**/*.hcl"
+    - "**/*.tfvars"
+
+# ---------------------------------------------------------------------------
+# Managed targets — explicit device/system mapping (never inferred from repo names)
+# ---------------------------------------------------------------------------
+managed_targets:
+  targets: []
+  # applied_revisions: populated by Phase 5 apply — never inferred from merge history
+  applied_revisions: []
+  # Example:
+  # targets:
+  #   - id: edge-fw-01
+  #     display_name: edge-fw-01
+  #     target_type: cisco_secure_firewall
+  #     description: Perimeter ASA managed via Terraform
+  #     repo: shiftleft-admin/sample-firewall
+  #     branch: main
+  #     config_paths:
+  #       - "terraform/**"
+  #     deployment_adapter: unconfigured
+  #     deployment_adapter_settings: {}
+  #     environment: production
+  #     criticality: high
+  #     owner: netsecops
+
+# ---------------------------------------------------------------------------
+# Models — weights loaded from local paths only; never downloaded at runtime
+# ---------------------------------------------------------------------------
+models:
+  antares:
+    enabled: false
+    installed: false
+    local_path: models/1b
+    backend: auto
+    load_strategy: resident_for_run
+    hf_repo_id: fdtn-ai/antares-1b
+    max_context_tokens: 8192
+    max_hunk_lines: 200
+    service_url: http://antares-server:8090
+    request_timeout_seconds: 600
+    agent:
+      engine: llm
+      # Model protocol defaults (budget and generation parameters) come from its adapter.
+      loop_control_enabled: true
+      max_snapshot_bytes: 2000000
+      recycle_after_runs: 10
+    stage_timeouts:
+      connect: 30
+      load: 120
+      prompt: 60
+      generation: 300
+      unload: 30
+
+  foundation_sec:
+    enabled: true
+    model_variant: instruct  # instruct | reasoning (separate GGUF under local_path_reasoning)
+    local_path: models/foundation-sec-q8_0
+    local_path_low_memory: models/foundation-sec-q4_k_m
+    local_path_reasoning: models/foundation-sec-reasoning-q4_k_m
+    hf_repo_id: fdtn-ai/Foundation-Sec-1.1-8B-Instruct-Q8_0-GGUF
+    hf_repo_id_low_memory: fdtn-ai/Foundation-Sec-1.1-8B-Instruct-Q4_K_M-GGUF
+    hf_repo_id_reasoning: fdtn-ai/Foundation-Sec-8B-Reasoning-Q4_K_M-GGUF
+    gguf_glob: foundation-sec-1.1-8b-instruct-q8_0.gguf
+    gguf_glob_low_memory: foundation-sec-1.1-8b-instruct-q4_k_m.gguf
+    gguf_glob_reasoning: foundation-sec-8b-reasoning-q4_k_m.gguf
+    quant_label: default
+    quant_label_low_memory: low-memory
+    quant_label_reasoning: reasoning-q4_k_m
+    use_low_memory: true
+    backend: auto
+    load_strategy: on_demand
+    # 4096 covers typical diff hunks; 8192 doubles KV cache (~512 MiB FP16) on 8B.
+    max_context_tokens: 4096
+    max_context_tokens_reasoning: 16384
+    max_hunk_lines: 500
+    context_lines_before: 5
+    context_lines_after: 5
+    chunk_overlap_lines: 2
+    prompt_scaffold_tokens: 768
+    max_output_tokens: 1024
+    max_output_tokens_reasoning: 8192
+    safety_margin_tokens: 128
+    request_timeout_seconds: 600
+    stage_timeouts:
+      connect: 30
+      load: 120
+      prompt: 60
+      generation: 300
+      unload: 30
+    service_url: http://foundation-sec-server:8091
+
+# ---------------------------------------------------------------------------
+# Antares advisory triage (NOT part of PR merge gate)
+# ---------------------------------------------------------------------------
+antares_triage:
+  enabled: false
+  installed: false
+  # Repo-relative. Compose: SHIFT_LEFT_DATA_DIR=/data → /data/repos (RW volume).
+  repos_checkout_dir: data/repos
+  model_variant: fdtn-ai/antares-1b
+  minimum_variant: 1b
+  scheduled_cwes: []
+  scheduled_cwe_descriptions: {}
+
+# ---------------------------------------------------------------------------
+# Investigations store (Antares advisory localization — NOT gate findings)
+# ---------------------------------------------------------------------------
+investigations:
+  sqlite_path: data/findings/investigations.db
+  retention_days: 90
+  queue_depth_cap: 10
+  queue_wait_timeout_minutes: 15
+  batch:
+    size_cap: 25
+    confirm_threshold: 10
+
+# ---------------------------------------------------------------------------
+# Findings store
+# ---------------------------------------------------------------------------
+findings_store:
+  # sqlite (default) | postgres (optional)
+  type: sqlite
+  sqlite_path: data/findings/shift-left.db
+  # postgres_url: postgres://shiftleft:changeme@postgres:5432/shiftleft
+
+# ---------------------------------------------------------------------------
+# Policy — Phase 3 engine (advisory decisions, not compliance verdicts)
+# ---------------------------------------------------------------------------
+policy:
+  human_review_required: true
+  default_action: flag
+  allow_block_override: false
+  approval:
+    separation_of_duties_enforced: true
+  # Documented default CWE → policy_severity mapping (override per org)
+  cwe_severity_mapping:
+    CWE-89: high
+    CWE-78: high
+    CWE-284: high
+    CWE-269: high
+    CWE-250: high
+    CWE-319: high
+    CWE-327: high
+    CWE-287: high
+    CWE-693: medium
+    CWE-502: critical
+    CWE-657: high   # unclaimed changed file — blocks gate
+    CWE-754: high   # uninterpretable config line (ASA-007) — blocks gate
+  pattern_severity_mapping: {}
+  rules:
+    - id: block-unrestricted-ingress
+      name: Block unrestricted ingress (handler CWE-284)
+      applies_to:
+        target_kind: config
+        path_globs:
+          - "**/*.rules"
+          - "**/*.conf"
+          - "**/*.cfg"
+          - "**/*.txt"
+          - "**/*.tf"
+          - "**/*.hcl"
+          - "**/*.tfvars"
+      rules:
+        - cwe_blocklist:
+            - CWE-284
+      action: block
+      enabled: true
+    - id: block-uninterpretable-config
+      name: Block uninterpretable config statements (handler CWE-754)
+      applies_to:
+        target_kind: config
+        path_globs:
+          - "**/*.rules"
+          - "**/*.conf"
+          - "**/*.cfg"
+          - "**/*.txt"
+          - "**/*.tf"
+          - "**/*.hcl"
+          - "**/*.tfvars"
+      rules:
+        - cwe_blocklist:
+            - CWE-754
+      action: block
+      enabled: true
+  # Additional example policies (uncomment to tune for your org):
+  # - id: block-critical-code
+  #   name: Block critical code findings
+  #   applies_to:
+  #     target_kind: code
+  #     path_globs: ["**/*"]
+  #   rules:
+  #     - severity_threshold: critical
+  #   action: block
+  #   enabled: true
+  # - id: flag-high-config
+  #   name: Flag high-severity config findings
+  #   applies_to:
+  #     target_kind: config
+  #     path_globs: ["**/*"]
+  #   rules:
+  #     - severity_threshold: high
+  #   action: flag
+  #   enabled: true
+
+# ---------------------------------------------------------------------------
+# Audit log — append-only; pruning is operator-initiated (shift-left audit-prune)
+# ---------------------------------------------------------------------------
+audit:
+  retention_days: 365
+  # sqlite_path: data/findings/shift-left.db  # default: same file as findings
+
+# ---------------------------------------------------------------------------
+# API tokens — hashed at rest; mint via: shift-left token mint ...
+# See docs/auth-tokens.md
+# ---------------------------------------------------------------------------
+auth:
+  sqlite_path: data/findings/shift-left.db
+
+# ---------------------------------------------------------------------------
+# Deployment gate — commit status + branch protection (docs/gate-enforcement.md)
+# ---------------------------------------------------------------------------
+gate:
+  enabled: true
+  protected_branch: main
+  status_context: shift-left/gate
+  publish_commit_status: true
+  warn_if_branch_protection_missing: true
+  check_repo: shift-left/example-app
+  unclaimed_files:
+    enabled: true
+    # CWE-657: changed file outside declared review scope (secure design violation).
+    handler_asserted_cwe: CWE-657
+    policy_action: block  # block | flag
+    waivable: false  # not waivable — claim path or add pr_gate_exclusion_globs
+
+# ---------------------------------------------------------------------------
+# Advisory suppression — model-only findings stay in the UI, not CI/PR comments
+# ---------------------------------------------------------------------------
+# omit=true is the measured default. Foundation-Sec advisory findings measured
+# ~12% recall with 50-65% of evidence not present in the input file.
+# Foundry Constitution II names operator-burying as a recorded production failure.
+advisory_suppression:
+  omit_from_pr_comments: true
+  omit_from_review_api: true
+
+# ---------------------------------------------------------------------------
+# Web UI — Phase 4 (local presentation layer)
+# ---------------------------------------------------------------------------
+ui:
+  enabled: true
+  require_loopback_client: true
+  allow_remote_view: false
+
+# ---------------------------------------------------------------------------
+# Orchestrator service
+# ---------------------------------------------------------------------------
+orchestrator:
+  # Loopback default for Phase 4 UI sovereignty. Docker Compose sets ALLOW_NON_LOOPBACK_UI=true.
+  host: 127.0.0.1
+  port: 8080
+  # Max concurrent PR reviews
+  concurrency: 2
+  # Auto-detect Compose CLI: "docker compose" (plugin) or "docker-compose" (standalone).
+  # compose_command: docker compose
+  # Prefix for PR comments — makes model output clearly advisory
+  comment_prefix: |
+    ## Shift-Left Security Review (advisory)
+
+    **These are likely findings for human review — not a compliance verdict.**
+    The pipeline evaluates supplied diff text only; it does not scan live infrastructure.
+
+# ---------------------------------------------------------------------------
+# RBAC — development-only overrides (default: separation of duties enforced)
+# ---------------------------------------------------------------------------
+rbac:
+  # NEVER enable in production — permits commit author to approve their own change.
+  allow_self_approval: false
+
+# ---------------------------------------------------------------------------
+# Deployment — plan-only FMC Terraform (Phase 5 slice; no apply in this release)
+# ---------------------------------------------------------------------------
+deployment:
+  mode: plan_only
+  fmc:
+    enabled: false
+    terraform_workdir: examples/ftdv-firewall/terraform
+    terraform_bin: terraform
+    target_label: fmc-lab
+    username_env: TF_VAR_fmc_username
+    password_env: TF_VAR_fmc_password
+    host_env: TF_VAR_fmc_host
+    # TODO: verify FMC host:port and provider version against your lab FMC.
+    allowed_endpoint: null
+
+# ---------------------------------------------------------------------------
+# Resource limits
+# ---------------------------------------------------------------------------
+resources:
+  max_diff_bytes: 5242880
+  max_files_per_review: 100

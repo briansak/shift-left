@@ -1,0 +1,9 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "firewall/holdout-asa-nonrules-cfg.cfg",
+  "expected_rule_ids": [],
+  "expected_gate_cwes": [
+    "CWE-657"
+  ],
+  "description": ".cfg matches config_globs but not ASA parser scope; gate blocks as unclaimed (CWE-657)."
+}

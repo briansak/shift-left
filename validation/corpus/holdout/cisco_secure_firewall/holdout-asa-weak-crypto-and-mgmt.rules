@@ -1,0 +1,7 @@
+! HOLDOUT — IKE policy + mgmt plane on one paste from change window
+crypto ikev2 policy 200
+ encryption aes-128
+ integrity sha1
+ group 5
+!
+ssh 203.0.113.50 255.255.255.255 outside   ! vendor NOC — should be RFC1918 jump

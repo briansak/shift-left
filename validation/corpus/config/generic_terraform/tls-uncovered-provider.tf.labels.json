@@ -1,0 +1,6 @@
+{
+  "target_type": "generic_terraform",
+  "virtual_path": "terraform/tls-uncovered-provider.tf",
+  "expected_rule_ids": ["HCL-002"],
+  "description": "Parsable HCL with tls_* resources on generic_terraform — HCL-002 flags uncovered provider."
+}

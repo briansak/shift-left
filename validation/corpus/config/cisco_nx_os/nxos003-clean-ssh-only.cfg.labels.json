@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_nx_os",
+  "virtual_path": "switches/nxos003-clean-ssh-only.cfg",
+  "expected_rule_ids": [],
+  "description": "SSH feature enabled without telnet."
+}

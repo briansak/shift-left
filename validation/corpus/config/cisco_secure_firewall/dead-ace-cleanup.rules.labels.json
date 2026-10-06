@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "firewall/dead-ace-cleanup.rules",
+  "expected_rule_ids": [
+    "ASA-006"
+  ],
+  "description": "Emergency deny-all was never followed by ACE reordering."
+}

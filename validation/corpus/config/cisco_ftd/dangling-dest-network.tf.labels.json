@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "terraform/policies/dangling-dest-network.tf",
+  "expected_rule_ids": [
+    "FTD-008"
+  ],
+  "description": "Access rule references undefined destination network object."
+}

@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "firewall/shadow-safe-deny-tcp.rules",
+  "expected_rule_ids": [],
+  "description": "Protocol-specific deny does not shadow later permit ip."
+}

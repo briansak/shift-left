@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_ios_xe",
+  "virtual_path": "switches/clean-scoped.cfg",
+  "expected_rule_ids": [],
+  "description": "Scoped literals and resolved object-groups; interfaces, AAA, SNMP, management parsed cleanly."
+}

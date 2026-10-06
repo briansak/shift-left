@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "firewall/scoped-network-group-clean.rules",
+  "expected_rule_ids": [],
+  "description": "Network object-group resolves to narrow RFC1918 subnets; no ASA-007."
+}

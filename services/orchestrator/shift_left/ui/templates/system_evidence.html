@@ -1,0 +1,108 @@
+{% set rc = evidence_view.reference_cache %}
+{% set ep = evidence_view.egress_probe %}
+{% set tier1 = evidence_view.tier1 %}
+
+<section class="card">
+  <div class="card-body">
+    <h2 class="system-evidence-section-title">Network paths</h2>
+    <div class="targets-table-wrap">
+      <table class="targets-data-table">
+        <thead>
+          <tr>
+            <th>Path</th>
+            <th>Description</th>
+            <th>Public internet</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in evidence_view.egress_paths %}
+          <tr>
+            <td><code>{{ row.path }}</code></td>
+            <td>{{ row.description }}{% if row.operator_initiated %} (operator-initiated){% endif %}</td>
+            <td>{% if row.internet_egress %}yes{% else %}no{% endif %}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="system-config-field-inline">
+      Egress probe:
+      {% if ep.state == 'skipped_connected_dev' %}skipped (connected dev host)
+      {% elif ep.state == 'disabled' %}disabled
+      {% elif ep.state == 'blocked' %}blocked (expected)
+      {% elif ep.state == 'unexpected_allow' %}unexpected allow
+      {% else %}not run{% endif %}
+      — {{ ep.message }}
+    </p>
+  </div>
+</section>
+
+<section class="card">
+  <div class="card-body">
+    <h2 class="system-evidence-section-title">Sovereignty (Tier 1)</h2>
+    <p class="system-config-tier-note">{{ tier1.immutable_note }}</p>
+    <p><code>sovereignty.deny_egress</code>: {{ tier1['sovereignty.deny_egress'] }}</p>
+    <p><code>sovereignty.runtime_allowed_endpoints</code>: {{ tier1['sovereignty.runtime_allowed_endpoints']|join(', ') if tier1['sovereignty.runtime_allowed_endpoints'] else '—' }}</p>
+  </div>
+</section>
+
+<section class="card">
+  <div class="card-body">
+    <h2 class="system-evidence-section-title">GGUF checksums</h2>
+    <div class="targets-table-wrap">
+      <table class="targets-data-table">
+        <thead>
+          <tr>
+            <th>Profile</th>
+            <th>Path</th>
+            <th>Staged</th>
+            <th>Expected SHA-256</th>
+            <th>Files</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in evidence_view.gguf_rows %}
+          <tr>
+            <td class="targets-cell-primary">{{ row.profile }}</td>
+            <td><code>{{ row.path }}</code></td>
+            <td>
+              <span class="status-pill status-pill--{% if row.staged %}healthy{% else %}danger{% endif %}">
+                <span class="status-pill-dot" aria-hidden="true"></span>
+                {% if row.staged %}staged{% else %}not staged{% endif %}
+              </span>
+            </td>
+            <td><code>{{ row.expected_sha256 }}</code></td>
+            <td>{{ row.files|join(', ') if row.files else '—' }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="card-body">
+    <h2 class="system-evidence-section-title">Reference data freshness</h2>
+    <p>Present: {{ rc.present }} · Stale: {{ rc.stale }} · Synced: {{ rc.synced_at or 'never' }}</p>
+    <p>Newest ingested lastModified: {{ rc.newest_last_modified or 'unavailable' }}
+      {% if rc.newest_last_modified_source %}({{ rc.newest_last_modified_source }}){% endif %}
+    </p>
+    {% if rc.newest_last_modified_note %}
+    <p class="system-config-field-inline">{{ rc.newest_last_modified_note }}</p>
+    {% endif %}
+    <p class="system-config-field-inline">Audit retention: {{ evidence_view.audit_retention_days }} days</p>
+    {% if evidence_view.can_sync_reference %}
+    <form method="post" action="/ui/system/reference/sync">
+      <button type="submit" name="fetch_nvd" value="false" class="btn btn-secondary btn-sm">Sync from local seed (no egress)</button>
+    </form>
+    <form method="post" action="/ui/system/reference/sync" style="margin-top: var(--space-2);">
+      <p class="system-config-field-inline">Operator-initiated egress — contacts NVD/MITRE when enabled.</p>
+      <label>NVD confirmation phrase</label>
+      <input type="text" name="confirmation_phrase" placeholder="SYNC WITH NVD EGRESS">
+      <input type="hidden" name="fetch_nvd" value="true">
+      <button type="submit" class="btn btn-secondary btn-sm">Sync with NVD fetch (egress)</button>
+    </form>
+    {% endif %}
+  </div>
+</section>

@@ -1,0 +1,5 @@
+{
+  "id": "CWE-693",
+  "name": "Protection Mechanism Failure",
+  "description": "The product does not use or incorrectly uses a protection mechanism that provides sufficient defense against unauthorized actors."
+}

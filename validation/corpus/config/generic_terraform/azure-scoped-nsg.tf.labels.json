@@ -1,0 +1,6 @@
+{
+  "target_type": "generic_terraform",
+  "virtual_path": "terraform/azure-scoped-nsg.tf",
+  "expected_rule_ids": [],
+  "description": "Azure NSG scoped to VNet."
+}

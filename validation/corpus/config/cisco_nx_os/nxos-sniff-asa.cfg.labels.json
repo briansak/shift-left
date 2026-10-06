@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_nx_os",
+  "virtual_path": "switches/nxos-sniff-asa.cfg",
+  "expected_rule_ids": ["NXOS-001", "NXOS-002"],
+  "description": "Platform mismatch plus ASA-format unparsed ACL line — NXOS-002 and NXOS-001 both fire."
+}

@@ -1,0 +1,968 @@
+{
+  "manifest": {
+    "methodology": "VLoc Bench-style multi-defect corpus: real CVEs, fix commits from OSV/GitHub advisories, ground truth = non-test/doc/changelog/version files in the effective fix commit, checkout at parent (pre-fix), .git stripped. Expanded for within-repo abstraction comparison.",
+    "runs_per_entry": 3,
+    "size_cap_mib": 20,
+    "target_entry_count": 34,
+    "design_matrix": {
+      "repo_x_abstraction": {
+        "aio-libs/aiohttp": {
+          "Base": 4,
+          "Class": 0
+        },
+        "django/django": {
+          "Base": 1,
+          "Class": 2
+        },
+        "getsentry/sentry-python": {
+          "Base": 0,
+          "Class": 1
+        },
+        "lxml/lxml": {
+          "Base": 2,
+          "Class": 0
+        },
+        "pallets/flask": {
+          "Base": 1,
+          "Class": 1
+        },
+        "pallets/jinja": {
+          "Base": 2,
+          "Class": 0
+        },
+        "pallets/werkzeug": {
+          "Base": 1,
+          "Class": 1
+        },
+        "paramiko/paramiko": {
+          "Base": 0,
+          "Class": 1
+        },
+        "psf/requests": {
+          "Base": 0,
+          "Class": 2
+        },
+        "pyca/cryptography": {
+          "Base": 1,
+          "Class": 1
+        },
+        "python-pillow/Pillow": {
+          "Base": 1,
+          "Class": 1
+        },
+        "scrapy/scrapy": {
+          "Base": 1,
+          "Class": 1
+        },
+        "tornadoweb/tornado": {
+          "Base": 0,
+          "Class": 1
+        },
+        "twisted/twisted": {
+          "Base": 1,
+          "Class": 1
+        },
+        "urllib3/urllib3": {
+          "Base": 0,
+          "Class": 3
+        },
+        "yaml/pyyaml": {
+          "Base": 1,
+          "Class": 1
+        },
+        "zopefoundation/RestrictedPython": {
+          "Base": 0,
+          "Class": 1
+        }
+      },
+      "repos_with_both_abstractions": [
+        "django/django",
+        "pallets/flask",
+        "pallets/werkzeug",
+        "pyca/cryptography",
+        "python-pillow/Pillow",
+        "scrapy/scrapy",
+        "twisted/twisted",
+        "yaml/pyyaml"
+      ],
+      "repos_with_both_count": 8
+    }
+  },
+  "entries": [
+    {
+      "entry_id": "CVE-2014-1932-pillow",
+      "cve": "CVE-2014-1932",
+      "repo": "python-pillow/Pillow",
+      "cwe": "CWE-59",
+      "osv_fix_commit": "4e9f367dfd3f04c8f5d23f7f759ec12782e10ee7",
+      "fix_commit": "4e9f367dfd3f04c8f5d23f7f759ec12782e10ee7",
+      "parent_commit": "b1b88cf4d255c4b9faf1dae05faaa78091268cb1",
+      "ground_truth_files": [
+        "PIL/EpsImagePlugin.py",
+        "PIL/Image.py",
+        "PIL/IptcImagePlugin.py",
+        "PIL/JpegImagePlugin.py"
+      ],
+      "ground_truth_file_count": 4,
+      "corpus_path": "validation/corpus/multidefect/CVE-2014-1932-pillow",
+      "file_count": 428,
+      "python_file_count": 210,
+      "size_bytes": 4436580,
+      "size_mib": 4.23,
+      "language_mix": {
+        "python": 210
+      },
+      "cwe_abstraction": "Base",
+      "cwe_in_localization_catalog": true,
+      "cwe_file_localizable": true,
+      "cwe_localization_flag": "catalog"
+    },
+    {
+      "entry_id": "CVE-2014-3589-pillow",
+      "cve": "CVE-2014-3589",
+      "repo": "python-pillow/Pillow",
+      "cwe": "CWE-20",
+      "osv_fix_commit": "205e056f8f9b06ed7b925cf8aa0874bc4aaf8a7d",
+      "fix_commit": "205e056f8f9b06ed7b925cf8aa0874bc4aaf8a7d",
+      "parent_commit": "cc6610e4f3fae0e4954238b54bbf263c83c78f10",
+      "ground_truth_files": [
+        "PIL/IcnsImagePlugin.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2014-3589-pillow",
+      "file_count": 618,
+      "python_file_count": 229,
+      "size_bytes": 11240725,
+      "size_mib": 10.72,
+      "language_mix": {
+        "python": 229
+      },
+      "cwe_abstraction": "Class",
+      "cwe_in_localization_catalog": false,
+      "cwe_file_localizable": false,
+      "cwe_localization_flag": "pillar_or_class"
+    },
+    {
+      "entry_id": "CVE-2015-8213-django",
+      "cve": "CVE-2015-8213",
+      "repo": "django/django",
+      "cwe": "CWE-200",
+      "osv_fix_commit": "316bc3fc9437c5960c24baceb93c73f1939711e4",
+      "fix_commit": "316bc3fc9437c5960c24baceb93c73f1939711e4",
+      "parent_commit": "710e11d076b9e5ef3e3b486dfb70bb55b788691c",
+      "ground_truth_files": [
+        "django/utils/formats.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2015-8213-django",
+      "file_count": 3057,
+      "python_file_count": 829,
+      "size_bytes": 16285372,
+      "size_mib": 15.53,
+      "language_mix": {
+        "python": 829
+      },
+      "cwe_abstraction": "Class",
+      "cwe_in_localization_catalog": false,
+      "cwe_file_localizable": false,
+      "cwe_localization_flag": "pillar_or_class"
+    },
+    {
+      "entry_id": "CVE-2016-2513-django",
+      "cve": "CVE-2016-2513",
+      "repo": "django/django",
+      "cwe": "CWE-200",
+      "osv_fix_commit": "67b46ba7016da2d259c1ecc7d666d11f5e1cfaab",
+      "fix_commit": "67b46ba7016da2d259c1ecc7d666d11f5e1cfaab",
+      "parent_commit": "c5544d289233f501917e25970c03ed444abbd4f0",
+      "ground_truth_files": [
+        "django/contrib/auth/hashers.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2016-2513-django",
+      "file_count": 3144,
+      "python_file_count": 828,
+      "size_bytes": 16875298,
+      "size_mib": 16.09,
+      "language_mix": {
+        "python": 828
+      },
+      "cwe_abstraction": "Class",
+      "cwe_in_localization_catalog": false,
+      "cwe_file_localizable": false,
+      "cwe_localization_flag": "pillar_or_class"
+    },
+    {
+      "entry_id": "CVE-2017-18342-pyyaml",
+      "cve": "CVE-2017-18342",
+      "repo": "yaml/pyyaml",
+      "cwe": "CWE-502",
+      "osv_fix_commit": "e471e86bf6dabdad45a1438c20a4a5c033eb9034",
+      "fix_commit": "83b73947530bab216fb8fdb9ded521497a6d1920",
+      "parent_commit": "ccc40f3e2ba384858c0d32263ac3e3a6626ab15e",
+      "ground_truth_files": [
+        "lib/yaml/__init__.py",
+        "lib/yaml/constructor.py",
+        "lib/yaml/cyaml.py",
+        "lib/yaml/loader.py",
+        "lib3/yaml/__init__.py",
+        "lib3/yaml/constructor.py",
+        "lib3/yaml/cyaml.py",
+        "lib3/yaml/loader.py"
+      ],
+      "ground_truth_file_count": 8,
+      "corpus_path": "validation/corpus/multidefect/CVE-2017-18342-pyyaml",
+      "file_count": 39,
+      "python_file_count": 36,
+      "size_bytes": 519266,
+      "size_mib": 0.5,
+      "language_mix": {
+        "python": 36
+      },
+      "cwe_abstraction": "Base",
+      "cwe_in_localization_catalog": true,
+      "cwe_file_localizable": true,
+      "cwe_localization_flag": "catalog"
+    },
+    {
+      "entry_id": "CVE-2018-19787-lxml",
+      "cve": "CVE-2018-19787",
+      "repo": "lxml/lxml",
+      "cwe": "CWE-79",
+      "osv_fix_commit": "6be1d081b49c97cfd7b3fbd934a193b668629109",
+      "fix_commit": "6be1d081b49c97cfd7b3fbd934a193b668629109",
+      "parent_commit": "1f534e2b957c0ea537c42d87fc262cb7069f0b1c",
+      "ground_truth_files": [
+        "src/lxml/html/clean.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2018-19787-lxml",
+      "file_count": 301,
+      "python_file_count": 92,
+      "size_bytes": 3313668,
+      "size_mib": 3.16,
+      "language_mix": {
+        "python": 92
+      },
+      "cwe_abstraction": "Base",
+      "cwe_in_localization_catalog": true,
+      "cwe_file_localizable": true,
+      "cwe_localization_flag": "catalog"
+    },
+    {
+      "entry_id": "CVE-2018-7750-paramiko",
+      "cve": "CVE-2018-7750",
+      "repo": "paramiko/paramiko",
+      "cwe": "CWE-287",
+      "osv_fix_commit": "fa29bd8446c8eab237f5187d28787727b4610516",
+      "fix_commit": "fa29bd8446c8eab237f5187d28787727b4610516",
+      "parent_commit": "aefd28a7f00c4250d113d375e96abf5da3eb89f9",
+      "ground_truth_files": [
+        "paramiko/common.py",
+        "paramiko/transport.py"
+      ],
+      "ground_truth_file_count": 2,
+      "corpus_path": "validation/corpus/multidefect/CVE-2018-7750-paramiko",
+      "file_count": 132,
+      "python_file_count": 77,
+      "size_bytes": 1057780,
+      "size_mib": 1.01,
+      "language_mix": {
+        "python": 77
+      },
+      "cwe_abstraction": "Class",
+      "cwe_in_localization_catalog": false,
+      "cwe_file_localizable": false,
+      "cwe_localization_flag": "pillar_or_class"
+    },
+    {
+      "entry_id": "CVE-2019-1010083-flask",
+      "cve": "CVE-2019-1010083",
+      "repo": "pallets/flask",
+      "cwe": "CWE-400",
+      "osv_fix_commit": "d92b64aa275841b0c9aea3903aba72fbc4275d91",
+      "fix_commit": "c07475935cdaec6dbb5ffe2df8bd5a4abafff99b",
+      "parent_commit": "cf4923bf586c51365970ee11a33771104241cf60",
+      "ground_truth_files": [
+        "flask/cli.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2019-1010083-flask",
+      "file_count": 216,
+      "python_file_count": 70,
+      "size_bytes": 1445285,
+      "size_mib": 1.38,
+      "language_mix": {
+        "python": 70
+      },
+      "cwe_abstraction": "Class",
+      "cwe_in_localization_catalog": false,
+      "cwe_file_localizable": false,
+      "cwe_localization_flag": "pillar_or_class"
+    },
+    {
+      "entry_id": "CVE-2019-12387-twisted",
+      "cve": "CVE-2019-12387",
+      "repo": "twisted/twisted",
+      "cwe": "CWE-74",
+      "osv_fix_commit": "6c61fc4503ae39ab8ecee52d10f10ee2c371d7e2",
+      "fix_commit": "6c61fc4503ae39ab8ecee52d10f10ee2c371d7e2",
+      "parent_commit": "d0bcf0ba9573a010d199bb3e0b1f5f22a3c72bb0",
+      "ground_truth_files": [
+        "src/twisted/web/_newclient.py",
+        "src/twisted/web/client.py"
+      ],
+      "ground_truth_file_count": 2,
+      "corpus_path": "validation/corpus/multidefect/CVE-2019-12387-twisted",
+      "file_count": 1583,
+      "python_file_count": 1116,
+      "size_bytes": 16293649,
+      "size_mib": 15.54,
+      "language_mix": {
+        "python": 1116
+      },
+      "cwe_abstraction": "Class",
+      "cwe_in_localization_catalog": false,
+      "cwe_file_localizable": false,
+      "cwe_localization_flag": "pillar_or_class"
+    },
+    {
+      "entry_id": "CVE-2020-14343-pyyaml",
+      "cve": "CVE-2020-14343",
+      "repo": "yaml/pyyaml",
+      "cwe": "CWE-20",
+      "osv_fix_commit": "58d0cb7ee09954c67fabfbd714c5673b03e7a9e1",
+      "fix_commit": "a001f2782501ad2d24986959f0239a354675f9dc",
+      "parent_commit": "fe150624146ee631bb0f95e45731e8b01281fed6",
+      "ground_truth_files": [
+        "lib/yaml/constructor.py",
+        "lib3/yaml/constructor.py"
+      ],
+      "ground_truth_file_count": 2,
+      "corpus_path": "validation/corpus/multidefect/CVE-2020-14343-pyyaml",
+      "file_count": 46,
+      "python_file_count": 39,
+      "size_bytes": 543566,
+      "size_mib": 0.52,
+      "language_mix": {
+        "python": 39
+      },
+      "cwe_abstraction": "Class",
+      "cwe_in_localization_catalog": false,
+      "cwe_file_localizable": false,
+      "cwe_localization_flag": "pillar_or_class"
+    },
+    {
+      "entry_id": "CVE-2020-26137-urllib3",
+      "cve": "CVE-2020-26137",
+      "repo": "urllib3/urllib3",
+      "cwe": "CWE-74",
+      "osv_fix_commit": "1dd69c5c5982fae7c87a620d487c2ebf7a6b436b",
+      "fix_commit": "1dd69c5c5982fae7c87a620d487c2ebf7a6b436b",
+      "parent_commit": "a46c08c533cfdf10260e74e2c03fa84a13b6c456",
+      "ground_truth_files": [
+        "src/urllib3/connection.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2020-26137-urllib3",
+      "file_count": 127,
+      "python_file_count": 82,
+      "size_bytes": 900157,
+      "size_mib": 0.86,
+      "language_mix": {
+        "python": 82
+      },
+      "cwe_abstraction": "Class",
+      "cwe_in_localization_catalog": false,
+      "cwe_file_localizable": false,
+      "cwe_localization_flag": "pillar_or_class"
+    },
+    {
+      "entry_id": "CVE-2020-7471-django",
+      "cve": "CVE-2020-7471",
+      "repo": "django/django",
+      "cwe": "CWE-89",
+      "osv_fix_commit": "eb31d845323618d688ad429479c6dda973056136",
+      "fix_commit": "eb31d845323618d688ad429479c6dda973056136",
+      "parent_commit": "6b178a3e930f72069f3cda2e6a09d1b320fc09ec",
+      "ground_truth_files": [
+        "django/contrib/postgres/aggregates/general.py",
+        "django/contrib/postgres/aggregates/mixins.py"
+      ],
+      "ground_truth_file_count": 2,
+      "corpus_path": "validation/corpus/multidefect/CVE-2020-7471-django",
+      "file_count": 3381,
+      "python_file_count": 822,
+      "size_bytes": 19440774,
+      "size_mib": 18.54,
+      "language_mix": {
+        "python": 822
+      },
+      "cwe_abstraction": "Base",
+      "cwe_in_localization_catalog": true,
+      "cwe_file_localizable": true,
+      "cwe_localization_flag": "catalog"
+    },
+    {
+      "entry_id": "CVE-2021-21330-aiohttp",
+      "cve": "CVE-2021-21330",
+      "repo": "aio-libs/aiohttp",
+      "cwe": "CWE-601",
+      "osv_fix_commit": "2545222a3853e31ace15d87ae0e2effb7da0c96b",
+      "fix_commit": "2545222a3853e31ace15d87ae0e2effb7da0c96b",
+      "parent_commit": "f2afa2f054ba9e6c5d142e00233f0073925e7893",
+      "ground_truth_files": [
+        "aiohttp/web_middlewares.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2021-21330-aiohttp",
+      "file_count": 342,
+      "python_file_count": 130,
+      "size_bytes": 2793107,
+      "size_mib": 2.66,
+      "language_mix": {
+        "python": 130
+      },
+      "cwe_abstraction": "Base",
+      "cwe_in_localization_catalog": true,
+      "cwe_file_localizable": true,
+      "cwe_localization_flag": "catalog"
+    },
+    {
+      "entry_id": "CVE-2021-28957-lxml",
+      "cve": "CVE-2021-28957",
+      "repo": "lxml/lxml",
+      "cwe": "CWE-79",
+      "osv_fix_commit": "a5f9cb52079dc57477c460dbe6ba0f775e14a999",
+      "fix_commit": "10ec1b4e9f93713513a3264ed6158af22492f270",
+      "parent_commit": "e986a9cb5d54827c59aefa8803bc90954d67221e",
+      "ground_truth_files": [
+        "src/lxml/html/defs.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2021-28957-lxml",
+      "file_count": 64,
+      "python_file_count": 38,
+      "size_bytes": 737754,
+      "size_mib": 0.7,
+      "language_mix": {
+        "python": 38
+      },
+      "cwe_abstraction": "Base",
+      "cwe_in_localization_catalog": true,
+      "cwe_file_localizable": true,
+      "cwe_localization_flag": "catalog"
+    },
+    {
+      "entry_id": "CVE-2021-41125-scrapy",
+      "cve": "CVE-2021-41125",
+      "repo": "scrapy/scrapy",
+      "cwe": "CWE-200",
+      "osv_fix_commit": "b01d69a1bf48060daec8f751368622352d8b85a6",
+      "fix_commit": "b01d69a1bf48060daec8f751368622352d8b85a6",
+      "parent_commit": "4183925b4b7114f772883c04e7cef44d766f0f80",
+      "ground_truth_files": [
+        "scrapy/downloadermiddlewares/httpauth.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2021-41125-scrapy",
+      "file_count": 472,
+      "python_file_count": 293,
+      "size_bytes": 3093830,
+      "size_mib": 2.95,
+      "language_mix": {
+        "python": 293
+      },
+      "cwe_abstraction": "Class",
+      "cwe_in_localization_catalog": false,
+      "cwe_file_localizable": false,
+      "cwe_localization_flag": "pillar_or_class"
+    },
+    {
+      "entry_id": "CVE-2023-23931-cryptography",
+      "cve": "CVE-2023-23931",
+      "repo": "pyca/cryptography",
+      "cwe": "CWE-754",
+      "osv_fix_commit": "d6951dca25de45abd52da51b608055371fbcde4e",
+      "fix_commit": "d6951dca25de45abd52da51b608055371fbcde4e",
+      "parent_commit": "138da90c8450446b19619e3faa77b9da54c34be3",
+      "ground_truth_files": [
+        "src/cryptography/__about__.py",
+        "src/cryptography/hazmat/backends/openssl/ciphers.py",
+        "vectors/cryptography_vectors/__about__.py"
+      ],
+      "ground_truth_file_count": 3,
+      "corpus_path": "validation/corpus/multidefect/CVE-2023-23931-cryptography",
+      "file_count": 155,
+      "python_file_count": 117,
+      "size_bytes": 1002852,
+      "size_mib": 0.96,
+      "language_mix": {
+        "python": 117
+      },
+      "cwe_abstraction": "Class",
+      "cwe_in_localization_catalog": false,
+      "cwe_file_localizable": false,
+      "cwe_localization_flag": "pillar_or_class"
+    },
+    {
+      "entry_id": "CVE-2023-25577-werkzeug",
+      "cve": "CVE-2023-25577",
+      "repo": "pallets/werkzeug",
+      "cwe": "CWE-770",
+      "osv_fix_commit": "517cac5a804e8c4dc4ed038bb20dacd038e7a9f1",
+      "fix_commit": "517cac5a804e8c4dc4ed038bb20dacd038e7a9f1",
+      "parent_commit": "cf275f42acad1b5950c50ffe8ef58fe62cdce028",
+      "ground_truth_files": [
+        "src/werkzeug/formparser.py",
+        "src/werkzeug/sansio/multipart.py",
+        "src/werkzeug/wrappers/request.py"
+      ],
+      "ground_truth_file_count": 3,
+      "corpus_path": "validation/corpus/multidefect/CVE-2023-25577-werkzeug",
+      "file_count": 295,
+      "python_file_count": 128,
+      "size_bytes": 2021740,
+      "size_mib": 1.93,
+      "language_mix": {
+        "python": 128
+      },
+      "cwe_abstraction": "Base",
+      "cwe_in_localization_catalog": true,
+      "cwe_file_localizable": true,
+      "cwe_localization_flag": "catalog"
+    },
+    {
+      "entry_id": "CVE-2023-30861-flask",
+      "cve": "CVE-2023-30861",
+      "repo": "pallets/flask",
+      "cwe": "CWE-539",
+      "osv_fix_commit": "afd63b16170b7c047f5758eb910c416511e9c965",
+      "fix_commit": "afd63b16170b7c047f5758eb910c416511e9c965",
+      "parent_commit": "a6367dac747c1e149c60767eee7e8aa9c281c58e",
+      "ground_truth_files": [
+        "src/flask/sessions.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2023-30861-flask",
+      "file_count": 253,
+      "python_file_count": 83,
+      "size_bytes": 1602241,
+      "size_mib": 1.53,
+      "language_mix": {
+        "python": 83
+      },
+      "cwe_abstraction": "Variant",
+      "cwe_in_localization_catalog": true,
+      "cwe_file_localizable": true,
+      "cwe_localization_flag": "catalog"
+    },
+    {
+      "entry_id": "CVE-2023-32681-requests",
+      "cve": "CVE-2023-32681",
+      "repo": "psf/requests",
+      "cwe": "CWE-200",
+      "osv_fix_commit": "147c8511ddbfa5e8f71bbf5c18ede0c4ceb3bba4",
+      "fix_commit": "74ea7cf7a6a27a4eeb2ae24e162bcc942a6706d5",
+      "parent_commit": "302225334678490ec66b3614a9dddb8a02c5f4fe",
+      "ground_truth_files": [
+        "requests/sessions.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2023-32681-requests",
+      "file_count": 100,
+      "python_file_count": 35,
+      "size_bytes": 5137218,
+      "size_mib": 4.9,
+      "language_mix": {
+        "python": 35
+      },
+      "cwe_abstraction": "Class",
+      "cwe_in_localization_catalog": false,
+      "cwe_file_localizable": false,
+      "cwe_localization_flag": "pillar_or_class"
+    },
+    {
+      "entry_id": "CVE-2023-37271-restrictedpython",
+      "cve": "CVE-2023-37271",
+      "repo": "zopefoundation/RestrictedPython",
+      "cwe": "CWE-913",
+      "osv_fix_commit": "f9ef13be3f38cb55fb6f714c608075e3c895032e",
+      "fix_commit": "f8b604d366a98e546022a48240a50db411134e28",
+      "parent_commit": "68d7cd6328ff27d5bc7c1f66ef8510f6407c4128",
+      "ground_truth_files": [
+        "src/RestrictedPython/transformer.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2023-37271-restrictedpython",
+      "file_count": 110,
+      "python_file_count": 60,
+      "size_bytes": 737216,
+      "size_mib": 0.7,
+      "language_mix": {
+        "python": 60
+      },
+      "cwe_abstraction": "Class",
+      "cwe_in_localization_catalog": false,
+      "cwe_file_localizable": false,
+      "cwe_localization_flag": "pillar_or_class"
+    },
+    {
+      "entry_id": "CVE-2023-43804-urllib3",
+      "cve": "CVE-2023-43804",
+      "repo": "urllib3/urllib3",
+      "cwe": "CWE-200",
+      "osv_fix_commit": "c9016bf464751a02b7e46f8b86504f47d4238784",
+      "fix_commit": "01220354d389cd05474713f8c982d05c9b17aafb",
+      "parent_commit": "e63989f97d206e839ab9170c8a76e3e097cc60e8",
+      "ground_truth_files": [
+        "src/urllib3/util/retry.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2023-43804-urllib3",
+      "file_count": 149,
+      "python_file_count": 89,
+      "size_bytes": 1093494,
+      "size_mib": 1.04,
+      "language_mix": {
+        "python": 89
+      },
+      "cwe_abstraction": "Class",
+      "cwe_in_localization_catalog": false,
+      "cwe_file_localizable": false,
+      "cwe_localization_flag": "pillar_or_class"
+    },
+    {
+      "entry_id": "CVE-2023-45803-urllib3",
+      "cve": "CVE-2023-45803",
+      "repo": "urllib3/urllib3",
+      "cwe": "CWE-200",
+      "osv_fix_commit": "4e98d57809dacab1cbe625fddeec1a290c478ea9",
+      "fix_commit": "4e98d57809dacab1cbe625fddeec1a290c478ea9",
+      "parent_commit": "3c6e079d1395ae815484b4a8f0ed7657a4dc8d0f",
+      "ground_truth_files": [
+        "dummyserver/handlers.py",
+        "src/urllib3/_collections.py",
+        "src/urllib3/connectionpool.py",
+        "src/urllib3/poolmanager.py"
+      ],
+      "ground_truth_file_count": 4,
+      "corpus_path": "validation/corpus/multidefect/CVE-2023-45803-urllib3",
+      "file_count": 145,
+      "python_file_count": 70,
+      "size_bytes": 1131835,
+      "size_mib": 1.08,
+      "language_mix": {
+        "python": 70
+      },
+      "cwe_abstraction": "Class",
+      "cwe_in_localization_catalog": false,
+      "cwe_file_localizable": false,
+      "cwe_localization_flag": "pillar_or_class"
+    },
+    {
+      "entry_id": "CVE-2023-46136-werkzeug",
+      "cve": "CVE-2023-46136",
+      "repo": "pallets/werkzeug",
+      "cwe": "CWE-400",
+      "osv_fix_commit": "ce4eff5902d4a6b41a20ecc6e4029741284a87fd",
+      "fix_commit": "b1916c0c083e0be1c9d887ee2f3d696922bfc5c1",
+      "parent_commit": "726eaa28593d859548da3477859c914732f012ef",
+      "ground_truth_files": [
+        "src/werkzeug/sansio/multipart.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2023-46136-werkzeug",
+      "file_count": 312,
+      "python_file_count": 138,
+      "size_bytes": 1951968,
+      "size_mib": 1.86,
+      "language_mix": {
+        "python": 138
+      },
+      "cwe_abstraction": "Class",
+      "cwe_in_localization_catalog": false,
+      "cwe_file_localizable": false,
+      "cwe_localization_flag": "pillar_or_class"
+    },
+    {
+      "entry_id": "CVE-2023-47627-aiohttp",
+      "cve": "CVE-2023-47627",
+      "repo": "aio-libs/aiohttp",
+      "cwe": "CWE-444",
+      "osv_fix_commit": "d5c12ba890557a575c313bb3017910d7616fce3d",
+      "fix_commit": "d5c12ba890557a575c313bb3017910d7616fce3d",
+      "parent_commit": "8a3977acac632d1f02aa7e047da51e27a717d724",
+      "ground_truth_files": [
+        "aiohttp/http_parser.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2023-47627-aiohttp",
+      "file_count": 257,
+      "python_file_count": 131,
+      "size_bytes": 2874455,
+      "size_mib": 2.74,
+      "language_mix": {
+        "python": 131
+      },
+      "cwe_abstraction": "Base",
+      "cwe_in_localization_catalog": true,
+      "cwe_file_localizable": true,
+      "cwe_localization_flag": "catalog"
+    },
+    {
+      "entry_id": "CVE-2024-1892-scrapy",
+      "cve": "CVE-2024-1892",
+      "repo": "scrapy/scrapy",
+      "cwe": "CWE-1333",
+      "osv_fix_commit": "479619b340f197a8f24c5db45bc068fb8755f2c5",
+      "fix_commit": "479619b340f197a8f24c5db45bc068fb8755f2c5",
+      "parent_commit": "809bfac4890f75fc73607318a04d2ccba71b3d9f",
+      "ground_truth_files": [
+        "scrapy/spiders/feed.py",
+        "scrapy/utils/iterators.py",
+        "scrapy/utils/response.py"
+      ],
+      "ground_truth_file_count": 3,
+      "corpus_path": "validation/corpus/multidefect/CVE-2024-1892-scrapy",
+      "file_count": 530,
+      "python_file_count": 345,
+      "size_bytes": 4134968,
+      "size_mib": 3.94,
+      "language_mix": {
+        "python": 345
+      },
+      "cwe_abstraction": "Base",
+      "cwe_in_localization_catalog": true,
+      "cwe_file_localizable": true,
+      "cwe_localization_flag": "catalog"
+    },
+    {
+      "entry_id": "CVE-2024-22195-jinja",
+      "cve": "CVE-2024-22195",
+      "repo": "pallets/jinja",
+      "cwe": "CWE-79",
+      "osv_fix_commit": "d9de4bb215fd1cc8092a410fb834c7c4060b1fc1",
+      "fix_commit": "7dd3680e6eea0d77fde024763657aa4d884ddb23",
+      "parent_commit": "d84a1743e4158733222105ff3b9c9d5da108868f",
+      "ground_truth_files": [
+        "src/jinja2/filters.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2024-22195-jinja",
+      "file_count": 120,
+      "python_file_count": 61,
+      "size_bytes": 998941,
+      "size_mib": 0.95,
+      "language_mix": {
+        "python": 61
+      },
+      "cwe_abstraction": "Base",
+      "cwe_in_localization_catalog": true,
+      "cwe_file_localizable": true,
+      "cwe_localization_flag": "catalog"
+    },
+    {
+      "entry_id": "CVE-2024-23334-aiohttp",
+      "cve": "CVE-2024-23334",
+      "repo": "aio-libs/aiohttp",
+      "cwe": "CWE-22",
+      "osv_fix_commit": "24a6d64966d99182e95f5d3a29541ef2fec397ad",
+      "fix_commit": "1c335944d6a8b1298baf179b7c0b3069f10c514b",
+      "parent_commit": "33ccdfb0a12690af5bb49bda2319ec0907fa7827",
+      "ground_truth_files": [
+        "aiohttp/web_urldispatcher.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2024-23334-aiohttp",
+      "file_count": 381,
+      "python_file_count": 132,
+      "size_bytes": 3249510,
+      "size_mib": 3.1,
+      "language_mix": {
+        "python": 132
+      },
+      "cwe_abstraction": "Base",
+      "cwe_in_localization_catalog": true,
+      "cwe_file_localizable": true,
+      "cwe_localization_flag": "catalog"
+    },
+    {
+      "entry_id": "CVE-2024-26130-cryptography",
+      "cve": "CVE-2024-26130",
+      "repo": "pyca/cryptography",
+      "cwe": "CWE-476",
+      "osv_fix_commit": "97d231672763cdb5959a3b191e692a362f1b9e55",
+      "fix_commit": "97d231672763cdb5959a3b191e692a362f1b9e55",
+      "parent_commit": "4398f19e0700ffb1bb1e13be4f8efe7271feb62a",
+      "ground_truth_files": [
+        "src/cryptography/hazmat/backends/openssl/backend.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2024-26130-cryptography",
+      "file_count": 212,
+      "python_file_count": 100,
+      "size_bytes": 1218744,
+      "size_mib": 1.16,
+      "language_mix": {
+        "python": 100
+      },
+      "cwe_abstraction": "Base",
+      "cwe_in_localization_catalog": true,
+      "cwe_file_localizable": true,
+      "cwe_localization_flag": "catalog"
+    },
+    {
+      "entry_id": "CVE-2024-27306-aiohttp",
+      "cve": "CVE-2024-27306",
+      "repo": "aio-libs/aiohttp",
+      "cwe": "CWE-79",
+      "osv_fix_commit": "b3397c7ac44fc80206d28f1dd0d1f3b10c4ec572",
+      "fix_commit": "28335525d1eac015a7e7584137678cbb6ff19397",
+      "parent_commit": "ed43040613988fc4666109aca82a5180ff165df5",
+      "ground_truth_files": [
+        "aiohttp/web_urldispatcher.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2024-27306-aiohttp",
+      "file_count": 290,
+      "python_file_count": 133,
+      "size_bytes": 3229895,
+      "size_mib": 3.08,
+      "language_mix": {
+        "python": 133
+      },
+      "cwe_abstraction": "Base",
+      "cwe_in_localization_catalog": true,
+      "cwe_file_localizable": true,
+      "cwe_localization_flag": "catalog"
+    },
+    {
+      "entry_id": "CVE-2024-34064-jinja",
+      "cve": "CVE-2024-34064",
+      "repo": "pallets/jinja",
+      "cwe": "CWE-79",
+      "osv_fix_commit": "dd4a8b5466d8790540c181590b14db4d4d889d57",
+      "fix_commit": "0668239dc6b44ef38e7a6c9f91f312fd4ca581cb",
+      "parent_commit": "a7863ba9d3521f1450f821119c50d19d7ecea329",
+      "ground_truth_files": [
+        "src/jinja2/filters.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2024-34064-jinja",
+      "file_count": 118,
+      "python_file_count": 60,
+      "size_bytes": 997381,
+      "size_mib": 0.95,
+      "language_mix": {
+        "python": 60
+      },
+      "cwe_abstraction": "Base",
+      "cwe_in_localization_catalog": true,
+      "cwe_file_localizable": true,
+      "cwe_localization_flag": "catalog"
+    },
+    {
+      "entry_id": "CVE-2024-35195-requests",
+      "cve": "CVE-2024-35195",
+      "repo": "psf/requests",
+      "cwe": "CWE-670",
+      "osv_fix_commit": "a58d7f2ffb4d00b46dca2d70a3932a0b37e22fac",
+      "fix_commit": "a58d7f2ffb4d00b46dca2d70a3932a0b37e22fac",
+      "parent_commit": "eea3bbf9ac635f465ee6c9903dc57c677952dafd",
+      "ground_truth_files": [
+        "src/requests/adapters.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2024-35195-requests",
+      "file_count": 104,
+      "python_file_count": 36,
+      "size_bytes": 5145448,
+      "size_mib": 4.91,
+      "language_mix": {
+        "python": 36
+      },
+      "cwe_abstraction": "Class",
+      "cwe_in_localization_catalog": false,
+      "cwe_file_localizable": false,
+      "cwe_localization_flag": "pillar_or_class"
+    },
+    {
+      "entry_id": "CVE-2024-40647-sentry",
+      "cve": "CVE-2024-40647",
+      "repo": "getsentry/sentry-python",
+      "cwe": "CWE-200",
+      "osv_fix_commit": "763e40aa4cb57ecced467f48f78f335c87e9bdff",
+      "fix_commit": "763e40aa4cb57ecced467f48f78f335c87e9bdff",
+      "parent_commit": "31efa62c90e5b88c6c15b55f6908a25133d65958",
+      "ground_truth_files": [
+        "sentry_sdk/integrations/stdlib.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2024-40647-sentry",
+      "file_count": 409,
+      "python_file_count": 337,
+      "size_bytes": 2573881,
+      "size_mib": 2.45,
+      "language_mix": {
+        "python": 337
+      },
+      "cwe_abstraction": "Class",
+      "cwe_in_localization_catalog": false,
+      "cwe_file_localizable": false,
+      "cwe_localization_flag": "pillar_or_class"
+    },
+    {
+      "entry_id": "CVE-2024-41810-twisted",
+      "cve": "CVE-2024-41810",
+      "repo": "twisted/twisted",
+      "cwe": "CWE-79",
+      "osv_fix_commit": "046a164f89a0f08d3239ecebd750360f8914df33",
+      "fix_commit": "046a164f89a0f08d3239ecebd750360f8914df33",
+      "parent_commit": "4a930de12fb67e88fefcb8822104152f42b27abc",
+      "ground_truth_files": [
+        "src/twisted/web/_template_util.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2024-41810-twisted",
+      "file_count": 1489,
+      "python_file_count": 1097,
+      "size_bytes": 14947709,
+      "size_mib": 14.26,
+      "language_mix": {
+        "python": 1097
+      },
+      "cwe_abstraction": "Base",
+      "cwe_in_localization_catalog": true,
+      "cwe_file_localizable": true,
+      "cwe_localization_flag": "catalog"
+    },
+    {
+      "entry_id": "CVE-2024-52804-tornado",
+      "cve": "CVE-2024-52804",
+      "repo": "tornadoweb/tornado",
+      "cwe": "CWE-400",
+      "osv_fix_commit": "d5ba4a1695fbf7c6a3e54313262639b198291533",
+      "fix_commit": "d5ba4a1695fbf7c6a3e54313262639b198291533",
+      "parent_commit": "2a0e1d13b5222dca4388c0ec8a4bb74ea6fa4af2",
+      "ground_truth_files": [
+        "tornado/httputil.py"
+      ],
+      "ground_truth_file_count": 1,
+      "corpus_path": "validation/corpus/multidefect/CVE-2024-52804-tornado",
+      "file_count": 311,
+      "python_file_count": 108,
+      "size_bytes": 2039378,
+      "size_mib": 1.94,
+      "language_mix": {
+        "python": 108
+      },
+      "cwe_abstraction": "Class",
+      "cwe_in_localization_catalog": false,
+      "cwe_file_localizable": false,
+      "cwe_localization_flag": "pillar_or_class"
+    }
+  ],
+  "skipped": [],
+  "entry_count": 34
+}

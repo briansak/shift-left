@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "firewall/inspection-defaults.rules",
+  "expected_rule_ids": [],
+  "description": "Baseline inspection policy without risky objects or ACEs."
+}

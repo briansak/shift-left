@@ -1,0 +1,3 @@
+! demo-dryrun — ASA policy with intentional violations
+access-list OUTSIDE_IN extended permit ip any any
+access-list 99 deny any

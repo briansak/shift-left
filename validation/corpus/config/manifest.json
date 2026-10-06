@@ -1,0 +1,483 @@
+{
+  "entries": [
+    {
+      "path": "cisco_secure_firewall/edge-perimeter-wide.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [
+        "ASA-001"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_secure_firewall/guest-wifi-bypass.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [
+        "ASA-001"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_secure_firewall/lab-temp-open.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [
+        "ASA-001"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_secure_firewall/partner-dmz-service-objects.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [
+        "ASA-002"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_secure_firewall/shared-object-catalog.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [
+        "ASA-002"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_secure_firewall/legacy-any-tcp-object.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [
+        "ASA-002"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_secure_firewall/branch-vpn-legacy-crypto.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [
+        "ASA-004"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_secure_firewall/site-to-site-weak-phase1.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [
+        "ASA-004"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_secure_firewall/mgmt-plane-exposure.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [
+        "ASA-005"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_secure_firewall/ops-jump-host-public.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [
+        "ASA-005"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_secure_firewall/acl-shadowed-permits.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [
+        "ASA-006"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_secure_firewall/dead-ace-cleanup.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [
+        "ASA-006"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_secure_firewall/undefined-network-group.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [
+        "ASA-007"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_secure_firewall/undefined-service-group.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [
+        "ASA-007"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_secure_firewall/scoped-network-group-clean.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_secure_firewall/multi-violation-edge.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [
+        "ASA-001",
+        "ASA-006"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_secure_firewall/multi-object-and-mgmt.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [
+        "ASA-001",
+        "ASA-002",
+        "ASA-005"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_secure_firewall/edge-scoped-production.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_secure_firewall/branch-office-outbound.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_secure_firewall/service-objects-scoped.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_secure_firewall/vpn-strong-crypto.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_secure_firewall/mgmt-rfc1918-only.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_secure_firewall/acl-order-correct.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_secure_firewall/dmz-restricted-services.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_secure_firewall/inspection-defaults.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_secure_firewall/partner-vpn-acl.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_secure_firewall/internal-segmentation.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_secure_firewall/logging-enabled-permits.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_secure_firewall/legacy-transform-strong.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_secure_firewall/nat-and-acl-combo.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_secure_firewall/shadow-safe-deny-tcp.rules",
+      "target_type": "cisco_secure_firewall",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_ftd/branch-policy-insecure.tf",
+      "target_type": "cisco_ftd",
+      "expected_rule_ids": [
+        "FTD-001",
+        "FTD-002",
+        "FTD-003",
+        "FTD-005"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_ftd/edge-unbounded-ports.tf",
+      "target_type": "cisco_ftd",
+      "expected_rule_ids": [
+        "FTD-002",
+        "FTD-003"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_ftd/vpn-weak-ike.tf",
+      "target_type": "cisco_ftd",
+      "expected_rule_ids": [
+        "FTD-004"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_ftd/device-vpn-weak.tf",
+      "target_type": "cisco_ftd",
+      "expected_rule_ids": [
+        "FTD-004"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_ftd/mgmt-https-public.tf",
+      "target_type": "cisco_ftd",
+      "expected_rule_ids": [
+        "FTD-005"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_ftd/shadowed-bulk-rules.tf",
+      "target_type": "cisco_ftd",
+      "expected_rule_ids": [
+        "FTD-005",
+        "FTD-006"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_ftd/multi-violation-edge.tf",
+      "target_type": "cisco_ftd",
+      "expected_rule_ids": [
+        "FTD-003",
+        "FTD-006"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_ftd/dcloud-baseline.tf",
+      "target_type": "cisco_ftd",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_ftd/strong-vpn-policy.tf",
+      "target_type": "cisco_ftd",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_ftd/private-mgmt-ssh.tf",
+      "target_type": "cisco_ftd",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_ftd/app-https-scoped.tf",
+      "target_type": "cisco_ftd",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_ftd/separate-rules-no-shadow.tf",
+      "target_type": "cisco_ftd",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_ftd/bulk-safe-order.tf",
+      "target_type": "cisco_ftd",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_ftd/port-catalog-clean.tf",
+      "target_type": "cisco_ftd",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_ftd/broad-source-any.tf",
+      "target_type": "cisco_ftd",
+      "expected_rule_ids": [
+        "FTD-001"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_ftd/broad-dest-missing.tf",
+      "target_type": "cisco_ftd",
+      "expected_rule_ids": [
+        "FTD-001"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_ftd/scoped-network-pair.tf",
+      "target_type": "cisco_ftd",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_ftd/scoped-network-objects.tf",
+      "target_type": "cisco_ftd",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_ftd/dangling-source-network.tf",
+      "target_type": "cisco_ftd",
+      "expected_rule_ids": [
+        "FTD-008"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_ftd/dangling-dest-network.tf",
+      "target_type": "cisco_ftd",
+      "expected_rule_ids": [
+        "FTD-008"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "cisco_ftd/resolved-network-objects.tf",
+      "target_type": "cisco_ftd",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "cisco_ftd/literals-only-no-refs.tf",
+      "target_type": "cisco_ftd",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "generic_terraform/aws-open-sg.tf",
+      "target_type": "generic_terraform",
+      "expected_rule_ids": [
+        "TF-001"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "generic_terraform/azure-nsg-open.tf",
+      "target_type": "generic_terraform",
+      "expected_rule_ids": [
+        "TF-001"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "generic_terraform/gcp-firewall-open.tf",
+      "target_type": "generic_terraform",
+      "expected_rule_ids": [
+        "TF-001"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "generic_terraform/fmc-inbound-open.tf",
+      "target_type": "generic_terraform",
+      "expected_rule_ids": [
+        "TF-001"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "generic_terraform/aws-sg-ingress-block.tf",
+      "target_type": "generic_terraform",
+      "expected_rule_ids": [
+        "TF-001"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "generic_terraform/aws-sg-nested-ingress.tf",
+      "target_type": "generic_terraform",
+      "expected_rule_ids": [
+        "TF-001"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "generic_terraform/azure-nsg-group-rule.tf",
+      "target_type": "generic_terraform",
+      "expected_rule_ids": [
+        "TF-001"
+      ],
+      "category": "violation"
+    },
+    {
+      "path": "generic_terraform/aws-scoped-sg.tf",
+      "target_type": "generic_terraform",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "generic_terraform/azure-scoped-nsg.tf",
+      "target_type": "generic_terraform",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "generic_terraform/gcp-scoped-firewall.tf",
+      "target_type": "generic_terraform",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "generic_terraform/aws-var-cidr.tf",
+      "target_type": "generic_terraform",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "generic_terraform/aws-egress-only.tf",
+      "target_type": "generic_terraform",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "generic_terraform/gcp-egress.tf",
+      "target_type": "generic_terraform",
+      "expected_rule_ids": [],
+      "category": "clean"
+    },
+    {
+      "path": "generic_terraform/fmc-scoped-allow.tf",
+      "target_type": "generic_terraform",
+      "expected_rule_ids": [],
+      "category": "clean"
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block title %}Handler coverage{% endblock %}
+{% block content %}
+<div class="repo-page">
+<header class="page-header-row">
+  <div>
+    <h1 class="page-title">Handler coverage</h1>
+    <p class="text-muted">Labeled corpus evaluation from <code>validation/reports/handler-coverage.json</code>.</p>
+  </div>
+</header>
+
+{% if not report %}
+<section class="panel state-failed" role="alert">
+  <h3>Report not found</h3>
+  <p>Run <code>python validation/eval_handlers.py</code> from the repo root to generate handler coverage metrics.</p>
+</section>
+{% else %}
+<p class="helper">Generated at {{ report.generated_at }} · Corpus {{ report.corpus_version | default('—') }} · FMC provider {{ report.fmc_provider_version }}</p>
+
+<section class="panel">
+  <h3>Parse coverage</h3>
+  <p class="helper">Small corpora (&lt;30 evaluable lines/resources) show raw counts; larger corpora show percentage with counts in Parsed/Total.</p>
+  <table>
+    <thead>
+      <tr><th>Target type</th><th>Parsed</th><th>Total</th><th>Remarks</th><th>Coverage</th></tr>
+    </thead>
+    <tbody>
+      {% for row in parse_coverage_rows %}
+      <tr>
+        <td>{{ row.target_type }}</td>
+        <td>{{ row.parsed }}</td>
+        <td>{{ row.total }}</td>
+        <td>{{ row.remarks }}</td>
+        <td>{{ row.coverage }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="panel">
+  <h3>Rule registry coverage</h3>
+  <p class="helper">Disabled rules remain listed with status and reason — they are not evaluated against the corpus.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Rule</th>
+        <th>Status</th>
+        <th>CWE</th>
+        <th>Target</th>
+        <th>Severity</th>
+        <th>Generated TP/FP/FN</th>
+        <th>Holdout TP/FP/FN</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in coverage_rows %}
+      <tr>
+        <td><code>{{ row.rule_id }}</code></td>
+        <td>{{ row.status }}</td>
+        <td>{{ row.cwe }}</td>
+        <td>{{ row.target_type }}</td>
+        <td>{{ row.severity }}</td>
+        <td>
+          {% if row.generated %}
+          {{ row.generated.true_positives }}/{{ row.generated.false_positives }}/{{ row.generated.false_negatives }}
+          {% else %}—{% endif %}
+        </td>
+        <td>
+          {% if row.holdout %}
+          {{ row.holdout.true_positives }}/{{ row.holdout.false_positives }}/{{ row.holdout.false_negatives }}
+          {% else %}—{% endif %}
+        </td>
+        <td class="helper">{{ row.reason }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="panel">
+  <h3>Gate outcomes (labeled corpus)</h3>
+  {% if report.gate_outcomes %}
+  <p>Generated: BLOCK={{ report.gate_outcomes.generated_summary.block | default(0) }} FLAG={{ report.gate_outcomes.generated_summary.flag | default(0) }} PASS={{ report.gate_outcomes.generated_summary.pass | default(0) }}</p>
+  <p>Holdout: BLOCK={{ report.gate_outcomes.holdout_summary.block | default(0) }} FLAG={{ report.gate_outcomes.holdout_summary.flag | default(0) }} PASS={{ report.gate_outcomes.holdout_summary.pass | default(0) }}</p>
+  {% else %}
+  <p class="helper">Gate outcome summaries are not present in this report — re-run <code>python validation/eval_handlers.py</code>.</p>
+  {% endif %}
+</section>
+{% endif %}
+
+<section class="panel">
+  <h3>Model-asserted CWE advisory</h3>
+  <p class="helper">Unrecognized model CWE identifiers are retained for review but do not influence gate policy severity.</p>
+  <p><strong>{{ model_cwe_advisory.total }}</strong> finding(s) with model-asserted CWE not in the local dictionary.</p>
+  {% if model_cwe_advisory.by_cwe_id %}
+  <table>
+    <thead>
+      <tr><th>Model-asserted CWE</th><th>Findings</th></tr>
+    </thead>
+    <tbody>
+      {% for cwe_id, count in model_cwe_advisory.by_cwe_id.items() %}
+      <tr>
+        <td class="mono">{{ cwe_id }}</td>
+        <td>{{ count }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+</section>
+</div>
+{% endblock %}

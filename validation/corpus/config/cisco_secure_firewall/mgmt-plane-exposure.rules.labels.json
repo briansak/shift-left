@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "mgmt/mgmt-plane-exposure.rules",
+  "expected_rule_ids": [
+    "ASA-005"
+  ],
+  "description": "SSH and HTTP management allowed from any source on outside interface."
+}

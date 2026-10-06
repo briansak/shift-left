@@ -1,0 +1,6 @@
+{
+  "target_type": "generic_terraform",
+  "virtual_path": "terraform/iosxe-uncovered-permit.tf",
+  "expected_rule_ids": ["HCL-002"],
+  "description": "Parsable HCL with iosxe_* resources on generic_terraform — HCL-002 flags uncovered provider."
+}

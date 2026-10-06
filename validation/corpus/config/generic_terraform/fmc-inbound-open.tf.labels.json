@@ -1,0 +1,8 @@
+{
+  "target_type": "generic_terraform",
+  "virtual_path": "terraform/fmc-inbound-open.tf",
+  "expected_rule_ids": [
+    "TF-001"
+  ],
+  "description": "FMC access rule in generic terraform corpus flags TF-001 via fmc parser path."
+}

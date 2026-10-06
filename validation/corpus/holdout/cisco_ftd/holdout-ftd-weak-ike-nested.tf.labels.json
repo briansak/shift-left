@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "holdout/ftd/holdout-ftd-weak-ike-nested.tf",
+  "expected_rule_ids": [
+    "FTD-004"
+  ],
+  "description": "FTD-004 via fmc_ikev2_policy with 3DES/MD5/group 2 and inline comments."
+}

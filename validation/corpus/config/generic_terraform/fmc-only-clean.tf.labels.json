@@ -1,0 +1,6 @@
+{
+  "target_type": "generic_terraform",
+  "virtual_path": "terraform/fmc-only-clean.tf",
+  "expected_rule_ids": [],
+  "description": "fmc_* resources only — no HCL-002 uncovered provider."
+}

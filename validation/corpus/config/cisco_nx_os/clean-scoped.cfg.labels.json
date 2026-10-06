@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_nx_os",
+  "virtual_path": "switches/clean-scoped.cfg",
+  "expected_rule_ids": [],
+  "description": "Scoped literals and resolved object-groups; features, vrf, roles, interfaces parsed cleanly."
+}

@@ -1,0 +1,5 @@
+{
+  "id": "CWE-657",
+  "name": "Violation of Secure Design Principles",
+  "description": "The product does not follow established secure design principles, such as ensuring every security-relevant change is reviewed under a declared scope."
+}

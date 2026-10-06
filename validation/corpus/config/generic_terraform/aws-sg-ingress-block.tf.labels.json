@@ -1,0 +1,8 @@
+{
+  "target_type": "generic_terraform",
+  "virtual_path": "terraform/aws-sg-ingress-block.tf",
+  "expected_rule_ids": [
+    "TF-001"
+  ],
+  "description": "AWS VPC security group ingress rule with ::/0."
+}

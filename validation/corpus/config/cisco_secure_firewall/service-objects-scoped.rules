@@ -1,0 +1,27 @@
+! Generated handler corpus — edge firewall context
+hostname edge-fw-01
+domain-name corp.example
+!
+interface GigabitEthernet0/0
+ nameif outside
+ security-level 0
+ ip address dhcp setroute
+!
+interface GigabitEthernet0/1
+ nameif inside
+ security-level 100
+ ip address 10.10.0.1 255.255.255.0
+!
+
+object service SVC-HTTPS
+ service tcp destination eq 443
+!
+object service SVC-DNS
+ service udp destination eq 53
+!
+object network APP_NET
+ subnet 10.10.20.0 255.255.255.0
+!
+access-list INSIDE_OUT extended permit object SVC-HTTPS object APP_NET any
+access-list INSIDE_OUT extended permit object SVC-DNS object APP_NET any
+access-list INSIDE_OUT extended deny ip any any log

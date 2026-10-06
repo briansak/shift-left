@@ -1,0 +1,20 @@
+# Intentionally weak rules for Shift-Left regression demos.
+# Do not apply to production FMC — copy snippets into a branch/PR to exercise handler rules.
+
+# Example: any-any inbound (expect CWE-284 via network/global-cidr-allow)
+#
+# resource "fmc_access_rule" "demo_any_any" {
+#   access_policy_id = fmc_access_policy.edge.id
+#   name             = "DEMO-ANY-ANY"
+#   action           = "ALLOW"
+#   enabled          = true
+#   source_network_literals {
+#     literal { value = "0.0.0.0/0" }
+#   }
+#   destination_network_literals {
+#     literal { value = "any" }
+#   }
+#   destination_port_literals {
+#     literal { value = "any" }
+#   }
+# }

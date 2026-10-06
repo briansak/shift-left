@@ -1,0 +1,8 @@
+! HOLDOUT — object-group resolves to a narrow /28, not any/any
+hostname holdout-narrow-28
+!
+object-group network APP-28
+ network-object 10.20.30.0 255.255.255.240
+!
+access-list HOLDOUT_IN extended permit ip object-group APP-28 object-group APP-28
+access-list HOLDOUT_IN extended deny ip any any log

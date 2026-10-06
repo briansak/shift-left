@@ -1,0 +1,13 @@
+hostname obj-catalog-01
+!
+object service APP-UDP-UNBOUNDED
+ service udp
+!
+object service APP-DNS
+ service udp destination eq 53
+!
+object network APP-SUBNET
+ subnet 10.20.30.0 255.255.255.0
+!
+access-list APP_IN extended permit object APP-DNS any object APP-SUBNET
+access-list APP_IN extended deny ip any any

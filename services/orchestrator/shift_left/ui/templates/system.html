@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}System{% endblock %}
+{% block content %}
+<div class="targets-page system-page">
+  <header class="system-page-header">
+    <div>
+      <h1 class="system-page-title">System</h1>
+      <p class="system-page-subtitle">Health triage, operator configuration, and sovereignty evidence.</p>
+    </div>
+    <form method="get" action="{{ request.url.path }}">
+      <input type="hidden" name="refresh" value="true">
+      <button type="submit" class="btn btn-secondary btn-sm">Refresh checks</button>
+    </form>
+  </header>
+
+  {% if notice %}
+  <div class="card target-notice-card" role="status">
+    <div class="card-body target-notice-body">
+      <span class="status-prefix">OK</span>
+      {{ notice }}
+    </div>
+  </div>
+  {% endif %}
+
+  <nav class="target-tab-strip" aria-label="System sections">
+    <a class="target-tab {% if active_tab == 'triage' %}target-tab--active{% endif %}" href="/ui/system{% if request.query_params.get('refresh') %}?refresh=true{% endif %}">Triage</a>
+    <a class="target-tab {% if active_tab == 'config' %}target-tab--active{% endif %}" href="/ui/system/config">Configuration</a>
+    <a class="target-tab {% if active_tab == 'evidence' %}target-tab--active{% endif %}" href="/ui/system/evidence">Sovereignty evidence</a>
+  </nav>
+
+  <div class="target-tab-panel">
+    {% if active_tab == 'triage' %}
+    {% include "system_triage.html" %}
+    {% elif active_tab == 'config' %}
+    {% include "system_config.html" %}
+    {% else %}
+    {% include "system_evidence.html" %}
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

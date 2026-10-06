@@ -1,0 +1,12 @@
+hostname vpn-concentrator-02
+!
+crypto isakmp policy 20
+ authentication pre-share
+ encryption 3des
+ hash sha1
+ group 5
+ lifetime 86400
+!
+crypto ipsec transform-set PARTNER-OLD esp-3des esp-sha-hmac
+!
+access-list VPN_PEER extended permit ip 10.30.0.0 255.255.255.0 10.40.0.0 255.255.255.0

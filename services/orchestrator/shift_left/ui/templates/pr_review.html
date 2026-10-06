@@ -1,0 +1,318 @@
+{% extends "base.html" %}
+{% block title %}Change {{ pr_ref }} — {{ repo }}{% endblock %}
+{% block content %}
+<h2>Config change — {{ repo }} {{ pr_ref }}</h2>
+<p class="helper">
+  {% if pr_title %}<strong>{{ pr_title }}</strong> · {% endif %}
+  {% if change_state %}
+  Workflow state: <strong>{{ change_state.state.value }}</strong> —
+  {{ change_state.reason }}
+  {% endif %}
+  · Head <code>{{ commit_sha[:7] if commit_sha != 'unknown' else 'unknown' }}</code>
+  · author <strong>{{ commit_author or pr_author or 'unknown' }}</strong>
+  · {{ source_branch or '—' }} → {{ target_branch or base_ref }}
+  {% if browse_fetched_at %}· Forgejo data fetched {{ browse_fetched_at }}{% endif %}
+</p>
+{% if forgejo_pr_url %}
+<p class="helper">
+  <a href="{{ forgejo_pr_url }}" rel="noopener noreferrer" target="_blank">Open in Forgejo</a>
+  · <a href="{{ forgejo_repo_url }}" rel="noopener noreferrer" target="_blank">Repository settings (Forgejo)</a>
+  — merge, branch protection, and admin remain in Forgejo.
+</p>
+{% endif %}
+{% if forgejo_unavailable and forgejo_notice %}
+<div class="panel status-failed" role="alert">{{ forgejo_notice }}</div>
+{% endif %}
+{% if gate_bypass_warning %}
+<div class="panel status-failed" role="alert">
+  <strong>Gate may be bypassable</strong>
+  <p>{{ gate_bypass_warning }}</p>
+</div>
+{% endif %}
+{% if config_scope == 'non_config' %}
+<p class="helper"><span class="badge severity-medium">Non-config paths only</span> — this PR does not touch configured config globs.</p>
+{% elif config_scope == 'mixed' %}
+<p class="helper"><span class="badge severity-medium">Mixed scope</span> — config and non-config paths changed.</p>
+{% endif %}
+<p class="helper">{% if change_state %}Required next step: {{ change_state.next_action }}{% endif %}</p>
+
+<section class="panel zone-a">
+  <h2>Current vs proposed</h2>
+  <div class="declared-notice" role="note">
+    <strong>Declared configuration only.</strong>
+    “Declared ({{ base_ref }})” reflects configuration on the default branch in Forgejo — not live device state.
+    Out-of-band changes made directly on the device are not detected. A future apply would revert undeclared drift on devices.
+  </div>
+  <p class="helper">
+    <strong>Declared ({{ base_ref }})</strong> → baseline on default branch ·
+    <strong>Proposed (PR #{{ pr_number }})</strong> → pull request head
+  </p>
+  <div class="code-view">
+    <nav class="file-tree" aria-label="Changed files">
+      <ul>
+        {% for file in file_views %}
+        <li><a href="#file-{{ loop.index }}">{{ file.path }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+    <div>
+      {% for file in file_views %}
+      <section id="file-{{ loop.index }}" style="margin-bottom:2rem" class="{% if file.language %}lang-{{ file.language }}{% endif %}">
+        <h3>{{ file.path }}{% if file.language %} <span class="helper">({{ file.language }})</span>{% endif %}</h3>
+        <div class="code-lines">
+          {% for line in file.lines %}
+          <div class="code-line {% if line.highlight %}highlight{% endif %} {% if line.removed %}removed{% endif %} {% if line.finding_marker %}finding-anchor{% endif %}">
+            <span class="num">{% if line.num %}{{ line.num }}{% else %}—{% endif %}</span>
+            <span>{{ line.prefix }}{{ line.text }}</span>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+      {% else %}
+      <p class="helper">No diff available from Forgejo for this pull request.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Commit history</h2>
+  <p class="helper">Commits on this branch — approval binds to a specific SHA; later commits invalidate it.</p>
+  <table>
+    <thead>
+      <tr><th>SHA</th><th>Author</th><th>Message</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      {% for commit in commit_timeline %}
+      <tr>
+        <td><code>{{ commit.sha_short }}</code>{% if commit.is_head %} (head){% endif %}</td>
+        <td>{{ commit.author }}</td>
+        <td>{{ commit.message }}</td>
+        <td>
+          {% if commit.approval_bound %}<strong>approval bound</strong>{% endif %}
+          {% if commit.landed_after_approval %}<span class="badge severity-medium">after approval</span>{% endif %}
+          {% if commit.invalidates_approval %}<span class="badge severity-high">invalidates approval</span>{% endif %}
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="4" class="helper">No commit history from Forgejo.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="panel">
+  <h2>PR comments (read-only)</h2>
+  <p class="helper">Same record a Forgejo user sees — posting comments remains in Forgejo (shared service token).</p>
+  {% for comment in pr_comments %}
+  <article style="margin-bottom:1rem;border-bottom:1px solid var(--border);padding-bottom:0.75rem">
+    <p><strong>{{ comment.user.login if comment.user else 'unknown' }}</strong> · {{ comment.created_at }}</p>
+    <pre style="white-space:pre-wrap">{{ comment.body }}</pre>
+  </article>
+  {% else %}
+  <p class="helper">No comments on this pull request.</p>
+  {% endfor %}
+</section>
+
+<section class="panel zone-b">
+  <h2>Validation</h2>
+  {% if analysis_incomplete %}
+  <div class="panel status-failed" role="alert">
+    <h3 class="status-incomplete">Validation incomplete</h3>
+    <p>Required analysis did not complete. This is visually and logically distinct from a clean pass or policy block.</p>
+    {% if gate %}<p class="helper">{{ gate.reason }}</p>{% endif %}
+    {% if analysis_failure %}
+    <p class="helper">
+      Failure class: <code>{{ analysis_failure.failure_class or 'unknown' }}</code>
+      · Stage: <code>{{ analysis_failure.failure_stage or 'unknown' }}</code>
+    </p>
+    {% if analysis_failure.failure_message %}<p class="helper">{{ analysis_failure.failure_message }}</p>{% endif %}
+    {% endif %}
+  </div>
+  {% elif policy_decision %}
+  <p><strong>Policy decision (deterministic):</strong> {{ policy_action_label(effective_policy_decision.pr_decision if effective_policy_decision else policy_decision.pr_decision) }}</p>
+  <p class="helper">{{ effective_policy_decision.explanation if effective_policy_decision else policy_decision.explanation }}</p>
+  {% else %}
+  <p class="helper">No validation recorded — run review first.</p>
+  {% endif %}
+
+  <h3>Findings (handler-asserted)</h3>
+  {% for row in finding_rows %}
+  {% set f = row.finding %}
+  <article class="finding-panel panel" style="margin-bottom:1rem">
+    <h4>{{ f.title }}</h4>
+    <p>
+      <span class="badge {{ policy_severity_class(f.policy_severity) }}">{{ policy_severity_label(f.policy_severity) }}</span>
+      {% if row.waiver %}
+      · <span class="badge severity-medium">WAIVED</span>
+      <span class="helper">— {{ row.waiver.reason }} (by {{ row.waiver.actor }})</span>
+      {% endif %}
+      {% if f.handler_asserted_cwe %} · handler {{ f.handler_asserted_cwe }}{% endif %}
+      {% if f.is_model_only %} · <span class="badge severity-medium">model-only (rule gap)</span>{% endif %}
+      {% if row.enrichment_note %} · <span class="badge severity-medium">{{ row.enrichment_note }}</span>{% endif %}
+    </p>
+    <p>{{ f.description }}</p>
+    {% if f.model_asserted_cwe %}<p class="model-field">Model-asserted CWE: {{ f.model_asserted_cwe }}</p>{% endif %}
+    {% if f.model_asserted_severity %}<p class="model-field">Model-asserted severity: {{ f.model_asserted_severity.value }}</p>{% endif %}
+    {% if row.policy %}
+    <p><strong>Policy:</strong> {{ policy_action_label(row.policy.decision) }} via {{ row.policy.policy_name }} (rule {{ row.policy.rule_index }})</p>
+    {% endif %}
+    {% if row.can_grant_waiver and not row.waiver and f.trace and f.trace.startswith('handler:') %}
+    <form method="post" action="/ui/pr/{{ repo.split('/')[0] }}/{{ repo.split('/')[1] }}/{{ pr_number }}/finding/{{ f.id }}/waiver" style="margin-top:0.5rem">
+      <input type="hidden" name="commit_sha" value="{{ commit_sha }}">
+      <label>Waiver reason (required; needs {{ row.required_waiver_capability }} capability)</label>
+      <textarea name="reason" rows="2" style="width:100%" required></textarea>
+      <button type="submit" style="margin-top:0.5rem">Grant waiver for this finding</button>
+    </form>
+    {% elif waiver_block_reason and not row.waiver and f.trace and f.trace.startswith('handler:') %}
+    <p class="helper">{{ waiver_block_reason }}</p>
+    {% endif %}
+    {% if can_triage_ui %}
+    <form method="post" action="/ui/pr/{{ repo.split('/')[0] }}/{{ repo.split('/')[1] }}/{{ pr_number }}/finding/{{ f.id }}/status" data-status-form>
+      <label>Status</label>
+      <select name="status">
+        {% for s in ['open','acknowledged','false_positive','accepted_risk','resolved'] %}
+        <option value="{{ s }}" {% if f.status.value==s %}selected{% endif %}>{{ s }}</option>
+        {% endfor %}
+      </select>
+      <label>Rationale (required for false positive / accepted risk)</label>
+      <textarea name="rationale" rows="2" style="width:100%"></textarea>
+      <button type="submit" style="margin-top:0.5rem">Update status</button>
+    </form>
+    {% endif %}
+  </article>
+  {% else %}
+  <p class="helper">No findings recorded for this change.</p>
+  {% endfor %}
+
+  {% if model_only_findings %}
+  <h3>Model-only findings (rule coverage gaps)</h3>
+  <p class="helper">
+    These findings have model_asserted_cwe but no deterministic handler rule matched.
+    They are advisory candidates for new handler rules.
+  </p>
+  {% for f in model_only_findings %}
+  <article class="finding-panel panel" style="margin-bottom:1rem">
+    <h4>{{ f.title }}</h4>
+    <p>
+      <span class="badge severity-medium">model-only</span>
+      {% if f.model_asserted_cwe %} · model {{ f.model_asserted_cwe }}{% endif %}
+      · {{ f.file_path }}
+    </p>
+    <p>{{ f.description }}</p>
+  </article>
+  {% endfor %}
+  {% endif %}
+
+  <h3>Advisory model prose</h3>
+  <p class="helper">Non-deterministic — does not override policy or gate outcomes.</p>
+  {% if enrichment_unavailable %}
+  <p><strong>Enrichment unavailable</strong> for this review run.</p>
+  {% endif %}
+  {% for row in finding_rows %}
+  {% set f = row.finding %}
+  {% if f.model_context or f.recommended_actions %}
+  <div style="margin-bottom:1rem">
+    <h4>Finding {{ f.id[:8] }}…</h4>
+    {% if f.model_context %}<p>{{ f.model_context|advisory }}</p>{% endif %}
+    {% if f.recommended_actions %}
+    <ul>{% for a in f.recommended_actions %}<li>{{ a|advisory }}</li>{% endfor %}</ul>
+    {% endif %}
+  </div>
+  {% endif %}
+  {% endfor %}
+</section>
+
+<section class="panel zone-c">
+  <h2>Gate and approval</h2>
+  {% if gate_status_comparison %}
+  <h3>Commit status — Forgejo vs orchestrator</h3>
+  <p>
+    Orchestrator: <strong>{{ gate_status_comparison.orchestrator_state }}</strong>
+    · Forgejo ({{ gate_status_comparison.context }}):
+    <strong>{{ gate_status_comparison.forgejo_state or 'none' }}</strong>
+  </p>
+  {% if gate_status_comparison.discrepancy %}
+  <div class="panel status-failed" role="alert">{{ gate_status_comparison.discrepancy }}</div>
+  {% endif %}
+  {% endif %}
+  {% if gate %}
+  <p><strong>Gate for <code>{{ gate.commit_sha[:7] }}</code>:</strong>
+    {% if gate.allowed %}Approved path — gate allowing{% else %}Non-allowing{% endif %}
+  </p>
+  <p class="helper">{{ gate.reason }}</p>
+  {% endif %}
+
+  {% for record in invalidated_approvals %}
+  <div class="panel status-failed" role="alert">
+    <p><strong>Invalidated — re-approval required.</strong> Commit <code>{{ record.commit_sha[:7] }}</code> was approved by {{ record.approver }} but a new commit landed.</p>
+    <p class="helper">{{ record.invalidation_reason }}</p>
+  </div>
+  {% endfor %}
+
+  {% for record in approvals %}
+  {% if not record.invalidated %}
+  <div style="margin-bottom:1rem;border-bottom:1px solid var(--border);padding-bottom:0.75rem">
+    <p><strong>{{ record.approver }}</strong> approved commit <code>{{ record.commit_sha }}</code></p>
+  </div>
+  {% endif %}
+  {% else %}
+  <p class="helper">No active approval for this commit.</p>
+  {% endfor %}
+
+  {% if can_approve %}
+    {% if can_approve_ui %}
+    <form method="post" action="/ui/pr/{{ repo.split('/')[0] }}/{{ repo.split('/')[1] }}/{{ pr_number }}/approve">
+      <input type="hidden" name="commit_sha" value="{{ commit_sha }}">
+      <button type="submit">Record human approval for {{ commit_sha[:7] }}</button>
+    </form>
+    {% else %}
+    <p class="helper">{{ approve_block_reason }}</p>
+    <button type="button" disabled class="btn-disabled">Approve unavailable</button>
+    {% endif %}
+  {% endif %}
+
+  {% if can_override_ui %}
+  <div class="override-box">
+    <h3>Block override (exceptional)</h3>
+    <p class="helper">Separate from normal approval — requires explicit justification.</p>
+    <form method="post" action="/ui/pr/{{ repo.split('/')[0] }}/{{ repo.split('/')[1] }}/{{ pr_number }}/override">
+      <input type="hidden" name="commit_sha" value="{{ commit_sha }}">
+      <label for="justification">Justification</label>
+      <textarea id="justification" name="justification" required rows="3" style="width:100%"></textarea>
+      <button type="submit" class="danger" style="margin-top:0.5rem">Grant block override</button>
+    </form>
+  </div>
+  {% endif %}
+</section>
+
+<section class="panel zone-d">
+  <h2>Deployment — plan only</h2>
+  {% if stale_plan %}
+  <p class="helper"><strong>Stale plan:</strong> generated for {{ stale_plan.commit_sha[:7] }} — regenerate for current head.</p>
+  {% endif %}
+
+  {% if plan %}
+  <p>Plan for commit <code>{{ plan.commit_sha[:7] }}</code> · generated {{ plan.generated_at }} by {{ plan.generated_by }}</p>
+  <p>
+    Add: {{ plan.summary_add }} · Change: {{ plan.summary_change }} ·
+    <span class="destroy-count">Destroy: {{ plan.summary_destroy }}</span>
+  </p>
+  {% if plan.summary_destroy > 0 %}
+  <p class="destroy-warning" role="alert"><strong>Destroy set non-empty</strong> — review carefully before any future apply.</p>
+  {% endif %}
+  <pre class="terraform-output">{{ plan.output_text }}</pre>
+  {% endif %}
+
+  {% if can_deploy_ui and gate and gate.allowed %}
+  <form method="post" action="/ui/pr/{{ repo.split('/')[0] }}/{{ repo.split('/')[1] }}/{{ pr_number }}/plan">
+    <input type="hidden" name="commit_sha" value="{{ commit_sha }}">
+    <button type="submit">Generate plan</button>
+  </form>
+  {% elif can_deploy_ui %}
+  <p class="helper">Generate plan is available only when the gate allows the current head SHA.</p>
+  {% endif %}
+
+  <button type="button" disabled class="btn-disabled" title="Apply is not implemented in this release">Apply (not yet available)</button>
+</section>
+{% endblock %}

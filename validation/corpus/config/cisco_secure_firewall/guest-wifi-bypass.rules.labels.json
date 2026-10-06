@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "policy/guest-wifi-bypass.rules",
+  "expected_rule_ids": [
+    "ASA-001"
+  ],
+  "description": "Guest VLAN policy includes temporary any-any permit."
+}

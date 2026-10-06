@@ -1,0 +1,9 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "holdout/firewall/holdout-asa-weak-crypto-and-mgmt.rules",
+  "expected_rule_ids": [
+    "ASA-004",
+    "ASA-005"
+  ],
+  "description": "Co-occurring: weak IKEv2 policy (sha1, group 5) and ssh from public /32."
+}

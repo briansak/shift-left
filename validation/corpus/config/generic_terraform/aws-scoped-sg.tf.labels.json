@@ -1,0 +1,6 @@
+{
+  "target_type": "generic_terraform",
+  "virtual_path": "terraform/aws-scoped-sg.tf",
+  "expected_rule_ids": [],
+  "description": "AWS SG scoped to private CIDR."
+}

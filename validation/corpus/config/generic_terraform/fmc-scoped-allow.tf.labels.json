@@ -1,0 +1,6 @@
+{
+  "target_type": "generic_terraform",
+  "virtual_path": "terraform/fmc-scoped-allow.tf",
+  "expected_rule_ids": ["TF-001"],
+  "description": "FMC rule with private source and specific port."
+}

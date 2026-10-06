@@ -1,0 +1,9 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "terraform/policies/edge-unbounded-ports.tf",
+  "expected_rule_ids": [
+    "FTD-002",
+    "FTD-003"
+  ],
+  "description": "Unbounded TCP port object and ALLOW without log_connection_begin."
+}

@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block title %}Managed targets{% endblock %}
+{% block content %}
+{% set metrics = namespace(targets=0, open_changes=0, healthy=0, awaiting=0, blocked=0, drift=0) %}
+{% for card in overview.cards %}
+  {% set metrics.targets = metrics.targets + 1 %}
+  {% set metrics.open_changes = metrics.open_changes + card.in_flight_count %}
+  {% if card.health_icon == 'OK' %}{% set metrics.healthy = metrics.healthy + 1 %}
+  {% elif card.health_icon == 'BLOCK' %}{% set metrics.blocked = metrics.blocked + 1 %}
+  {% else %}{% set metrics.awaiting = metrics.awaiting + 1 %}{% endif %}
+  {% if card.divergence_commits is not none and card.divergence_commits > 0 %}{% set metrics.drift = metrics.drift + 1 %}{% endif %}
+{% endfor %}
+
+<div class="targets-page">
+  <header class="targets-page-header">
+    <div>
+      <h1 class="targets-page-title">Managed targets</h1>
+      <p class="targets-page-subtitle">Declared configuration on tracked branches — plan-only mode.</p>
+    </div>
+    {% if can_admin %}
+    <a class="btn btn-primary" href="/ui/targets/new">New target</a>
+    {% endif %}
+  </header>
+
+  {% if overview.cards %}
+  <div class="targets-summary-grid" aria-label="Target summary">
+    <article class="card metric-card">
+      <p class="metric-card-label">Targets</p>
+      <p class="metric-card-value">{{ metrics.targets }}</p>
+      <p class="metric-card-meta">Managed devices and systems</p>
+    </article>
+    <article class="card metric-card">
+      <p class="metric-card-label">Open changes</p>
+      <p class="metric-card-value">{{ metrics.open_changes }}</p>
+      <p class="metric-card-meta">In-flight pull requests</p>
+    </article>
+    <article class="card metric-card">
+      <p class="metric-card-label">Validation</p>
+      <p class="metric-card-value">{{ metrics.healthy }}</p>
+      <p class="metric-card-meta">{{ metrics.awaiting }} awaiting · {{ metrics.blocked }} blocked</p>
+    </article>
+  </div>
+  {% endif %}
+
+  {% if overview.trust_alerts %}
+  <section class="card targets-alert-card" role="alert">
+    <div class="card-body">
+      {% for alert in overview.trust_alerts %}
+      <div class="targets-alert-line targets-alert-line--{{ alert.level }}">
+        <span aria-hidden="true">{% if alert.level == 'critical' %}●{% else %}◐{% endif %}</span>
+        <span>{{ alert.message }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if not overview.cards %}
+  <section class="card targets-empty-card">
+    <div class="card-body">
+      <h2 class="targets-empty-title">No targets declared</h2>
+      {% if can_admin %}
+      <p>Define your first device or system to track configuration, validation, and in-flight changes.</p>
+      <a class="btn btn-primary" href="/ui/targets/new">New target</a>
+      {% else %}
+      <p>Ask an administrator to define managed targets.</p>
+      {% endif %}
+    </div>
+  </section>
+  {% else %}
+  <section class="card targets-table-card">
+    <div class="targets-table-toolbar">
+      <h2 class="targets-table-toolbar-title">All targets</h2>
+      {% if metrics.drift > 0 %}
+      <span class="status-pill status-pill--warn"><span class="status-pill-dot" aria-hidden="true"></span>{{ metrics.drift }} with drift</span>
+      {% endif %}
+    </div>
+    <div class="targets-table-wrap">
+      <table class="targets-data-table">
+        <thead>
+          <tr>
+            <th scope="col">Target</th>
+            <th scope="col">Repository</th>
+            <th scope="col">HEAD</th>
+            <th scope="col">Changes</th>
+            <th scope="col">Validation</th>
+            <th scope="col">Applied</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for card in overview.cards %}
+          <tr role="link" tabindex="0" onclick="window.location.href='/ui/targets/{{ card.target.id }}'" onkeydown="if(event.key==='Enter'){window.location.href='/ui/targets/{{ card.target.id }}'}">
+            <td>
+              <span class="targets-cell-primary">{{ card.target.display_name }}</span>
+              <span class="targets-cell-secondary">{{ card.target.target_type }}{% if card.target.environment %} · {{ card.target.environment }}{% endif %}</span>
+            </td>
+            <td>
+              <span class="targets-cell-mono">{{ card.target.repo }}</span>
+              <span class="targets-cell-secondary">@{{ card.target.branch }}</span>
+            </td>
+            <td><span class="targets-cell-mono">{{ card.declared_head_short }}</span></td>
+            <td>{{ card.in_flight_count }}</td>
+            <td>
+              {% if card.health_icon == 'OK' %}
+              <span class="status-pill status-pill--healthy"><span class="status-pill-dot" aria-hidden="true"></span>Healthy</span>
+              {% elif card.health_icon == 'BLOCK' %}
+              <span class="status-pill status-pill--danger"><span class="status-pill-dot" aria-hidden="true"></span>Blocked</span>
+              {% elif card.health_icon == '…' %}
+              <span class="status-pill status-pill--warn"><span class="status-pill-dot" aria-hidden="true"></span>Awaiting</span>
+              {% else %}
+              <span class="status-pill status-pill--warn"><span class="status-pill-dot" aria-hidden="true"></span>Unknown</span>
+              {% endif %}
+            </td>
+            <td>
+              {% if card.divergence_commits is not none and card.divergence_commits > 0 %}
+              <span class="status-pill status-pill--warn"><span class="status-pill-dot" aria-hidden="true"></span>{{ card.divergence_commits }} ahead</span>
+              {% elif card.last_applied_sha %}
+              <span class="status-pill status-pill--healthy"><span class="status-pill-dot" aria-hidden="true"></span>{{ card.last_applied_label }}</span>
+              {% else %}
+              <span class="status-pill status-pill--warn"><span class="status-pill-dot" aria-hidden="true"></span>no apply recorded</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  {% endif %}
+</div>
+{% endblock %}

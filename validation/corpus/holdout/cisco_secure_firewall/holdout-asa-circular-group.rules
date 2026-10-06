@@ -1,0 +1,11 @@
+! HOLDOUT — circular group-object reference
+hostname holdout-circular-group
+!
+object-group network LOOP-A
+ group-object LOOP-B
+!
+object-group network LOOP-B
+ group-object LOOP-A
+!
+access-list HOLDOUT_IN extended permit ip object-group LOOP-A any any
+access-list HOLDOUT_IN extended deny ip any any log

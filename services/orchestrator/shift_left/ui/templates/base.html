@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Shift-Left Review{% endblock %}</title>
+  <link rel="stylesheet" href="/ui/static/styles/tokens.css">
+  <link rel="stylesheet" href="/ui/static/styles/shell.css">
+  <link rel="stylesheet" href="/ui/static/styles/targets-page.css">
+  <link rel="stylesheet" href="/ui/static/styles/system-page.css">
+  <link rel="stylesheet" href="/ui/static/styles/investigations-page.css">
+  <link rel="stylesheet" href="/ui/static/styles/cwe-reference-page.css">
+  <link rel="stylesheet" href="/ui/static/styles.css">
+</head>
+<body class="{% if auth %}app-authenticated{% else %}app-guest{% endif %}{% if rbac_allow_self_approval %} app-sod-bypass{% endif %}">
+  {% if auth %}
+  <div class="app-shell">
+    <div class="app-topbar-region">
+      {% if rbac_allow_self_approval %}
+      <div class="app-topbar-warn" role="alert">
+        <strong>Development mode:</strong> separation of duties is disabled (<code>rbac.allow_self_approval</code>).
+        Commit authors may approve their own changes. Unsuitable for production.
+      </div>
+      {% endif %}
+      <header class="app-topbar">
+      <div class="app-topbar-product">Shift-Left Review</div>
+      <div class="app-topbar-search">
+        <input type="search" disabled aria-disabled="true" placeholder="Search (not available)" title="Search is not available in this release">
+      </div>
+      <div class="app-topbar-user">
+        <span class="app-user-avatar" aria-hidden="true">{{ auth.actor[:1] }}</span>
+        <span class="app-user-name">{{ auth.actor }}</span>
+        <form method="post" action="/ui/logout" class="app-logout-form">
+          <button type="submit" class="btn btn-ghost btn-sm">Sign out</button>
+        </form>
+      </div>
+      </header>
+    </div>
+
+    <div class="app-frame">
+      <aside class="app-sidebar" aria-label="Main navigation">
+        <div class="sidebar-section">
+          <p class="sidebar-section-label">Change Review</p>
+          <nav class="sidebar-nav">
+            <a class="sidebar-link {% if request.url.path == '/ui/targets' or request.url.path.startswith('/ui/targets/') %}active{% endif %}" href="/ui/targets">
+              <span class="sidebar-icon" aria-hidden="true">◫</span>
+              <span>Targets</span>
+            </a>
+            <a class="sidebar-link {% if request.url.path == '/ui/changes' or request.url.path.startswith('/ui/pr/') %}active{% endif %}" href="/ui/changes">
+              <span class="sidebar-icon" aria-hidden="true">⇄</span>
+              <span>Config changes</span>
+            </a>
+            <a class="sidebar-link {% if request.url.path == '/ui/findings' %}active{% endif %}" href="/ui/findings">
+              <span class="sidebar-icon" aria-hidden="true">◎</span>
+              <span>Findings</span>
+            </a>
+          </nav>
+        </div>
+        {% if can_triage %}
+        <div class="sidebar-section">
+          <p class="sidebar-section-label">Investigation</p>
+          <nav class="sidebar-nav">
+            <a class="sidebar-link {% if request.url.path == '/ui/investigations' or request.url.path.startswith('/ui/investigations/') %}active{% endif %}" href="/ui/investigations">
+              <span class="sidebar-icon" aria-hidden="true">✦</span>
+              <span>Investigations</span>
+            </a>
+          </nav>
+        </div>
+        {% endif %}
+        <div class="sidebar-section">
+          <p class="sidebar-section-label">Governance</p>
+          <nav class="sidebar-nav">
+            <a class="sidebar-link {% if request.url.path == '/ui/policy' %}active{% endif %}" href="/ui/policy">
+              <span class="sidebar-icon" aria-hidden="true">⬡</span>
+              <span>Policy</span>
+            </a>
+            <a class="sidebar-link {% if request.url.path == '/ui/coverage' %}active{% endif %}" href="/ui/coverage">
+              <span class="sidebar-icon" aria-hidden="true">◉</span>
+              <span>Handler coverage</span>
+            </a>
+            <a class="sidebar-link {% if request.url.path == '/ui/cwe' %}active{% endif %}" href="/ui/cwe">
+              <span class="sidebar-icon" aria-hidden="true">◎</span>
+              <span>CWE reference</span>
+            </a>
+            <a class="sidebar-link {% if request.url.path == '/ui/audit' %}active{% endif %}" href="/ui/audit">
+              <span class="sidebar-icon" aria-hidden="true">☰</span>
+              <span>Audit</span>
+            </a>
+          </nav>
+        </div>
+        <div class="sidebar-section">
+          <p class="sidebar-section-label">Platform</p>
+          <nav class="sidebar-nav">
+            <a class="sidebar-link {% if request.url.path == '/ui/system' or request.url.path.startswith('/ui/system/') %}active{% endif %}" href="/ui/system">
+              <span class="sidebar-icon" aria-hidden="true">⚙</span>
+              <span>System</span>
+            </a>
+          </nav>
+        </div>
+      </aside>
+
+      <main class="app-main">
+  {% else %}
+  <div class="app-guest-shell">
+    {% if rbac_allow_self_approval %}
+    <div class="app-topbar-warn" role="alert">
+      <strong>Development mode:</strong> separation of duties is disabled (<code>rbac.allow_self_approval</code>).
+      Commit authors may approve their own changes. Unsuitable for production.
+    </div>
+    {% endif %}
+    <header class="app-topbar app-topbar-guest">
+      <div class="app-topbar-product">Shift-Left Review</div>
+    </header>
+    <main class="app-main app-main-guest">
+  {% endif %}
+
+        {% block content %}{% endblock %}
+
+  {% if auth %}
+      </main>
+    </div>
+  </div>
+  {% else %}
+    </main>
+  </div>
+  {% endif %}
+  <script id="cwe-dictionary-data" type="application/json">{{ cwe_dictionary_json | safe }}</script>
+  <script src="/ui/static/app.js"></script>
+  <script src="/ui/static/investigation-live-poll.js"></script>
+  <script src="/ui/static/investigation-launch.js"></script>
+</body>
+</html>

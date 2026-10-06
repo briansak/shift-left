@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Policy{% endblock %}
+{% block content %}
+<div class="repo-page">
+<header class="page-header-row">
+  <div>
+    <h1 class="page-title">Policy configuration</h1>
+    <p class="text-muted">{{ note }}</p>
+  </div>
+</header>
+<p><strong>Default action:</strong> {{ policy.default_action.value }} · <strong>Human review required:</strong> {{ policy.human_review_required }} · <strong>Block override allowed:</strong> {{ policy.allow_block_override }}</p>
+
+<ol>
+{% for p in policy.rules %}
+<li class="panel">
+  <h3>{{ p.name }} ({{ p.id }}) — {{ p.action.value }}{% if not p.enabled %} [disabled]{% endif %}</h3>
+  <p class="helper">Applies to {{ p.applies_to.target_kind or 'any' }} · globs: {{ p.applies_to.path_globs|join(', ') }}</p>
+  <ol>
+  {% for rule in p.rules %}
+  <li>Rule {{ loop.index0 }}: threshold {{ rule.severity_threshold or '—' }} · allow {{ rule.cwe_allowlist|join(', ') or '—' }} · block {{ rule.cwe_blocklist|join(', ') or '—' }}</li>
+  {% endfor %}
+  </ol>
+</li>
+{% else %}
+<li>No explicit policies — default action applies.</li>
+{% endfor %}
+</ol>
+</div>
+{% endblock %}

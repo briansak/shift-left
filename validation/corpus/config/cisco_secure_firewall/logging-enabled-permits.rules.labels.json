@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "firewall/logging-enabled-permits.rules",
+  "expected_rule_ids": [],
+  "description": "Permit ACEs include log keyword where required."
+}

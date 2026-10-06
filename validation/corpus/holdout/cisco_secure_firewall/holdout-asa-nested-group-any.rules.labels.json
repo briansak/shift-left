@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "holdout/holdout-asa-nested-group-any.rules",
+  "expected_rule_ids": [
+    "ASA-001"
+  ],
+  "description": "Nested network object-groups resolve to any source and any destination."
+}

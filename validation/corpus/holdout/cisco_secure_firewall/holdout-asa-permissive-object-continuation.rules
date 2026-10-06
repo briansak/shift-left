@@ -1,0 +1,5 @@
+! HOLDOUT — object-group style indirection with continuation + comment banner
+object service DMZ_EGRESS_ALT
+ ! catalog alias from 2019 migration — still protocol ip
+ service protocol ip
+!

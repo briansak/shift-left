@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %}Batch {{ batch_view.batch_id[:8] }}{% endblock %}
+{% block content %}
+<div class="targets-page investigations-page investigation-batch-layout">
+  <nav class="target-breadcrumb" aria-label="Breadcrumb">
+    <a class="target-breadcrumb-link" href="/ui/investigations">Investigations</a>
+    <span class="target-breadcrumb-sep" aria-hidden="true">/</span>
+    <span class="target-breadcrumb-current">Batch {{ batch_view.batch_id[:8] }}</span>
+  </nav>
+
+  <header class="targets-page-header">
+    <div>
+      <h1 class="targets-page-title">{{ batch_view.repo_ref_label }}</h1>
+      <p class="targets-page-subtitle">
+        <span class="mono">{{ batch_view.short_sha }}</span>
+        · source {{ batch_view.source }}
+        · {{ batch_view.child_count }} investigations
+      </p>
+    </div>
+    <div class="target-detail-actions">
+      <span class="status-pill {{ batch_view.state_pill_class }}">
+        <span class="status-pill-dot" aria-hidden="true"></span>
+        {{ batch_view.state.value }}
+      </span>
+      {% if batch_view.can_cancel %}
+      <form method="post" action="/ui/investigations/batches/{{ batch_view.batch_id }}/cancel">
+        <button type="submit" class="btn btn-ghost btn-sm">Cancel batch</button>
+      </form>
+      {% endif %}
+    </div>
+  </header>
+
+  <section class="investigation-advisory-banner" aria-label="Batch advisory">
+    <strong>Batch localization — not a merged findings list</strong>
+    <p>{{ batch_view.scope_rationale }}</p>
+    <p><strong>Candidate volume:</strong> {{ batch_view.false_positive_framing }}</p>
+    <p>Measured precision on our benchmark: mean {{ batch_view.benchmark_precision_label }}, P@1 {{ batch_view.benchmark_p_at_1_label }} ({{ batch_view.benchmark_note }}).</p>
+    <p>{{ batch_view.estimated_wall_clock_label }}. No aggregate severity, combined score, or cross-CWE ranking — ranks are local to each investigation.</p>
+  </section>
+
+  {% if batch_view.top25_survivor_count is not none %}
+  <p class="helper">Top 25 filter survivors: {{ batch_view.top25_survivor_count }} Base/Variant CWE(s) matching repo languages.</p>
+  {% endif %}
+
+  <section class="card">
+    <div class="card-body">
+      <h2 class="targets-table-toolbar-title">Investigations by CWE</h2>
+      <p class="helper">Each row is an independent investigation with its own 15-call budget and candidate list.</p>
+    </div>
+    <div class="targets-table-wrap">
+      <table class="targets-data-table">
+        <thead>
+          <tr>
+            <th scope="col">CWE</th>
+            <th scope="col">State</th>
+            <th scope="col">Evidence tier</th>
+            <th scope="col">Tractability</th>
+            <th scope="col">Candidates</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for child in batch_view.children %}
+          <tr>
+            <td><span class="mono">{{ child.task_cwe }}</span></td>
+            <td>
+              <span class="status-pill {{ child.state_pill_class }}">
+                <span class="status-pill-dot" aria-hidden="true"></span>
+                {{ child.state.value }}
+              </span>
+            </td>
+            <td>
+              {{ child.evidence_tier }}
+              {% if child.no_repo_evidence %}
+              <p class="helper investigation-batch-no-evidence">No repository evidence was found for this weakness class.</p>
+              {% elif child.candidates_without_evidence_basis %}
+              <p class="helper investigation-batch-no-evidence">Candidates have no evidentiary basis for this weakness class (language-only tier).</p>
+              {% endif %}
+            </td>
+            <td>{{ child.tractability }}</td>
+            <td>
+              {% if child.candidate_count == 0 %}
+              —
+              {% else %}
+              {{ child.candidate_count }}
+              <ul class="investigation-batch-candidate-list">
+                {% for path in child.candidates %}
+                <li class="mono">{{ path }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </td>
+            <td><a class="btn btn-ghost btn-sm" href="{{ child.detail_href }}">Detail</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+{% endblock %}

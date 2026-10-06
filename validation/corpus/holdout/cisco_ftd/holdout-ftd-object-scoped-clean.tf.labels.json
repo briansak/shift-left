@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "terraform/policies/holdout-ftd-object-scoped-clean.tf",
+  "expected_rule_ids": [],
+  "description": "Holdout clean scoped object references with logging."
+}

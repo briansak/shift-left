@@ -1,0 +1,9 @@
+{
+  "target_type": "cisco_nx_os",
+  "virtual_path": "switches/nxos008-violation-mgmt-any.cfg",
+  "expected_rule_ids": [
+    "NXOS-008",
+    "NXOS-009"
+  ],
+  "description": "Management VRF VTY ACL permits any source."
+}

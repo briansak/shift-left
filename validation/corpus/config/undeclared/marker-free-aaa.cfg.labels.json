@@ -1,0 +1,6 @@
+{
+  "target_type": "undeclared",
+  "virtual_path": "configs/marker-free-aaa.cfg",
+  "expected_rule_ids": ["CLI-001"],
+  "description": "Marker-free aaa new-model on the undeclared path. Expects CLI-001 only."
+}

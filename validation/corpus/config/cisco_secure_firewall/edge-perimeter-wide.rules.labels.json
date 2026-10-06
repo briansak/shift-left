@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "firewall/edge-perimeter-wide.rules",
+  "expected_rule_ids": [
+    "ASA-001"
+  ],
+  "description": "Internet edge ACL contains permit ip any any before explicit deny."
+}

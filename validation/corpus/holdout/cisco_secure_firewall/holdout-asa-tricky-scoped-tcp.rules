@@ -1,0 +1,6 @@
+! HOLDOUT clean bait — looks chatty but every ACE is host/network scoped
+object service HTTPS_EGRESS
+ service tcp destination eq 443
+!
+access-list INSIDE_OUT extended permit tcp 10.20.30.0 255.255.255.0 host 8.8.8.8 eq 443 log
+access-list INSIDE_OUT extended permit udp 10.20.30.0 255.255.255.0 host 8.8.8.8 eq 53 log

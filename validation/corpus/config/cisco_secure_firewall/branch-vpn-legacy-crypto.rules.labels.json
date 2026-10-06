@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "vpn/branch-vpn-legacy-crypto.rules",
+  "expected_rule_ids": [
+    "ASA-004"
+  ],
+  "description": "Branch VPN still references weak IKEv2 and transform-set algorithms."
+}

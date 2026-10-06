@@ -1,0 +1,202 @@
+{% set card = triage.status_card %}
+<section class="card system-status-card" role="status">
+  <header class="system-status-card-header">
+    <h2 class="system-status-card-title">Status</h2>
+    <span class="system-status-card-meta">last checked {{ card.cache_relative }}, cache TTL {{ card.cache_ttl_seconds }}s</span>
+  </header>
+  <div class="system-status-card-body">
+    <div class="system-status-row">
+      <span class="status-pill status-pill--{% if card.overall_tone == 'healthy' %}healthy{% elif card.overall_tone == 'degraded' %}warn{% else %}danger{% endif %}">
+        <span class="status-pill-dot" aria-hidden="true"></span>
+        {{ card.overall_pill }}
+      </span>
+      {% if card.failing_components %}
+      <span class="targets-cell-meta">Failing: {{ card.failing_components|join(', ') }}</span>
+      {% endif %}
+    </div>
+    {% if card.capability_pills %}
+    <div class="system-pill-row" aria-label="Affected capabilities">
+      {% for cap in card.capability_pills %}
+      <span class="status-pill status-pill--warn"><span class="status-pill-dot" aria-hidden="true"></span>{{ cap }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% if card.remediation_command %}
+    <div class="system-command-row">
+      <span class="targets-cell-meta">Remediation</span>
+      <code>{{ card.remediation_command }}</code>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<p class="system-topology-line">{{ triage.topology_line }}</p>
+
+<div id="system-lifecycle-busy" class="system-lifecycle-busy" hidden role="status" aria-live="polite">
+  <span class="system-lifecycle-spinner" aria-hidden="true"></span>
+  <span data-lifecycle-busy-label>Starting services…</span>
+  <span class="targets-cell-meta">Waiting for compose and health verification (may take up to 2 minutes).</span>
+</div>
+
+{% if triage.lifecycle_feedback %}
+{% set fb = triage.lifecycle_feedback %}
+<section class="card system-lifecycle-feedback system-lifecycle-feedback--{{ fb.tone }}" role="status" aria-live="polite">
+  <div class="card-body">
+    <header class="system-lifecycle-feedback-header">
+      <h2 class="system-lifecycle-feedback-title">{{ fb.title }}</h2>
+      <span class="status-pill status-pill--{{ fb.tone }}">
+        <span class="status-pill-dot" aria-hidden="true"></span>
+        {{ fb.code }}
+      </span>
+    </header>
+    <p class="system-lifecycle-feedback-message">{{ fb.message }}</p>
+    {% if fb.started_services %}
+    <p class="system-lifecycle-feedback-detail"><strong>Started:</strong> {{ fb.started_services|join(', ') }}</p>
+    {% endif %}
+    {% if fb.skipped_services %}
+    <p class="system-lifecycle-feedback-detail"><strong>Skipped (host-native):</strong> {{ fb.skipped_services|join(', ') }}</p>
+    {% endif %}
+    {% if fb.failed_service %}
+    <p class="system-lifecycle-feedback-detail"><strong>Failed service:</strong> {{ fb.failed_service }}{% if fb.failed_phase %} · phase {{ fb.failed_phase }}{% endif %}</p>
+    {% endif %}
+    {% if fb.error %}
+    <p class="system-lifecycle-feedback-error">{{ fb.error }}</p>
+    {% endif %}
+    {% if fb.host_command %}
+    <p class="system-lifecycle-feedback-detail">Run on host: <code>{{ fb.host_command }}</code></p>
+    {% endif %}
+    {% if fb.steps %}
+    <div class="targets-table-wrap system-lifecycle-steps">
+      <table class="targets-data-table">
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Result code</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for step in fb.steps %}
+          <tr>
+            <td class="targets-cell-primary">{{ step.service }}</td>
+            <td>
+              <span class="status-pill status-pill--{{ step.tone }}">
+                <span class="status-pill-dot" aria-hidden="true"></span>
+                {{ step.label }}
+              </span>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+
+<section class="card">
+  <header class="target-findings-card-header">
+    <span class="target-findings-group-label">Health checks</span>
+    <span class="target-findings-group-count">{{ triage.health_rows|length }}</span>
+  </header>
+  <div class="targets-table-wrap">
+    <table class="targets-data-table">
+      <thead>
+        <tr>
+          <th>Check</th>
+          <th>Category</th>
+          <th>Status</th>
+          <th>Duration</th>
+          <th>Remediation</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in triage.health_rows if row.status_key != 'ok' %}
+        <tr id="prerequisite-{{ row.row_id }}">
+          <td class="targets-cell-primary">
+            {{ row.check_name }}
+            {% if row.row_kind == 'disagreement' %}
+            <span class="targets-cell-meta">state mismatch</span>
+            {% endif %}
+            {% if row.error_detail %}
+            <span class="targets-cell-meta">{{ row.error_detail }}</span>
+            {% endif %}
+          </td>
+          <td>{{ row.category }}</td>
+          <td>
+            <span class="status-pill status-pill--{% if row.status_key == 'ok' %}healthy{% elif row.status_key in ['advisory_failed', 'skipped'] %}warn{% else %}danger{% endif %}">
+              <span class="status-pill-dot" aria-hidden="true"></span>
+              {{ row.status_label }}
+            </span>
+          </td>
+          <td>{% if row.duration_ms %}{{ row.duration_ms }}ms{% else %}—{% endif %}</td>
+          <td>
+            {% if row.disagreement_note %}<span class="targets-cell-meta">{{ row.disagreement_note }}</span>{% endif %}
+            {% if row.remediation_command %}<code>{{ row.remediation_command }}</code>{% elif row.remediation_text %}{{ row.remediation_text }}{% else %}—{% endif %}
+            {% if row.host_native_command %}
+            <span class="targets-cell-meta">Host: <code>{{ row.host_native_command }}</code></span>
+            {% endif %}
+            {% if row.service_actions %}
+            <div class="system-table-actions">
+              {% for action in row.service_actions %}
+              <form method="post" action="/ui/system/service/{{ action.service }}/{{ action.action }}"
+                class="system-lifecycle-form"
+                data-system-lifecycle-form
+                data-service="{{ action.service }}"
+                data-action="{{ action.action }}">
+                <button type="submit" class="btn btn-secondary btn-sm" data-lifecycle-submit>{{ action.label }} {{ action.service }}</button>
+              </form>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% if triage.passing_count %}
+  <details class="system-passing-toggle">
+    <summary>Show {{ triage.passing_count }} passing checks</summary>
+    <div class="targets-table-wrap">
+      <table class="targets-data-table">
+        <thead>
+          <tr>
+            <th>Check</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Duration</th>
+            <th>Remediation</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in triage.health_rows if row.status_key == 'ok' %}
+          <tr>
+            <td class="targets-cell-primary">{{ row.check_name }}</td>
+            <td>{{ row.category }}</td>
+            <td>
+              <span class="status-pill status-pill--healthy">
+                <span class="status-pill-dot" aria-hidden="true"></span>
+                {{ row.status_label }}
+              </span>
+            </td>
+            <td>{% if row.duration_ms %}{{ row.duration_ms }}ms{% else %}—{% endif %}</td>
+            <td>—</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </details>
+  {% endif %}
+</section>
+
+{% if triage.show_start_all %}
+<form method="post" action="/ui/system/services/start-all"
+  class="system-lifecycle-form"
+  data-system-lifecycle-form
+  data-service="all prerequisites"
+  data-action="start">
+  <button type="submit" class="btn btn-primary btn-sm" data-lifecycle-submit>Start all prerequisites (dependency order)</button>
+</form>
+{% endif %}

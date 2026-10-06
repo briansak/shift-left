@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}Define managed target{% endblock %}
+{% block content %}
+<section class="page-lead">
+  <p><a href="/ui/targets">← Managed targets</a></p>
+  <h2>Define managed target</h2>
+  <p class="helper">Declare a device or system mapping — explicit repo, branch, and config path globs. Saved to <code>config/shift-left.yaml</code> and effective immediately.</p>
+</section>
+
+{% if error %}
+<div class="trust-alert trust-alert-warn" role="alert">
+  <span class="status-icon" aria-hidden="true">!</span> {{ error }}
+</div>
+{% endif %}
+
+<form method="post" action="/ui/targets/new" class="panel target-form">
+  <h3>Required</h3>
+  <div class="form-grid">
+    <div>
+      <label for="display_name">Display name</label>
+      <input id="display_name" name="display_name" required maxlength="64"
+             value="{{ defaults.display_name or '' }}" placeholder="edge-fw-01">
+      <p class="helper">Shown on target cards and detail views.</p>
+    </div>
+    <div>
+      <label for="target_type">Target type</label>
+      <input id="target_type" name="target_type" required maxlength="64"
+             value="{{ defaults.target_type or '' }}" placeholder="cisco_secure_firewall"
+             list="target-type-suggestions">
+      <datalist id="target-type-suggestions">
+        <option value="cisco_secure_firewall">
+        <option value="generic_terraform">
+        <option value="azure_nsg">
+        <option value="gcp_firewall">
+      </datalist>
+    </div>
+    <div>
+      <label for="repo">Repository</label>
+      <input id="repo" name="repo" required pattern="[^/]+/[^/]+"
+             value="{{ defaults.repo or '' }}" placeholder="owner/repo">
+      <p class="helper">Forgejo slug — never inferred from folder names.</p>
+    </div>
+    <div>
+      <label for="branch">Tracked branch</label>
+      <input id="branch" name="branch" required value="{{ defaults.branch or 'main' }}">
+    </div>
+    <div class="form-span-2">
+      <label for="config_paths">Config path globs</label>
+      <textarea id="config_paths" name="config_paths" required rows="3"
+                placeholder="terraform/**, policy/*.rules">{{ defaults.config_paths or '' }}</textarea>
+      <p class="helper">Comma- or newline-separated globs within the repo. Each path must match exactly one target.</p>
+    </div>
+  </div>
+
+  <h3>Optional</h3>
+  <div class="form-grid">
+    <div>
+      <label for="target_id">Target ID</label>
+      <input id="target_id" name="target_id" pattern="[a-z0-9][a-z0-9._-]{0,62}"
+             value="{{ defaults.target_id or '' }}" placeholder="auto from display name">
+    </div>
+    <div>
+      <label for="deployment_adapter">Deployment adapter</label>
+      <select id="deployment_adapter" name="deployment_adapter">
+        <option value="unconfigured" {% if defaults.deployment_adapter == 'unconfigured' %}selected{% endif %}>unconfigured</option>
+        <option value="none" {% if defaults.deployment_adapter == 'none' %}selected{% endif %}>none</option>
+        <option value="fmc" {% if defaults.deployment_adapter == 'fmc' %}selected{% endif %}>fmc</option>
+      </select>
+    </div>
+    <div>
+      <label for="environment">Environment</label>
+      <input id="environment" name="environment" value="{{ defaults.environment or '' }}" placeholder="production">
+    </div>
+    <div>
+      <label for="criticality">Criticality</label>
+      <input id="criticality" name="criticality" value="{{ defaults.criticality or '' }}" placeholder="high">
+    </div>
+    <div>
+      <label for="owner">Owner / team</label>
+      <input id="owner" name="owner" value="{{ defaults.owner or '' }}" placeholder="netsecops">
+    </div>
+    <div class="form-span-2">
+      <label for="description">Description</label>
+      <textarea id="description" name="description" rows="2">{{ defaults.description or '' }}</textarea>
+    </div>
+  </div>
+
+  <p class="form-actions">
+    <button type="submit">Save target</button>
+    <a class="btn btn-secondary" href="/ui/targets">Cancel</a>
+  </p>
+</form>
+{% endblock %}

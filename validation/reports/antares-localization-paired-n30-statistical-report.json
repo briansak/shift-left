@@ -1,0 +1,83 @@
+{
+  "protocol": {
+    "corpus": "data/repos/localdemo/celery-corpus",
+    "commit_sha": "14b04b536678488350882d81d4d9b336eb775dc3",
+    "runs_per_arm": 30,
+    "always_materialize_snapshot": true,
+    "git_excluded_from_snapshot": true,
+    "single_variable": "exclude_test_paths"
+  },
+  "incomparable_prior_figures_note": "Prior figures (0.245 validation corpus, 0.418/0.462 localdemo pre-pairing) are not comparable to this paired result or to each other: different sandbox layouts (.git exposure), corpus paths/commits, and (before harness fix) include-tests skipped snapshot materialization. Do not carry them forward as baselines.",
+  "arms": {
+    "exclude_tests": {
+      "report": "validation/reports/antares-localization-paired-exclude-tests-n30.json",
+      "mean_file_f1": 0.2098,
+      "stdev_file_f1": 0.3157,
+      "se_file_f1": 0.0576,
+      "ci95_file_f1": [
+        0.0919,
+        0.3276
+      ],
+      "gt_in_ranked": "14/30",
+      "mean_precision_zero_unsubmitted": 0.1676,
+      "mean_recall_zero_unsubmitted": 0.4667,
+      "mean_precision_at_one_zero_unsubmitted": 0.1667,
+      "mean_candidate_count": 4.1,
+      "mean_charged_terminal_calls": 8.0,
+      "failure_class_distribution": {
+        "duplicate_loop_search_unread": 6,
+        "completed": 22,
+        "attempt_cap_exceeded": 1,
+        "unparseable_submission_loop": 1
+      }
+    },
+    "include_tests": {
+      "report": "validation/reports/antares-localization-paired-include-tests-n30.json",
+      "mean_file_f1": 0.1512,
+      "stdev_file_f1": 0.2816,
+      "se_file_f1": 0.0514,
+      "ci95_file_f1": [
+        0.0461,
+        0.2564
+      ],
+      "gt_in_ranked": "10/30",
+      "mean_precision_zero_unsubmitted": 0.1194,
+      "mean_recall_zero_unsubmitted": 0.3333,
+      "mean_precision_at_one_zero_unsubmitted": 0.1333,
+      "mean_candidate_count": 3.1,
+      "mean_charged_terminal_calls": 8.73,
+      "failure_class_distribution": {
+        "attempt_cap_exceeded": 1,
+        "duplicate_loop_search_unread": 2,
+        "completed": 25,
+        "attempt_cap_exceeded_unsubmitted": 1,
+        "unparseable_submission_loop": 1
+      }
+    }
+  },
+  "comparison": {
+    "mean_file_f1_difference_exclude_minus_include": 0.0586,
+    "se_difference": 0.0772,
+    "ci95_difference": [
+      -0.0994,
+      0.2165
+    ],
+    "welch_t": 0.7581,
+    "sigma_pooled": 0.2991,
+    "gt_in_ranked_two_proportion_test": {
+      "hits_a": 14,
+      "n_a": 30,
+      "hits_b": 10,
+      "n_b": 30,
+      "rate_a": 0.4667,
+      "rate_b": 0.3333,
+      "rate_difference": 0.1333,
+      "z_score": 1.0541,
+      "p_value_two_sided": 0.2918
+    },
+    "sample_size_per_arm_for_80pct_power_delta_0.06": 166,
+    "exclusion_effect_established_at_n30": false
+  },
+  "finding": "Positive trend favoring test-path exclusion (mean File F1 +0.059, GT-in-ranked 14/30 vs 10/30), but the effect is not statistically established at n=30: the F1 difference is ~1\u03c3 (95% CI on difference crosses zero) and the GT-in-ranked two-proportion test is non-significant (p=0.292). ~166 runs per arm would be required to detect a 0.06 F1 difference at 80% power given observed \u03c3\u22480.30.",
+  "published_reference_note": "The exclude-tests arm mean File F1 (0.210) is within sampling noise of the Antares-1B model-card published File F1 (0.209; absolute gap +0.001). That supports the claim that this harness introduces no measurable bias relative to the published reference on this task \u2014 not that we reproduced VLoc Bench, which macro-averages 500 tasks across 290 repositories; ours is one seeded defect in one repository."
+}

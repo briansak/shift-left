@@ -1,0 +1,8 @@
+{
+  "target_type": "generic_terraform",
+  "virtual_path": "terraform/gcp-firewall-open.tf",
+  "expected_rule_ids": [
+    "TF-001"
+  ],
+  "description": "GCP firewall allows 0.0.0.0/0 ingress."
+}

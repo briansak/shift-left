@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "objects/service-objects-scoped.rules",
+  "expected_rule_ids": [],
+  "description": "Service objects with explicit protocol and port constraints."
+}

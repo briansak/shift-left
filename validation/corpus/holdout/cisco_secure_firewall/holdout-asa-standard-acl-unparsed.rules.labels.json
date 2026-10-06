@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "holdout/firewall/holdout-asa-standard-acl-unparsed.rules",
+  "expected_rule_ids": [
+    "ASA-007"
+  ],
+  "description": "Standard numbered ACL syntax — flagged as unparsed access-list statement (ASA-007)."
+}

@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "firewall/legacy-any-tcp-object.rules",
+  "expected_rule_ids": [
+    "ASA-002"
+  ],
+  "description": "Legacy migration object uses bare service tcp."
+}

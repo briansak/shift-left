@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_ios_xe",
+  "virtual_path": "switches/holdout-iosxe-undefined-group-ref.cfg",
+  "expected_rule_ids": ["IOS-001"],
+  "description": "Holdout IOS-001: ACL references undefined object-group (not generated unparsed-line form)."
+}

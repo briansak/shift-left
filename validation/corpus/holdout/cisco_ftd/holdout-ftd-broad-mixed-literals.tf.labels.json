@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "terraform/policies/holdout-ftd-broad-mixed-literals.tf",
+  "expected_rule_ids": [
+    "FTD-001"
+  ],
+  "description": "Holdout ALLOW with any source literal."
+}

@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_secure_firewall",
+  "virtual_path": "holdout/firewall/holdout-asa-mgmt-mixed-whitespace.rules",
+  "expected_rule_ids": [
+    "ASA-005"
+  ],
+  "description": "ASA-005 via tab-separated http 0.0.0.0/0 (different surface than generator files)."
+}

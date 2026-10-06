@@ -1,0 +1,81 @@
+django: 3
+flask: 0
+pillow: 2
+lxml: 2
+pyyaml: 0
+cryptography: 0
+tornado: 0
+jinja2: 0
+aiohttp: 4
+requests: 1
+urllib3: 2
+werkzeug: 1
+sentry-sdk: 0
+twisted: 2
+scrapy: 2
+paramiko: 1
+pygments: 0
+markupsafe: 0
+itsdangerous: 0
+redis: 0
+httpx: 0
+starlette: 0
+restrictedpython: 1
+{
+  "entry_count": 21,
+  "design_matrix": {
+    "aio-libs/aiohttp": {
+      "Base": 4,
+      "Class": 0
+    },
+    "django/django": {
+      "Base": 1,
+      "Class": 2
+    },
+    "lxml/lxml": {
+      "Base": 2,
+      "Class": 0
+    },
+    "pallets/werkzeug": {
+      "Base": 1,
+      "Class": 0
+    },
+    "paramiko/paramiko": {
+      "Base": 0,
+      "Class": 1
+    },
+    "psf/requests": {
+      "Base": 0,
+      "Class": 1
+    },
+    "python-imaging/Pillow": {
+      "Base": 1,
+      "Class": 0
+    },
+    "python-pillow/Pillow": {
+      "Base": 0,
+      "Class": 1
+    },
+    "scrapy/scrapy": {
+      "Base": 1,
+      "Class": 1
+    },
+    "twisted/twisted": {
+      "Base": 1,
+      "Class": 1
+    },
+    "urllib3/urllib3": {
+      "Base": 0,
+      "Class": 2
+    },
+    "zopefoundation/restrictedpython": {
+      "Base": 0,
+      "Class": 1
+    }
+  },
+  "repos_with_both_abstractions": [
+    "django/django",
+    "scrapy/scrapy",
+    "twisted/twisted"
+  ]
+}

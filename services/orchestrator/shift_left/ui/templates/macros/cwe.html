@@ -1,0 +1,3 @@
+{% macro cwe_ref(cwe_id, unrecognized=false) -%}
+<button type="button" class="cwe-ref-trigger mono" data-cwe-id="{{ cwe_id }}"{% if unrecognized %} data-cwe-unrecognized="true"{% endif %} aria-haspopup="dialog" aria-expanded="false">{{ cwe_id }}</button>
+{%- endmacro %}

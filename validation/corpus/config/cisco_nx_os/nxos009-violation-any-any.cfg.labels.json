@@ -1,0 +1,8 @@
+{
+  "target_type": "cisco_nx_os",
+  "virtual_path": "switches/nxos009-violation-any-any.cfg",
+  "expected_rule_ids": [
+    "NXOS-009"
+  ],
+  "description": "ACL permit ACE allows any/any on resolved endpoints."
+}

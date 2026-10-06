@@ -1,0 +1,45 @@
+{
+  "description": "Held-out Terraform validation set — not used for rule authoring fixtures.",
+  "entries": [
+    {
+      "path": "azure-nsg-any-any.tf",
+      "expect_flagged": true,
+      "expected_rule": "terraform/azure-unrestricted-ingress",
+      "source": "operator sample-firewall PR"
+    },
+    {
+      "path": "aws-open-sg-rule.tf",
+      "expect_flagged": true,
+      "expected_rule": "terraform/aws-unrestricted-ingress",
+      "source": "public IaC pattern (AWS provider docs shape)"
+    },
+    {
+      "path": "gcp-open-firewall.tf",
+      "expect_flagged": true,
+      "expected_rule": "terraform/gcp-unrestricted-ingress",
+      "source": "public IaC pattern (GCP provider docs shape)"
+    },
+    {
+      "path": "fmc-allow-inbound.tf",
+      "expect_flagged": true,
+      "expected_rule": "terraform/fmc-unrestricted-ingress",
+      "source": "examples/config/firewall/access_policy.tf (demo)"
+    },
+    {
+      "path": "aws-scoped-sg.tf",
+      "expect_flagged": false,
+      "source": "private RFC1918 scoped ingress"
+    },
+    {
+      "path": "aws-commented-open.tf",
+      "expect_flagged": false,
+      "source": "fully commented permissive rule"
+    },
+    {
+      "path": "aws-var-cidr.tf",
+      "expect_flagged": false,
+      "expect_unevaluated": true,
+      "source": "CIDR from variable — must not classify as clean"
+    }
+  ]
+}

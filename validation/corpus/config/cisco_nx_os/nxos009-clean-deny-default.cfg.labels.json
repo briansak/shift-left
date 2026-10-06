@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_nx_os",
+  "virtual_path": "switches/nxos009-clean-deny-default.cfg",
+  "expected_rule_ids": [],
+  "description": "ACL ends with explicit deny."
+}

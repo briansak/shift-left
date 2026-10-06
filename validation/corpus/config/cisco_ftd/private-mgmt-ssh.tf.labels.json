@@ -1,0 +1,6 @@
+{
+  "target_type": "cisco_ftd",
+  "virtual_path": "terraform/policies/private-mgmt-ssh.tf",
+  "expected_rule_ids": [],
+  "description": "SSH management restricted to RFC1918."
+}
